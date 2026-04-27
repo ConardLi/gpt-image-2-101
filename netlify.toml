@@ -1,0 +1,58 @@
+# Netlify build configuration for gpt-image-2-101
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Repo root IS the project root (website/ is the git repo).
+  # Netlify will run `npm run build` which itself triggers `npm run build:data`
+  # via the `prebuild` hook, regenerating src/data/cases.json from public/case/.
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Pin Node so local & CI behaviour stays in sync.
+  NODE_VERSION = "20"
+  # Skip Cypress / Playwright binary downloads we don't use, shaves ~30s.
+  CI = "true"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# ---------------------------------------------------------------------------
+# Caching
+# ---------------------------------------------------------------------------
+# Vite emits hashed filenames under /assets, so they're safe to cache forever.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Case PNG / JSON live under /case/* with stable filenames. Cache them long
+# but allow revalidation; if you ever re-encode an image with the same name
+# you can `netlify deploy --prod` and the new ETag will still bust the cache.
+[[headers]]
+  for = "/case/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, must-revalidate"
+
+# index.html should never be cached aggressively, otherwise users can stay on
+# an old SPA shell that points at a missing `assets/index-<hash>.js`.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ---------------------------------------------------------------------------
+# SPA fallback
+# ---------------------------------------------------------------------------
+# Hash routing means deep links like /#/skills already work without rewrites,
+# but if anyone hand-crafts a real path (e.g. /skills) we still want them to
+# land on the SPA shell instead of a 404. Excludes /assets and /case so real
+# 404s on missing assets aren't masked.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
