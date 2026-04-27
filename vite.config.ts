@@ -115,6 +115,8 @@ function casesDataWatcher(): Plugin {
         resolve(SKILL_DIR, 'references', '**', '*.md'),
       ]);
       const onChange = (file: string) => {
+        // Avoid an infinite loop: build-data writes *-thumb.webp itself.
+        if (file.endsWith('-thumb.webp')) return;
         if (
           file.startsWith(CASES_DIR) ||
           file.startsWith(resolve(SKILL_DIR, 'references'))

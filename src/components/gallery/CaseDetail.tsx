@@ -16,6 +16,12 @@ export function CaseDetail({ id, navigate }: Props) {
   const related = c ? getRelatedCases(c.id) : [];
   const [tab, setTab] = useState<Tab>('prompt');
   const [copied, setCopied] = useState(false);
+  // Progressive image load: show the (already-cached) thumb instantly, then
+  // crossfade to the full PNG once it decodes. Reset on case change.
+  const [fullLoaded, setFullLoaded] = useState(false);
+  useEffect(() => {
+    setFullLoaded(false);
+  }, [id]);
 
   // Prev / next within the same flat list (filtered by has_image to keep
   // browsing usable when toggling between cases).
@@ -81,14 +87,27 @@ export function CaseDetail({ id, navigate }: Props) {
         <div className="cd-media">
           <div className="cd-media-frame">
             {c.has_image ? (
-              <img
-                src={c.image_url ?? ''}
-                alt={c.title}
-                loading="eager"
-                decoding="async"
-                // @ts-expect-error: fetchpriority is a valid HTML hint, not yet in DOM types
-                fetchpriority="high"
-              />
+              <div className={`cd-media-stack ${fullLoaded ? 'cd-media-loaded' : ''}`}>
+                {c.thumb_url && (
+                  <img
+                    className="cd-media-thumb"
+                    src={c.thumb_url}
+                    alt=""
+                    aria-hidden="true"
+                    decoding="async"
+                  />
+                )}
+                <img
+                  className="cd-media-full"
+                  src={c.image_url ?? ''}
+                  alt={c.title}
+                  loading="eager"
+                  decoding="async"
+                  onLoad={() => setFullLoaded(true)}
+                  // @ts-expect-error: fetchpriority is a valid HTML hint, not yet in DOM types
+                  fetchpriority="high"
+                />
+              </div>
             ) : (
               <div className="cd-media-empty">
                 <div className="serif cd-media-empty-title">提示词已就绪 · 图片待生成</div>
@@ -114,7 +133,7 @@ export function CaseDetail({ id, navigate }: Props) {
                   >
                     {r.has_image ? (
                       <img
-                        src={r.image_url ?? ''}
+                        src={r.thumb_url ?? r.image_url ?? ''}
                         alt=""
                         loading="lazy"
                         decoding="async"

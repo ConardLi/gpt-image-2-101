@@ -26,7 +26,7 @@ export function CaseCard({ c, navigate, ratio }: Props) {
       <div className="cc-frame">
         {c.has_image ? (
           <img
-            src={c.image_url ?? ''}
+            src={c.thumb_url ?? c.image_url ?? ''}
             alt={c.title}
             loading="lazy"
             decoding="async"

@@ -33,7 +33,10 @@ export interface PromptCase {
   prompt_path: string;
   prompt_url: string;
   prompt_content: string | null;
+  /** Full-resolution original PNG. Only loaded when a case detail opens. */
   image_url: string | null;
+  /** Compressed 800px WebP thumbnail used in galleries / hero / strips. */
+  thumb_url: string | null;
   has_image: boolean;
 }
 

@@ -89,7 +89,9 @@ export function Hero({ navigate }: Props) {
       }
       cycleSafety++;
     }
-    return picked.map((p) => p.image_url ?? '').filter(Boolean);
+    // Prefer the compressed thumbnail — the hero mosaic only ever renders
+    // each tile at ~280px so the 800px WebP is plenty.
+    return picked.map((p) => p.thumb_url ?? p.image_url ?? '').filter(Boolean);
   }, []);
 
   // === Initial tile state ===

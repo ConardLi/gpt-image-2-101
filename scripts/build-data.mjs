@@ -6,10 +6,11 @@
 // from `/case/...` in both dev and production builds (lazy loaded by the
 // browser). Run via `npm run build:data` (also fires on predev / prebuild).
 
-import { readFile, writeFile, access, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, access, mkdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..');
@@ -20,6 +21,15 @@ const CASES_ROOT = resolve(WEBSITE_ROOT, 'public', 'case');
 const CASES_URL_PREFIX = '/case';
 const SKILL_ROOT = resolve(ROOT, '.claude', 'skills', 'gpt-image-2');
 const OUT = resolve(__dirname, '..', 'src', 'data', 'cases.json');
+
+// Thumbnail spec — gallery cards / hero mosaic / related strip never need
+// the full 2K-3K source PNG. 800px wide WebP at q78 lands around 60–120 KB
+// per image (vs. ~2-3 MB original), preserving plenty of fidelity for any
+// rendered tile up to ~400px on a Retina display.
+const THUMB_SUFFIX = '-thumb.webp';
+const THUMB_WIDTH = 800;
+const THUMB_QUALITY = 78;
+const THUMB_CONCURRENCY = 6;
 
 const CATEGORY_META = {
   'ui-mockups': { label: 'UI Mockups', cn: '界面样机', accent: '#1F6FB2' },
@@ -56,6 +66,49 @@ async function exists(p) {
   } catch {
     return false;
   }
+}
+
+// Generate (or reuse) a small WebP thumbnail next to the original image.
+// Idempotent: if the thumb already exists and is at least as new as the
+// source, we return immediately. Returns the thumb's absolute path on
+// success, or null on failure (caller falls back to the original).
+async function ensureThumbnail(originalPath) {
+  const thumbPath = originalPath.replace(/\.png$/i, THUMB_SUFFIX);
+  try {
+    const origStat = await stat(originalPath);
+    let thumbStat = null;
+    try {
+      thumbStat = await stat(thumbPath);
+    } catch {}
+    if (thumbStat && thumbStat.mtimeMs >= origStat.mtimeMs && thumbStat.size > 0) {
+      return thumbPath;
+    }
+    await sharp(originalPath, { failOn: 'none' })
+      .rotate() // honour EXIF orientation if any
+      .resize({ width: THUMB_WIDTH, withoutEnlargement: true })
+      .webp({ quality: THUMB_QUALITY, effort: 4 })
+      .toFile(thumbPath);
+    return thumbPath;
+  } catch (err) {
+    console.warn(`[thumb] skipped ${originalPath}: ${err.message}`);
+    return null;
+  }
+}
+
+// Tiny worker pool so we don't spawn 161 sharp pipelines simultaneously
+// (each sharp call already uses libvips' internal threadpool).
+async function pool(items, limit, worker) {
+  const ret = new Array(items.length);
+  let cursor = 0;
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (true) {
+      const i = cursor++;
+      if (i >= items.length) return;
+      ret[i] = await worker(items[i], i);
+    }
+  });
+  await Promise.all(runners);
+  return ret;
 }
 
 function extractTemplateSummary(md) {
@@ -148,10 +201,41 @@ async function main() {
         prompt_path: c.file,
         prompt_url: `${CASES_URL_PREFIX}/${c.file}`,
         prompt_content: promptContent,
+        // Full original PNG — only loaded when a case detail opens.
         image_url: hasImage ? `${CASES_URL_PREFIX}/${baseName}.png` : null,
+        // Filled in below by the thumbnail pass.
+        thumb_url: null,
+        // Side-channel used by the thumbnail pass; stripped before write.
+        _imagePath: hasImage ? imagePath : null,
+        _baseName: baseName,
         has_image: hasImage,
       });
     }
+  }
+
+  // ---------------- Thumbnail pass ----------------
+  const withImages = out.cases.filter((c) => c._imagePath);
+  if (withImages.length > 0) {
+    let generated = 0;
+    let reused = 0;
+    const t0 = Date.now();
+    await pool(withImages, THUMB_CONCURRENCY, async (c) => {
+      const before = existsSync(c._imagePath.replace(/\.png$/i, THUMB_SUFFIX));
+      const thumbAbs = await ensureThumbnail(c._imagePath);
+      if (thumbAbs) {
+        c.thumb_url = `${CASES_URL_PREFIX}/${c._baseName}${THUMB_SUFFIX}`;
+        if (before) reused += 1;
+        else generated += 1;
+      }
+    });
+    console.log(
+      `  thumbs: ${generated} generated, ${reused} reused (${Date.now() - t0}ms)`,
+    );
+  }
+  // Strip private fields before serialising.
+  for (const c of out.cases) {
+    delete c._imagePath;
+    delete c._baseName;
   }
 
   await mkdir(dirname(OUT), { recursive: true });
