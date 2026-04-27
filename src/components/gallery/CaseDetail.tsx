@@ -274,12 +274,24 @@ export function CaseDetail({ id, navigate }: Props) {
               <div className="cd-template">
                 <div className="cd-template-head">
                   <span className="mono cd-template-label">SKILL 模板</span>
-                  <button
-                    className="cd-act"
-                    onClick={() => navigate({ name: 'skills' })}
-                  >
-                    完整 Skill 文档 →
-                  </button>
+                  <div className="cd-template-actions">
+                    <a
+                      className="cd-act cd-act-ghost"
+                      href={`https://github.com/ConardLi/garden-skills/blob/main/skills/gpt-image-2/${tpl.md_path}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="在 garden-skills 仓库中查看模板原文"
+                    >
+                      <span aria-hidden="true">↗</span>
+                      GitHub
+                    </a>
+                    <button
+                      className="cd-act"
+                      onClick={() => navigate({ name: 'skills' })}
+                    >
+                      完整 Skill 文档 →
+                    </button>
+                  </div>
                 </div>
                 <h3 className="cd-template-name serif">{tpl.label}</h3>
                 <div className="mono cd-template-path">{tpl.md_path}</div>

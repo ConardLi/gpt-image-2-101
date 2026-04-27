@@ -7,6 +7,9 @@ interface Props {
   navigate: (r: Route) => void;
 }
 
+const REPO_URL = 'https://github.com/ConardLi/garden-skills';
+const SKILL_TREE_URL = `${REPO_URL}/tree/main/skills/gpt-image-2`;
+
 const MODES = [
   {
     tag: 'A',
@@ -163,6 +166,26 @@ export function SkillsPage({ navigate }: Props) {
           <span>GPT‑IMAGE 2 TOOLKIT</span>
           <span className="sp-meta-sep" />
           <span>v1 · {new Date().getFullYear()}</span>
+          <span className="sp-meta-sep" />
+          <a
+            className="sp-hero-source"
+            href={SKILL_TREE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View source on GitHub: ConardLi/garden-skills"
+          >
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.16-.89-1.16-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.74.54 1.49v2.21c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+            </svg>
+            <span>SOURCE · ConardLi/garden-skills</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <h1 className="sp-hero-title serif">
@@ -386,16 +409,41 @@ export function SkillsPage({ navigate }: Props) {
 
       {/* === CTA === */}
       <section className="sp-cta">
-        <h3 className="serif sp-cta-title">
-          准备好了？回去看 <span className="serif-italic">{cases.summary.cases} 张</span> 已经跑通的图。
-        </h3>
-        <button
-          className="sp-cta-btn"
-          onClick={() => navigate({ name: 'home' })}
-        >
-          <span>浏览图集</span>
-          <span className="sp-cta-btn-arrow" aria-hidden="true">→</span>
-        </button>
+        <div className="sp-cta-text">
+          <h3 className="serif sp-cta-title">
+            准备好了？回去看 <span className="serif-italic">{cases.summary.cases} 张</span> 已经跑通的图。
+          </h3>
+          <p className="sp-cta-sub">
+            想自己跑这个 Skill？源码 / 模板 / 三种运行模式都开源在 <code className="mono">ConardLi/garden-skills</code>。
+          </p>
+        </div>
+        <div className="sp-cta-actions">
+          <button
+            className="sp-cta-btn"
+            onClick={() => navigate({ name: 'home' })}
+          >
+            <span>浏览图集</span>
+            <span className="sp-cta-btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <a
+            className="sp-cta-btn sp-cta-btn-ghost"
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.16-.89-1.16-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.74.54 1.49v2.21c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+            </svg>
+            <span>Star on GitHub</span>
+            <span className="sp-cta-btn-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </section>
     </main>
   );

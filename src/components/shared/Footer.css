@@ -111,6 +111,26 @@
   background: var(--ink-700);
   border-radius: 999px;
 }
+.ftr-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-faint);
+  letter-spacing: 0.18em;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.ftr-meta-link:hover {
+  color: var(--paper);
+}
+.ftr-meta-link-em {
+  color: var(--text-mute);
+  letter-spacing: 0;
+  font-weight: 600;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.ftr-meta-link:hover .ftr-meta-link-em {
+  color: var(--vermilion);
+}
 .ftr-credit {
   font-size: 10px;
   letter-spacing: 0.16em;

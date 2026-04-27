@@ -354,7 +354,8 @@
   letter-spacing: 0.18em;
   color: var(--text-faint);
 }
-.cd-prompt-actions { display: inline-flex; gap: var(--s-2); }
+.cd-prompt-actions,
+.cd-template-actions { display: inline-flex; gap: var(--s-2); flex-wrap: wrap; }
 .cd-act {
   display: inline-flex;
   align-items: center;
@@ -371,6 +372,16 @@
   cursor: pointer;
 }
 .cd-act:hover { background: var(--vermilion); border-color: var(--vermilion); }
+.cd-act-ghost {
+  color: var(--text-mute);
+  background: transparent;
+  border-color: var(--line);
+}
+.cd-act-ghost:hover {
+  color: var(--paper);
+  background: rgba(244, 239, 230, 0.06);
+  border-color: var(--line-strong);
+}
 
 .cd-code {
   margin: 0;

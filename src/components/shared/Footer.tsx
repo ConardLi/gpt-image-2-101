@@ -55,6 +55,16 @@ export function Footer({ navigate }: Props) {
             <span className="ftr-meta-sep" />
             <span>BUILT WITH VITE + REACT</span>
             <span className="ftr-meta-sep" />
+            <a
+              className="ftr-meta-link"
+              href="https://github.com/ConardLi/garden-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Powered by ConardLi/garden-skills"
+            >
+              POWERED BY <span className="ftr-meta-link-em">garden-skills</span>
+            </a>
+            <span className="ftr-meta-sep" />
             <span>2026 EDITION</span>
           </div>
           <div className="mono ftr-credit">
