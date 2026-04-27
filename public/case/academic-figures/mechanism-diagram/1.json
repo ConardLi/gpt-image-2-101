@@ -1,0 +1,102 @@
+{
+  "type": "学术机理示意图（mechanism / pathway figure）",
+  "goal": "生成一张可直接放进电池材料类论文正文的机制示意图，强调硅碳负极循环过程中的体积演化与 SEI 演化路径，学术克制、工程化配色、可单色印刷可读",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 3.",
+    "caption": "Proposed evolution mechanism of the Si@C anode during repeated lithiation/delithiation.",
+    "position": "bottom-center, italic serif or compact sans-serif, smaller font size"
+  },
+  "central_object": {
+    "label": "Si@C composite particle",
+    "depiction": "a simplified cross-sectional sketch of a spherical Si@C particle: inner silicon nanodomains shown as small filled circles, gradient mesoporous carbon shell shown as concentric line-art, a thin continuous SEI line as the outermost boundary; line-art schematic, no 3D, no shading",
+    "position": "horizontally centered, occupying roughly 30% of canvas width",
+    "style": "thin line-art / engineering schematic, no 3D, no shading, no hyperreal texture"
+  },
+  "stages": {
+    "count": "5",
+    "items": [
+      {
+        "id": "M1",
+        "name": "Lithiation",
+        "summary": "Li+ insertion into Si nanodomains",
+        "highlight": "none"
+      },
+      {
+        "id": "M2",
+        "name": "Volumetric Expansion",
+        "summary": "particle expansion absorbed by porous C shell",
+        "highlight": "none"
+      },
+      {
+        "id": "M3",
+        "name": "SEI Stress Accumulation",
+        "summary": "tensile stress concentrates at SEI interface",
+        "highlight": "stress concentration region"
+      },
+      {
+        "id": "M4",
+        "name": "SEI Rupture",
+        "summary": "local cracks expose fresh Si surface",
+        "highlight": "failure region"
+      },
+      {
+        "id": "M5",
+        "name": "SEI Reconstruction",
+        "summary": "new SEI layer forms over exposed surface",
+        "highlight": "none"
+      }
+    ]
+  },
+  "result_region": {
+    "enabled": "true",
+    "label": "Cycling Outcome",
+    "items": "irreversible Li loss, increased impedance, gradual capacity fading",
+    "position": "rightmost block, visually separated from stages but stylistically consistent"
+  },
+  "stage_block_style": {
+    "shape": "rounded rectangle (corner radius ~6px) attached to the central particle by short leader lines",
+    "size_per_stage": "consistent across all stages",
+    "fill": "very light slate tint #F1F5F9 by default; low-saturation warm tint #FEF3C7 only for M3, low-saturation rose tint #FEE2E2 only for M4",
+    "border": "1.2px solid dark gray #334155",
+    "title_text": "stage name in bold sans-serif (Inter / Helvetica / Arial), 11-12pt",
+    "summary_text": "single phrase, 9-10pt regular, no full sentence, no period"
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155",
+    "rule": "connect stages in temporal order M1 → M2 → M3 → M4 → M5, no crossing, no decorative curves; only label arrows when carrying a named quantity",
+    "feedback_loop": {
+      "enabled": "true",
+      "rule": "one curved dashed arrow loops back from M5 to M1, labeled 'next cycle' in italic gray"
+    }
+  },
+  "highlight_strategy": {
+    "rule": "for M3 use a subtle amber tint #FEF3C7 background; for M4 use a subtle rose tint #FEE2E2 background; NEVER use flames, smoke, glow, lens flare, or 3D heat-map effects",
+    "max_highlighted_stages": 2
+  },
+  "constraints": {
+    "must_keep": [
+      "central Si@C particle visually anchors the figure; stages flow outward in stable left-to-right reading order",
+      "white background, no gradient, no decorative pattern",
+      "color palette ≤ 3 main colors plus the two pale highlight tints, must remain readable in grayscale print",
+      "only sans-serif typography, no script or display fonts",
+      "stage labels are short phrases, never full sentences",
+      "the figure must look like it came from a Journal of Power Sources / Energy Storage Materials article"
+    ],
+    "avoid": [
+      "exaggerated cracks, sparks, smoke, glow, lens flare, motion blur",
+      "3D rendering of battery cells, metallic highlights, glossy fills",
+      "cartoon mascots, emoji, decorative icons, hand-drawn wobble",
+      "photo-realistic photography of equipment or electrodes",
+      "marketing poster aesthetics, magazine cover aesthetics",
+      "fabricated capacity numbers, fabricated cycle numbers, fabricated reaction equations",
+      "saturated brand-style colors, neon, vivid gradients",
+      "watermarks, copyright stamps, vendor logos"
+    ]
+  }
+}

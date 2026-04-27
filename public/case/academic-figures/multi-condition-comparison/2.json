@@ -1,0 +1,93 @@
+{
+  "type": "横向 1×N 多工况对比",
+  "goal": "生成一张材料学论文 results 章节用的 1×4 横向多工况微观组织对比图，所有 panel 严格统一、白底、定性渲染，不含任何虚构尺寸数值",
+  "canvas": {
+    "aspect_ratio": "4:1",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "40px around the row",
+    "inter_panel_gap": "16px horizontal, identical between panels",
+    "render_quality": "vector-clean look, anti-aliased, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 5.",
+    "caption": "SEM micrographs of the Ni-based superalloy after 4 h aging at varying temperatures, showing the evolution of γ' precipitates.",
+    "position": "bottom-center, italic compact sans-serif, smaller font size"
+  },
+  "grid_layout": {
+    "rows": "1",
+    "cols": "4",
+    "panel_count": "4",
+    "rule": "1 × 4 == 4; all panels identical size; consistent horizontal alignment"
+  },
+  "panels": {
+    "panel_type": "micrograph",
+    "panel_type_options": "micrograph",
+    "rule": "ALL panels rendered as schematic SEM-style micrographs at the same magnification",
+    "items": [
+      {
+        "id": "(a)",
+        "condition_label": "T = 700 °C",
+        "condition_detail": "early-stage γ' nucleation"
+      },
+      {
+        "id": "(b)",
+        "condition_label": "T = 800 °C",
+        "condition_detail": "fine γ' precipitates"
+      },
+      {
+        "id": "(c)",
+        "condition_label": "T = 900 °C",
+        "condition_detail": "coarsened γ' precipitates"
+      },
+      {
+        "id": "(d)",
+        "condition_label": "T = 1000 °C",
+        "condition_detail": "rafted γ' morphology"
+      }
+    ]
+  },
+  "panel_style": {
+    "frame": "thin black border 1px around each panel, identical for all four",
+    "label_position": "(a) (b) (c) (d) at top-left of each panel, white-bordered black text on a tiny dark patch for legibility on dark micrograph background",
+    "condition_label_position": "centered above each panel, identical position across all four",
+    "axis_labels": "no axis labels; instead a shared horizontal scale bar at bottom-right of every panel, identical length and identical 'scale bar' notation, but with no numerical micron value (qualitative)",
+    "internal_titles": "no decorative per-panel titles; rely on (a)(b)(c)(d) + condition label only"
+  },
+  "shared_legend": {
+    "enabled": "false",
+    "position": "right-of-grid",
+    "rule": "no colormap legend needed for monochromatic SEM-style micrographs",
+    "colorbar_range": "qualitative-low-to-high",
+    "colorbar_range_rule": "n/a"
+  },
+  "color_logic": {
+    "rule": "all panels rendered in a charcoal-to-light-gray monochrome palette (#1F2937 → #94A3B8 → #E5E7EB), no other hues; same value range across panels",
+    "must_print_grayscale_readable": true
+  },
+  "data_authenticity": {
+    "user_provided_real_data": "false",
+    "rule_when_false": "render qualitative SEM-style schematics of γ' precipitates: (a) sparse small dots, (b) denser small cuboids, (c) larger cuboids with regular spacing, (d) elongated rafted plates; do NOT label any precipitate size values; do NOT include numerical scale-bar values; the impression must be of a typical SEM image, not a real dataset",
+    "rule_when_true": "n/a"
+  },
+  "constraints": {
+    "must_keep": [
+      "all four panels identical size, identical aspect, identical position scheme",
+      "monochrome rendering, identical value range across panels",
+      "shared scale bar style across all panels",
+      "white outer background, dark micrograph interior",
+      "(a)(b)(c)(d) labels in identical position and identical style",
+      "only sans-serif typography, identical font family",
+      "the figure should look like SEM micrographs in Acta Materialia / Materials Characterization"
+    ],
+    "avoid": [
+      "different magnification or different brightness per panel",
+      "different chart type per panel, mixing micrograph with chart",
+      "decorative panel titles, hero panel that visually dominates",
+      "saturated colors, neon, vivid gradients on micrographs",
+      "3D rendering, lens flare, motion blur, dramatic lighting",
+      "fabricated numerical scale-bar values, fabricated grain-size labels, fabricated EBSD overlays",
+      "marketing poster aesthetics, popular-science illustration aesthetics",
+      "watermarks, instrument-vendor logos"
+    ]
+  }
+}

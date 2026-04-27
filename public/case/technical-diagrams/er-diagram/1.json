@@ -1,0 +1,426 @@
+{
+  "type": "工程感 ER 图 / 数据模型图",
+  "goal": "生成一张电商核心 PostgreSQL 逻辑模型位图，用于表结构评审与跨团队对齐",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "E-commerce Core Schema",
+    "subtitle": "PostgreSQL 16 · 逻辑 ER",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "entities": {
+    "count": "9",
+    "items": [
+      {
+        "id": "E1",
+        "name": "users",
+        "category": "user",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "email",
+            "type": "citext",
+            "marker": "UQ"
+          },
+          {
+            "name": "password_hash",
+            "type": "varchar(255)",
+            "marker": "NN"
+          },
+          {
+            "name": "phone",
+            "type": "varchar(20)",
+            "marker": ""
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "marker": "NN"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamptz",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E2",
+        "name": "addresses",
+        "category": "user",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "user_id",
+            "type": "uuid",
+            "marker": "FK→users.id"
+          },
+          {
+            "name": "receiver_name",
+            "type": "varchar(64)",
+            "marker": "NN"
+          },
+          {
+            "name": "phone",
+            "type": "varchar(20)",
+            "marker": "NN"
+          },
+          {
+            "name": "province",
+            "type": "varchar(32)",
+            "marker": "NN"
+          },
+          {
+            "name": "detail",
+            "type": "text",
+            "marker": "NN"
+          },
+          {
+            "name": "is_default",
+            "type": "boolean",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E3",
+        "name": "products",
+        "category": "catalog",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "title",
+            "type": "varchar(255)",
+            "marker": "NN"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "marker": ""
+          },
+          {
+            "name": "status",
+            "type": "varchar(32)",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E4",
+        "name": "skus",
+        "category": "catalog",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "product_id",
+            "type": "uuid",
+            "marker": "FK→products.id"
+          },
+          {
+            "name": "sku_code",
+            "type": "varchar(64)",
+            "marker": "UQ"
+          },
+          {
+            "name": "attrs_json",
+            "type": "jsonb",
+            "marker": "NN"
+          },
+          {
+            "name": "price_cents",
+            "type": "bigint",
+            "marker": "NN"
+          },
+          {
+            "name": "stock_qty",
+            "type": "int",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E5",
+        "name": "orders",
+        "category": "transaction",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "user_id",
+            "type": "uuid",
+            "marker": "FK→users.id"
+          },
+          {
+            "name": "address_id",
+            "type": "uuid",
+            "marker": "FK→addresses.id"
+          },
+          {
+            "name": "status",
+            "type": "varchar(32)",
+            "marker": "NN"
+          },
+          {
+            "name": "total_cents",
+            "type": "bigint",
+            "marker": "NN"
+          },
+          {
+            "name": "placed_at",
+            "type": "timestamptz",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E6",
+        "name": "order_items",
+        "category": "transaction",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "order_id",
+            "type": "uuid",
+            "marker": "FK→orders.id"
+          },
+          {
+            "name": "sku_id",
+            "type": "uuid",
+            "marker": "FK→skus.id"
+          },
+          {
+            "name": "qty",
+            "type": "int",
+            "marker": "NN"
+          },
+          {
+            "name": "unit_price_cents",
+            "type": "bigint",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E7",
+        "name": "payments",
+        "category": "transaction",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "order_id",
+            "type": "uuid",
+            "marker": "FK→orders.id"
+          },
+          {
+            "name": "channel",
+            "type": "varchar(32)",
+            "marker": "NN"
+          },
+          {
+            "name": "amount_cents",
+            "type": "bigint",
+            "marker": "NN"
+          },
+          {
+            "name": "transaction_id",
+            "type": "varchar(64)",
+            "marker": "UQ"
+          },
+          {
+            "name": "paid_at",
+            "type": "timestamptz",
+            "marker": ""
+          }
+        ]
+      },
+      {
+        "id": "E8",
+        "name": "coupons",
+        "category": "catalog",
+        "fields": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "marker": "PK"
+          },
+          {
+            "name": "code",
+            "type": "varchar(32)",
+            "marker": "UQ"
+          },
+          {
+            "name": "discount_type",
+            "type": "varchar(16)",
+            "marker": "NN"
+          },
+          {
+            "name": "value",
+            "type": "numeric(12,2)",
+            "marker": "NN"
+          },
+          {
+            "name": "expires_at",
+            "type": "timestamptz",
+            "marker": ""
+          }
+        ]
+      },
+      {
+        "id": "E9",
+        "name": "coupon_redemptions",
+        "category": "join",
+        "fields": [
+          {
+            "name": "order_id",
+            "type": "uuid",
+            "marker": "PK,FK→orders.id"
+          },
+          {
+            "name": "coupon_id",
+            "type": "uuid",
+            "marker": "PK,FK→coupons.id"
+          },
+          {
+            "name": "redeemed_at",
+            "type": "timestamptz",
+            "marker": "NN"
+          }
+        ]
+      }
+    ]
+  },
+  "entity_style": {
+    "shape": "rounded rectangle, corner radius 6px",
+    "fill": "category color × 10% opacity",
+    "border": "1.5px solid in category color",
+    "header_strip": "topmost ~28px: table name in bold mono 12pt + small glyph",
+    "field_row_style": "field_name : type [marker] mono 10pt, alternating row tint",
+    "marker_color": "PK = amber bold, FK = blue, UQ = violet, NN = gray"
+  },
+  "category_color_map": {
+    "user": "cyan #22D3EE",
+    "transaction": "emerald #34D399",
+    "catalog": "violet #A78BFA",
+    "join": "slate #94A3B8"
+  },
+  "relationships": {
+    "items": [
+      {
+        "from": "E1",
+        "to": "E2",
+        "cardinality": "1:N",
+        "label": "has_many"
+      },
+      {
+        "from": "E1",
+        "to": "E5",
+        "cardinality": "1:N",
+        "label": "places"
+      },
+      {
+        "from": "E2",
+        "to": "E5",
+        "cardinality": "0..1:N",
+        "label": "ships_to"
+      },
+      {
+        "from": "E3",
+        "to": "E4",
+        "cardinality": "1:N",
+        "label": "variants"
+      },
+      {
+        "from": "E5",
+        "to": "E6",
+        "cardinality": "1:N",
+        "label": "contains"
+      },
+      {
+        "from": "E4",
+        "to": "E6",
+        "cardinality": "1:N",
+        "label": "line_item"
+      },
+      {
+        "from": "E5",
+        "to": "E7",
+        "cardinality": "1:0..1",
+        "label": "pays"
+      },
+      {
+        "from": "E5",
+        "to": "E9",
+        "cardinality": "0..1:N",
+        "label": "applies"
+      },
+      {
+        "from": "E8",
+        "to": "E9",
+        "cardinality": "1:N",
+        "label": "redeemed_by"
+      }
+    ],
+    "line_style": {
+      "default": "solid line 1.5px slate #94A3B8",
+      "endpoint_notation": "crow's foot for N, tick for 1"
+    }
+  },
+  "extras": {
+    "indices_section": {
+      "enabled": "true"
+    },
+    "indices_examples": [
+      "users: idx_users_email (email)",
+      "orders: idx_orders_user_placed (user_id, placed_at DESC)",
+      "order_items: idx_order_items_order (order_id)"
+    ],
+    "color_legend": {
+      "enabled": true,
+      "position": "bottom-right",
+      "content": "category + marker + cardinality"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "实体框 header + 字段区",
+      "FK 行标明 FK→table.field",
+      "crow's foot 或 UML 多重性",
+      "暗色 grid + mono"
+    ],
+    "avoid": [
+      "用菱形当实体",
+      "join 表与主表同色",
+      "声称可编辑 dbdiagram 工程文件"
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "type": "神经网络架构图（neural network architecture diagram）",
+  "goal": "生成论文级别的 encoder-only Transformer 架构图：层级清晰、tensor shape 标注、残差可辨、可灰度印刷",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "white #FFFFFF",
+    "outer_padding": "60px"
+  },
+  "model_meta": {
+    "name": "Our Encoder Transformer (L=12, d=768, h=8)",
+    "input_spec": "Input: token IDs, shape B × L; + learned position + segment embeddings",
+    "output_spec": "Class Logits: B × C (optional [CLS] pool), or per-token B × L × d for seq. tagging"
+  },
+  "layer_groups": {
+    "rule": "use color-coded blocks per layer type — keep palette ≤ 5 muted academic colors",
+    "color_legend": [
+      {
+        "type": "Embedding / PatchEmbed",
+        "fill": "#E0E7FF",
+        "border": "#6366F1"
+      },
+      {
+        "type": "Self-Attention",
+        "fill": "#FEE2E2",
+        "border": "#DC2626"
+      },
+      {
+        "type": "Cross-Attention",
+        "fill": "#FEF3C7",
+        "border": "#D97706"
+      },
+      {
+        "type": "Feed Forward / MLP",
+        "fill": "#D1FAE5",
+        "border": "#059669"
+      },
+      {
+        "type": "Norm / Residual",
+        "fill": "#F3F4F6",
+        "border": "#6B7280"
+      }
+    ]
+  },
+  "layers": {
+    "count": "5",
+    "items": [
+      {
+        "id": "L1",
+        "type": "Embedding / PatchEmbed",
+        "name": "Token + Pos + Type Embed",
+        "shape": "B × L × 768"
+      },
+      {
+        "id": "L2",
+        "type": "Self-Attention",
+        "name": "Encoder Stack: LN → MHA(h=8) → res → LN → FFN(d_ff=3072) → res (×N=12)",
+        "shape": "B × L × 768"
+      },
+      {
+        "id": "L3",
+        "type": "Norm / Residual",
+        "name": "Output LayerNorm (after last block)",
+        "shape": "B × L × 768"
+      },
+      {
+        "id": "L4",
+        "type": "Feed Forward / MLP",
+        "name": "Pool [CLS] token",
+        "shape": "B × 768"
+      },
+      {
+        "id": "L5",
+        "type": "Feed Forward / MLP",
+        "name": "Classification Head: Linear + dropout + softmax",
+        "shape": "B × C"
+      }
+    ]
+  },
+  "block_style": {
+    "shape": "rounded rectangle (corner radius 4-6px)",
+    "size_rule": "blocks of same layer type share identical width; encoder stack shown as a tall column with a brace labeled ×12",
+    "border": "1.2px solid (use the type's border color)",
+    "fill": "use the type's fill color (very light tint)",
+    "label_text": "layer name on first line (sans-serif bold 10-11pt) + tensor shape on second line (monospace italic 9pt)",
+    "annotation_text": "curly brace on the right of the repeated encoder block with label '× N=12'"
+  },
+  "connections": {
+    "main_flow": {
+      "style": "thin black solid arrows (1.2px), left → right through embed → stack → pool → head",
+      "arrowhead": "small filled triangle"
+    },
+    "residual": {
+      "enabled": "true",
+      "style": "curved dashed arrow arcing around each (Attn+FFN) sub-block, label '+' at merge",
+      "rule": "Pre-LN residual around attention and FFN as in modern transformer blocks"
+    },
+    "cross_attention": {
+      "enabled": "false",
+      "style": "N/A for encoder-only",
+      "rule": "not used"
+    }
+  },
+  "extras": {
+    "show_param_count": {
+      "enabled": "true",
+      "rule": "note below stack: '≈110M params' (illustrative)"
+    },
+    "highlight_novelty": {
+      "enabled": "false",
+      "rule": "if true, surround the user's contributed module with a thicker dashed orange border + label 'Ours'"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "tensor shapes in monospace; English labels",
+      "white background; no gradient; grayscale-readable shapes",
+      "residual skip visually explicit where applicable"
+    ],
+    "avoid": [
+      "3D blocks, drop shadows, rainbow colors",
+      "missing d_model / L / head count on the diagram"
+    ]
+  }
+}

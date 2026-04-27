@@ -1,0 +1,53 @@
+{
+  "type": "生活方式产品场景图",
+  "goal": "生成一张商品出现在真实户外露营场景中的视觉，氛围真实、克制、品质感强，可作为品牌主视觉或社媒封面使用",
+  "subject": {
+    "product_name": "Wacaco Minipresso GR2 便携手压意式机",
+    "visual_description": "深灰与橙色点缀的圆筒手压意式机，正从铜色出口接出一小股 crema 色咖啡液入透明玻璃杯",
+    "position": "画面中心偏下，与木纹纹理对齐"
+  },
+  "scene": {
+    "location": "湖畔杉林边的折叠蛋卷桌，远处帐篷门口虚化",
+    "time_of_day": "五月清晨 6:40 左右，湖面薄雾将散",
+    "weather_or_mood": "清冽、有露水、人尚未嘈杂",
+    "extra_props": [
+      "小铜手磨与数粒咖啡豆在防水油布上",
+      "军绿色搪瓷杯作背景层次",
+      "松针与一两颗湿石子点缀前景"
+    ]
+  },
+  "lighting": {
+    "type": "自然光",
+    "direction": "左侧树林间隙来的柔侧光，水面微反射补暗部",
+    "intensity": "中柔，不刺眼",
+    "color_temp": "略冷偏清晨蓝，咖啡液提供暖点"
+  },
+  "human_presence": {
+    "enabled": "false",
+    "form": "无",
+    "rule": "以无人静物表现「刚醒来的一杯」"
+  },
+  "text_overlay": {
+    "enabled": "false",
+    "brand": "",
+    "headline": ""
+  },
+  "style": {
+    "rendering": "真实摄影感 + 细腻颗粒 + 中低饱和",
+    "depth": "浅景深，意式机与杯口最实",
+    "consistency": "军绿、木色、深灰、湖面灰蓝统一"
+  },
+  "constraints": {
+    "must_keep": [
+      "设备为绝对焦点",
+      "湖水与林景真实可信、透视正确",
+      "不出现人物",
+      "像生活方式杂志而非硬广贴片"
+    ],
+    "avoid": [
+      "3D 渲染感",
+      "高饱和广告色",
+      "桌面杂物超过五件"
+    ]
+  }
+}

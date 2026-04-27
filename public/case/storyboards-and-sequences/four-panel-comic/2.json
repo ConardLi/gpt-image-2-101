@@ -1,0 +1,61 @@
+{
+  "type": "2x2 反转 4 格漫画",
+  "goal": "生成一张 2×2 四格漫画，讲一个有节奏与反转的职场小剧场",
+  "story": {
+    "theme": "周一战报会：数据很漂亮，但没人敢问那句",
+    "structure": "起 / 承 / 转 / 合",
+    "main_character": "会议室里的汇报人，短发、深蓝西装、神情认真，以 Tim Cook 为可辨识原型（Q 版夸张，不写实肖像）"
+  },
+  "style": {
+    "art_style": "美式卡通 + 粗线勾边 + 平涂",
+    "consistency": "4 格中主角为同一人，画风统一",
+    "color_palette": "苹果白 + 深空灰 + 亮绿数据高亮"
+  },
+  "panels": {
+    "format": "2x2 grid",
+    "items": [
+      {
+        "position": "top-left",
+        "label": "起",
+        "scene": "大屏曲线陡升，主角指向图表，观众席剪影点头",
+        "dialogue": "增长超预期"
+      },
+      {
+        "position": "top-right",
+        "label": "承",
+        "scene": "主角翻开下一页，满屏「生态协同」关键词云",
+        "dialogue": "生态正在闭环"
+      },
+      {
+        "position": "bottom-left",
+        "label": "转",
+        "scene": "角落同事偷偷看手机，微信里工作群弹「今晚迭代」",
+        "dialogue": "老板在群里没说话"
+      },
+      {
+        "position": "bottom-right",
+        "label": "合",
+        "scene": "散会后主角独自对窗外，咖啡已经凉了",
+        "dialogue": "好，下季度继续"
+      }
+    ]
+  },
+  "dialogue_design": {
+    "balloon_style": "白底尖角商务气泡",
+    "font_style": "黑体加粗小字"
+  },
+  "aspect_ratio": "1:1",
+  "constraints": {
+    "must_keep": [
+      "4 格主角为同一人",
+      "起承转合清晰",
+      "微信界面仅作道具小图，不遮主叙事",
+      "讽刺感温和不人身攻击"
+    ],
+    "avoid": [
+      "每格超过一句对话超过 12 字",
+      "分格比例不一",
+      "真实人脸照片拼贴"
+    ]
+  }
+}

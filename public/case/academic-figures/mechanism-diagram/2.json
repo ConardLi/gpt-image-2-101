@@ -1,0 +1,96 @@
+{
+  "type": "三段式因果链机制图",
+  "goal": "生成一张环境催化方向论文正文用机制示意图，按'初始体系 → 多阶段反应机制 → 最终产物'三段式因果链组织，学术克制、工程化配色",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 4.",
+    "caption": "Proposed pathway of UV-driven photocatalytic degradation of phenolic pollutants over the TiO2/g-C3N4 heterojunction.",
+    "position": "bottom-center, italic serif or compact sans-serif, smaller font size"
+  },
+  "central_object": {
+    "label": "TiO2 / g-C3N4 photocatalyst",
+    "depiction": "a simplified line-art schematic of a layered heterojunction: top thin slab labeled g-C3N4, bottom thicker slab labeled TiO2, an interface line in between; nearby a pollutant molecule glyph (phenol ring) and a UV photon arrow pointing onto the catalyst",
+    "position": "centered horizontally, occupying ~25% of canvas width",
+    "style": "thin line-art / engineering schematic, no 3D, no shading"
+  },
+  "stages": {
+    "count": "4",
+    "items": [
+      {
+        "id": "M1",
+        "name": "Photoexcitation",
+        "summary": "UV generates e- / h+ pairs in g-C3N4 and TiO2",
+        "highlight": "none"
+      },
+      {
+        "id": "M2",
+        "name": "Charge Separation",
+        "summary": "type-II band alignment drives e-/h+ to opposite layers",
+        "highlight": "interfacial transfer region"
+      },
+      {
+        "id": "M3",
+        "name": "Radical Generation",
+        "summary": "•OH and •O2- radicals form at the surface",
+        "highlight": "reactive surface region"
+      },
+      {
+        "id": "M4",
+        "name": "Mineralization",
+        "summary": "ring opening and oxidation to CO2 + H2O + inorganic ions",
+        "highlight": "none"
+      }
+    ]
+  },
+  "result_region": {
+    "enabled": "true",
+    "label": "Final Products",
+    "items": "CO2, H2O, NO3-, SO4 2- (depending on substrate)",
+    "position": "rightmost band, visually separated by larger whitespace from the mechanism stages"
+  },
+  "stage_block_style": {
+    "shape": "rounded rectangle (corner radius ~6px), arranged as a horizontal chain in the middle band",
+    "size_per_stage": "consistent across all stages",
+    "fill": "very light slate tint #F1F5F9 by default; low-saturation amber tint #FEF3C7 only for M2 and M3 (highlighted reactive regions)",
+    "border": "1.2px solid dark gray #334155",
+    "title_text": "stage name in bold sans-serif, 11-12pt",
+    "summary_text": "single phrase, 9-10pt regular, no full sentence, no period"
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155",
+    "rule": "left initial system → mechanism stages M1→M2→M3→M4 → right final products; arrows are straight, no crossings; one optional thin labeled arrow above M3 indicating 'O2 / H2O' input",
+    "feedback_loop": {
+      "enabled": "false",
+      "rule": "linear causal chain, no feedback in this variant"
+    }
+  },
+  "highlight_strategy": {
+    "rule": "M2 and M3 use a pale amber tint #FEF3C7 to indicate reactive zones; NEVER use glow, sparks, vivid gradients, or lens flare",
+    "max_highlighted_stages": 2
+  },
+  "constraints": {
+    "must_keep": [
+      "three visual zones: initial system (left), mechanism stages (middle), final products (right)",
+      "white background, no gradient, no decorative pattern",
+      "color palette ≤ 3 main colors plus pale amber highlight, must remain readable in grayscale print",
+      "only sans-serif typography, identical font family across the figure",
+      "stage labels are short phrases, never full sentences",
+      "the figure must look like a mechanism figure in Applied Catalysis B / Water Research"
+    ],
+    "avoid": [
+      "exaggerated UV beams, glowing molecules, sparks, lens flare",
+      "3D rendering of catalyst slabs, metallic highlights, glossy fills",
+      "cartoon mascots, emoji, decorative icons, hand-drawn wobble",
+      "photo-realistic backgrounds, water surface photography",
+      "marketing poster aesthetics, popular-science illustration aesthetics",
+      "fabricated band-gap values, fabricated rate constants, fabricated reaction equations beyond the user's scope",
+      "saturated brand colors, neon, vivid gradients",
+      "watermarks, copyright stamps, vendor logos"
+    ]
+  }
+}

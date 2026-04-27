@@ -1,0 +1,110 @@
+{
+  "type": "学术论文方法 Pipeline 总览图（method overview figure）",
+  "goal": "生成一张可直接放进顶会论文 method 章节首页的 pipeline 总览图，要求极简、白底、几何精确、出版物级可读",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "pure white #FFFFFF or very light gray #FAFAFA",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 1.",
+    "caption": "Overview of our RAG-based long-context QA pipeline: retrieve → rerank → assemble → reason.",
+    "position": "bottom-center, italic serif or compact sans-serif, smaller font size"
+  },
+  "input": {
+    "label": "Corpus + User Query",
+    "thumbnail": "left tile: stack of document pages with token IDs; right snippet: a short English question string",
+    "position": "leftmost, vertically centered"
+  },
+  "stages": {
+    "count": "5",
+    "items": [
+      {
+        "id": "S1",
+        "name": "Chunking & Indexing",
+        "icon_or_glyph": "a grid of overlapping text windows with small hash icon on the side",
+        "sub_label": "1–2K tokens, overlap 128"
+      },
+      {
+        "id": "S2",
+        "name": "Dense Retrieval",
+        "icon_or_glyph": "a dense vector as an arrow from query embedding to top-K chunk dots",
+        "sub_label": "E5-large + FAISS, K=20"
+      },
+      {
+        "id": "S3",
+        "name": "Cross-Encoder Rerank",
+        "icon_or_glyph": "two horizontal bars (query, passage) and a small score meter",
+        "sub_label": "keep top-5"
+      },
+      {
+        "id": "S4",
+        "name": "Context Assembly",
+        "icon_or_glyph": "concatenated text blocks with a bracket labeled ≤ 32K",
+        "sub_label": "long-window packing"
+      },
+      {
+        "id": "S5",
+        "name": "LLM Answering",
+        "icon_or_glyph": "a decoder stack with an arrow to an answer string",
+        "sub_label": "GPT-4o-class, cite spans"
+      }
+    ]
+  },
+  "output": {
+    "label": "Answer + Citations",
+    "thumbnail": "a short answer paragraph with bracketed source IDs [1][3]",
+    "position": "rightmost, vertically centered"
+  },
+  "stage_block_style": {
+    "shape": "rounded rectangle (corner radius ~6px)",
+    "size_per_stage": "around 120px wide × 80px tall, all stages identical size",
+    "fill": "very light tint (e.g. #F1F5F9, #ECFEFF) — at most 2 different tints used to group stages by category",
+    "border": "1.2px solid dark gray #334155",
+    "title_text": "stage name in bold sans-serif (Helvetica / Inter / Arial), 11-12pt, top-center inside block",
+    "icon_position": "centered inside block, takes ~50% of block height",
+    "sub_label_text": "sub-label in italic gray, below stage name"
+  },
+  "connectors": {
+    "style": "thin black arrows (1.2px) with simple triangle arrowheads",
+    "rule": "horizontal flow left → right; small label above arrow only when carrying intermediate data type (e.g. 'top-20 chunk IDs', 'top-5 passages')",
+    "skip_connections": {
+      "enabled": "false",
+      "rule": "if true, draw curved arrows that arc above the main flow with dashed style, label them 'skip' / 'residual'"
+    }
+  },
+  "extras": {
+    "loss_branch": {
+      "enabled": "false",
+      "label": "L = L_cls + λ L_reg",
+      "rule": "if enabled, draw a small dashed branch from output back to a 'Loss' box, formula in italic"
+    },
+    "color_legend": {
+      "enabled": "false",
+      "rule": "if multiple stage tints are used, add a tiny legend bottom-right explaining each color group"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "all stage blocks identical size and vertically aligned",
+      "white or near-white background, no gradient, no decoration",
+      "only sans-serif typography, no script / handwritten / display fonts",
+      "color palette ≤ 4 colors total, must remain readable in grayscale print",
+      "input thumbnail and output thumbnail same size, both have a thin border",
+      "arrows must not overlap stage blocks; labels must not collide with arrows",
+      "use English labels by default unless user requested otherwise",
+      "the figure should look like it came directly from a CVPR / NeurIPS PDF"
+    ],
+    "avoid": [
+      "3D effects, drop shadows, gradients, glossy fills",
+      "cartoon icons, emoji, hand-drawn wobble",
+      "saturated colors (no neon, no vivid)",
+      "Helvetica + serif mixed in same diagram",
+      "decorative background patterns / textures",
+      "illustrative photo backgrounds inside stage blocks",
+      "stage blocks of unequal size or unaligned baselines",
+      "Chinese mixed with English labels unless explicitly bilingual"
+    ]
+  }
+}

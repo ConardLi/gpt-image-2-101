@@ -1,0 +1,83 @@
+{
+  "type": "电商直播 UI 样机",
+  "goal": "生成一张高仿真的直播带货截图风格视觉图，主体是主播肖像，叠加完整直播间界面元素，整体既像真实直播截图，也具备发布会主视觉的商业感",
+  "subject": {
+    "source_mode": "celebrity-name",
+    "celebrity_name": "Elon Musk",
+    "description": "Elon Musk 半身真人肖像，面带轻松微笑，身穿印有白色火箭与电池组示意图的黑色 T 恤，胸前别着 SpaceX 金属胸章",
+    "pose": "正对镜头，身体轻微前倾，右手抬起像在直播间介绍产品",
+    "expression": "自信、放松、带有交流感，眼神看向镜头"
+  },
+  "scene": {
+    "background_style": "SpaceX × Tesla 联合发布会后台 + 直播间布景的混合空间",
+    "left_background": "左侧虚化大屏显示白色 'SPACEX' 字样与火箭尾焰特写",
+    "right_background": "右侧出现一辆深银灰色 Tesla Cybertruck 实车的前 1/3 车头与红色 'T' logo",
+    "lighting": "明亮商业感影棚顶光 + 微弱蓝色边缘光，保留直播截图的真实感"
+  },
+  "ui_overlay": {
+    "platform_style": "通用中文直播带货平台 UI（接近抖音电商风格）",
+    "top_header": {
+      "host_info": "圆形头像（Musk 肖像）+ 名称 'Elon Musk'，副标题 '55.6万本场点赞'，右侧红色 '+ 关注' 按钮",
+      "rank_badge": "金币图标 + '全站第1名' 黄色徽章",
+      "viewer_stats": "顶部三个观众小头像 + '12.3w'、'8.6w'、'5.7w'，右侧总观看 '68.7万 在看'，最右白色 'X' 关闭图标",
+      "right_links": "'更多直播 >'，'礼物展馆 0/24'（带蓝色 '经典' 标签）"
+    },
+    "mid_left_gifts": {
+      "count": 2,
+      "items": [
+        "头像 '科技爱好者'，文字 '送出 小心心'，爱心图标 × 1314",
+        "头像 '星辰大海'，文字 '送出 火箭'，火箭图标 × 666"
+      ]
+    },
+    "bottom_left_chat": {
+      "system_message": "37 级勋章 '宇宙漫游者 加入了直播间'",
+      "message_count": 7,
+      "messages": [
+        "小火箭: 马斯克！未来可期！🚀",
+        "future: 特斯拉Model 2什么时候出？",
+        "星空梦想家: SpaceX今年能上火星吗？",
+        "AI探索者: Neuralink进展如何？",
+        "帅气的网友: 马总好！",
+        "Mars: 第一次来你的直播，超激动！",
+        "用户123: 讲讲AI吧，会取代人类吗？"
+      ]
+    },
+    "bottom_right_product_card": {
+      "hot_tag": "橙色 '热卖 × 1888'",
+      "image": "Tesla Cybertruck 银灰色侧 3/4 角度",
+      "title": "特斯拉 Cybertruck 电动皮卡（双电机全轮驱动）",
+      "price": "¥ 1,618,000",
+      "button": "红色圆角 '抢' 按钮",
+      "floating_animation": "半透明粉色爱心沿右侧边缘向上飘动"
+    },
+    "bottom_bar": {
+      "input_field": "'说点什么...'",
+      "icons": [
+        "笑脸",
+        "三个点",
+        "购物车（红点 1）",
+        "礼物盒",
+        "分享"
+      ]
+    }
+  },
+  "style": {
+    "visual_target": "逼真的直播截图样机，不是纯 UI 设计稿，也不是纯人物海报，主播真人画面与平台界面高度自然融合",
+    "rendering": "真人摄影级肖像 + 直播平台叠加 UI + 商业广告级清晰度",
+    "color_tone": "科技蓝 + 直播红 + 商业暖色补光",
+    "composition": "9:16 竖版直播截图构图，人物占据视觉中心，UI 各分区清晰可读"
+  },
+  "constraints": {
+    "must_keep": [
+      "Elon Musk 形象可识别但不漫画化",
+      "直播 UI 分层清晰，聊天区、礼物区、商品卡缺一不可",
+      "整体像真实直播截图，而不是简单拼贴"
+    ],
+    "avoid": [
+      "UI 中文文字模糊或拼写错误",
+      "界面过度拥挤导致主播被遮挡",
+      "Cybertruck 透视错误",
+      "聊天框与背景对比度过低导致文字不清"
+    ]
+  }
+}

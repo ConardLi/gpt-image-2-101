@@ -1,0 +1,73 @@
+{
+  "type": "Publication-Ready Bar Chart（学术出版级条形图）",
+  "goal": "生成一张论文中常见的 SWE-bench 风格方法对比 bar chart 的视觉版，白底、误差棒、数值顶标",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "white #FFFFFF",
+    "outer_padding": "60px"
+  },
+  "title": {
+    "text": "SWE-bench Verified — Resolve Rate (agent trajectories, single run)",
+    "position": "top-center, sans-serif bold 13pt",
+    "subtitle": "End-to-end patch submission on full benchmark split; illustrative only"
+  },
+  "axes": {
+    "x_axis": {
+      "label": "System (reported in literature / official blog)",
+      "categories": [
+        "SWE-agent (Claude 3.5 Sonnet)",
+        "OpenHands + GPT-4o",
+        "Amazon Q Developer (reported)",
+        "Devin (Cognition, snapshot)",
+        "Ours (our stack + gpt-4o, proposed)"
+      ],
+      "tick_label_rotation": "18deg"
+    },
+    "y_axis": {
+      "label": "Resolve rate (%)",
+      "range": "0 to 45",
+      "tick_format": "percent, whole numbers 0,10,...,40",
+      "gridlines": "very faint horizontal dashed #E2E8F0"
+    }
+  },
+  "bars": {
+    "style": "vertical bars, ~32% of category width",
+    "color_rule": {
+      "default": "slate blue #64748B for baselines; orange #D97706 for the last bar (Ours)"
+    },
+    "value_labels": {
+      "enabled": "true",
+      "rule": "show values above each bar, e.g. 12.5, 18.0, 22.0, 13.0, 26.5 (illustrative)"
+    }
+  },
+  "error_bars": {
+    "enabled": "true",
+    "style": "±1 std over 3 random seeds, thin black T",
+    "annotation": "in caption: error bars show ±1 std (illustrative)"
+  },
+  "significance_markers": {
+    "enabled": "true",
+    "rule": "bracket between Ours and best baseline with ** p<0.01 (illustrative, not a real p-value claim)"
+  },
+  "legend": {
+    "enabled": "false"
+  },
+  "caption": {
+    "enabled": "true",
+    "label": "Figure 3.",
+    "text": "Resolve rate on SWE-bench Verified. Ours uses iterative retrieval over repo structure + unit-test–guided repair. Numbers are for visual communication only; run official harness for true scores.",
+    "style": "below chart, 9pt italic"
+  },
+  "constraints": {
+    "must_keep": [
+      "all axes labeled with units",
+      "no 3D bars",
+      "Ours visually distinct from baselines"
+    ],
+    "avoid": [
+      "implying fabricated p-values are real",
+      "rainbow fill",
+      "axis without tick values"
+    ]
+  }
+}

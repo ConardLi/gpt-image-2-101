@@ -1,0 +1,200 @@
+{
+  "type": "工程感状态机 / 生命周期图（UML state diagram）",
+  "goal": "生成一张 B2C 主单从 CREATED 到各终态的 UML 状态位图，终态用靶心、过渡边标事件与 guard，自循环只用于支付重试",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "Nimbus OMS · Order 状态机",
+    "subtitle": "CREATED → PAID → FULFILLING → SHIPPED → DELIVERED / REFUNDED / CANCELLED",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "states": {
+    "count": 9,
+    "items": [
+      {
+        "id": "S0",
+        "type": "initial",
+        "label": ""
+      },
+      {
+        "id": "S1",
+        "type": "state",
+        "label": "CREATED",
+        "category": "active"
+      },
+      {
+        "id": "S2",
+        "type": "state",
+        "label": "PAID",
+        "category": "active"
+      },
+      {
+        "id": "S3",
+        "type": "state",
+        "label": "FULFILLING",
+        "category": "waiting"
+      },
+      {
+        "id": "S4",
+        "type": "state",
+        "label": "SHIPPED",
+        "category": "active"
+      },
+      {
+        "id": "S5",
+        "type": "state",
+        "label": "DELIVERED",
+        "category": "success_terminal"
+      },
+      {
+        "id": "S6",
+        "type": "state",
+        "label": "REFUNDED",
+        "category": "fail_terminal"
+      },
+      {
+        "id": "S7",
+        "type": "state",
+        "label": "CANCELLED",
+        "category": "fail_terminal"
+      },
+      {
+        "id": "ST",
+        "type": "final",
+        "label": ""
+      }
+    ]
+  },
+  "state_style": {
+    "initial": {
+      "shape": "filled solid circle, ~16px diameter",
+      "color": "cyan #22D3EE solid"
+    },
+    "final": {
+      "shape": "concentric double circle (bullseye), outer ~18px, inner solid 10px",
+      "color": "rose #FB7185"
+    },
+    "state": {
+      "shape": "rounded rectangle, corner radius 12px, 160×72px typical",
+      "fill": "category color × 12% opacity",
+      "border": "1.5px solid in category color",
+      "label": "state name in mono 12pt, centered, light text on dark fill",
+      "optional_internal_label": "可在大状态内部底部加 'entry: persist_status'"
+    }
+  },
+  "category_color_map": {
+    "active": "emerald #34D399",
+    "waiting": "amber #FBBF24",
+    "success_terminal": "blue #60A5FA",
+    "fail_terminal": "rose #FB7185",
+    "error": "rose #FB7185",
+    "neutral": "slate #94A3B8"
+  },
+  "transitions": {
+    "items": [
+      {
+        "from": "S0",
+        "to": "S1",
+        "label": "place_order / emit order.created"
+      },
+      {
+        "from": "S1",
+        "to": "S1",
+        "label": "pay_retry",
+        "self_loop": true
+      },
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "pay_success [channel=wechat|alipay] / capture_txn"
+      },
+      {
+        "from": "S1",
+        "to": "S7",
+        "label": "close_timeout [now > payment_deadline] / release_hold"
+      },
+      {
+        "from": "S1",
+        "to": "S7",
+        "label": "cancel [buyer] / unstock"
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "allocate [inventory_ok] / create_wave"
+      },
+      {
+        "from": "S2",
+        "to": "S6",
+        "label": "refund_full_approved [ops] / reverse_payment"
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "handover_carrier [运单已获取] / write tracking_no"
+      },
+      {
+        "from": "S3",
+        "to": "S6",
+        "label": "refund_before_ship [风控] / cancel_pick"
+      },
+      {
+        "from": "S4",
+        "to": "S5",
+        "label": "confirm_receipt [buyer] / close_settle"
+      },
+      {
+        "from": "S4",
+        "to": "S6",
+        "label": "return_to_sender [7d 无签收] / partial_refund"
+      },
+      {
+        "from": "S5",
+        "to": "ST",
+        "label": ""
+      },
+      {
+        "from": "S6",
+        "to": "ST",
+        "label": ""
+      },
+      {
+        "from": "S7",
+        "to": "ST",
+        "label": ""
+      }
+    ],
+    "transition_style": {
+      "default": "thin solid arrow 1.5px slate #94A3B8 with filled triangle arrowhead",
+      "self_loop": "small loop curving above the state, returning to itself",
+      "label_format": "<event> [guard] / <action>，mono 9-10pt 标在边的中间，背景与 canvas 融合避免重叠"
+    },
+    "rule_routing": "尽量正交或 ≤ 30° 斜线，避免边穿过节点"
+  },
+  "composite_states": {
+    "enabled": false,
+    "rule": "if true, can group sub-states inside a larger rounded rectangle"
+  },
+  "legend": {
+    "enabled": true,
+    "position": "bottom-right",
+    "content": "category color → 进行中 / 等待 / 成功终态 / 失败终态；initial / final 形状；self-loop 为 pay_retry",
+    "style": "small panel, semi-transparent bg, mono 10pt"
+  },
+  "constraints": {
+    "must_keep": [
+      "initial 是实心圆 / final 是靶心",
+      "transitions 含 event [guard] / action 格式",
+      "自循环为 loop 形",
+      "legend 必画"
+    ],
+    "avoid": [
+      "用菱形当 state",
+      "终态画成普通矩形",
+      "声称可编辑 xstate 源"
+    ]
+  }
+}

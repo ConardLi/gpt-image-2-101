@@ -1,0 +1,131 @@
+{
+  "type": "神经网络架构图（neural network architecture diagram）",
+  "goal": "生成 ViT 架构的论文级示意：PatchEmbed、196 tokens、L=12 自注意力、MLP 头，形状链完整",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "white #FFFFFF",
+    "outer_padding": "60px"
+  },
+  "model_meta": {
+    "name": "ViT-B/16 (ImageNet-1K, supervised)",
+    "input_spec": "RGB Image 224×224×3",
+    "output_spec": "Class Logits 1000 (single label classification)"
+  },
+  "layer_groups": {
+    "rule": "color-coded: embedding vs attention vs MLP per legend",
+    "color_legend": [
+      {
+        "type": "Embedding / PatchEmbed",
+        "fill": "#E0E7FF",
+        "border": "#6366F1"
+      },
+      {
+        "type": "Self-Attention",
+        "fill": "#FEE2E2",
+        "border": "#DC2626"
+      },
+      {
+        "type": "Cross-Attention",
+        "fill": "#FEF3C7",
+        "border": "#D97706"
+      },
+      {
+        "type": "Feed Forward / MLP",
+        "fill": "#D1FAE5",
+        "border": "#059669"
+      },
+      {
+        "type": "Norm / Residual",
+        "fill": "#F3F4F6",
+        "border": "#6B7280"
+      }
+    ]
+  },
+  "layers": {
+    "count": "6",
+    "items": [
+      {
+        "id": "L1",
+        "type": "Embedding / PatchEmbed",
+        "name": "Patch Embed P/16 + [CLS]: 197 tokens",
+        "shape": "B × 197 × 768",
+        "annotation": "14×14=196 + CLS"
+      },
+      {
+        "id": "L2",
+        "type": "Embedding / PatchEmbed",
+        "name": "Add 1D Positional + [CLS] prepended",
+        "shape": "B × 197 × 768"
+      },
+      {
+        "id": "L3",
+        "type": "Self-Attention",
+        "name": "Transformer Encoder (×L=12): LN–MSA–FFN with residuals",
+        "shape": "B × 197 × 768"
+      },
+      {
+        "id": "L4",
+        "type": "Norm / Residual",
+        "name": "Final LayerNorm",
+        "shape": "B × 197 × 768"
+      },
+      {
+        "id": "L5",
+        "type": "Feed Forward / MLP",
+        "name": "Take h_CLS (index 0)",
+        "shape": "B × 768"
+      },
+      {
+        "id": "L6",
+        "type": "Feed Forward / MLP",
+        "name": "MLP Head (2-layer, GELU)",
+        "shape": "B × 1000"
+      }
+    ]
+  },
+  "block_style": {
+    "shape": "rounded rectangle",
+    "size_rule": "main encoder shown once with side brace '×12 layers' listing sub-block types",
+    "border": "1.2px solid by type",
+    "fill": "light tints per type",
+    "label_text": "bold name + shape second line in monospace",
+    "annotation_text": "brace: each block = LN → MSA → res → LN → MLP → res"
+  },
+  "connections": {
+    "main_flow": {
+      "style": "left to right: image icon → patch grid glyph → token strip → encoder stack → CLS → logits",
+      "arrowhead": "small triangle"
+    },
+    "residual": {
+      "enabled": "true",
+      "style": "dashed residual arcs around each sublayer inside the enc. block (summarized, not 12 separate drawings)",
+      "rule": "residual every attention and MLP"
+    },
+    "cross_attention": {
+      "enabled": "false",
+      "style": "N/A",
+      "rule": "no decoder"
+    }
+  },
+  "extras": {
+    "show_param_count": {
+      "enabled": "true",
+      "rule": "caption near stack: 'ViT-B/16 ≈86M params'"
+    },
+    "highlight_novelty": {
+      "enabled": "false",
+      "rule": "set true only to highlight a modified stem or novel block, not for stock ViT-B/16"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "197 tokens explicit (or 196 patches + CLS)",
+      "patch size 16 and 224/16=14 on diagram margin as tiny note if needed",
+      "English only on figure"
+    ],
+    "avoid": [
+      "confusing CNN stem unless hybrid—keep ViT-pure as specified",
+      "omitting spatial token count"
+    ]
+  }
+}

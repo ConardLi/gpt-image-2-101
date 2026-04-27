@@ -1,0 +1,43 @@
+A scientific schematic illustration in the style of a Cell / Nature Reviews Molecular Cell Biology figure panel (flat vector, not photo).
+
+CORE CONCEPT
+The figure illustrates: sequence-specific double-strand break by Streptococcus pyogenes Cas9 guided by a single guide RNA, followed by repair outcomes—error-prone non-homologous end joining (NHEJ) versus templated homology-directed repair (HDR) when a donor is present.
+
+CENTRAL SUBJECT
+The visual centerpiece is: a horizontal double-stranded DNA duplex (3′–5′ on top, 5′–3′ bottom) in deep blue; a single guide RNA (red-orange) hybridized to the target protospacer, with a short PAM (NGG) region highlighted; Cas9 (large gray/lavender ovoid) docked to the RNP–DNA ternary complex with a wedge at the HNH and RuvC nuclease sites.
+
+SUPPORTING ELEMENTS
+(1) A magnified insert (panel b) showing phosphodiester cleavage at positions −3 and +3 relative to the PAM, with small scissor marks.
+(2) A dashed branch: left path labeled “NHEJ: indels, frameshift, knockout”; right path labeled “HDR: donor template, precise knock-in (low efficiency in G1)”.
+(3) A tiny 20 nt spacer + tracr repeat cartoon above Cas9, connected by thin leader lines.
+
+ANNOTATIONS
+- Use leader lines (thin black, 0.8–1.0pt) to label: target DNA, protospacer, PAM, sgRNA, Cas9, HNH, RuvC, cut sites.
+- Each label 11pt sans-serif (Helvetica / Inter / Arial), sentence case, no all-caps.
+- 5–6 main labels; subparts (a)(b) in 10pt bold at top-left of each panel.
+
+EQUATIONS
+- Optional one-line: none required; or small grey note “ΔG_hybrid kcal/mol (qualitative)”.
+- If showing knock-in, small italic: “P_HDR ∝ f(cell cycle, exogenous donor)” in margin.
+
+COLOR PALETTE
+- 3–4 muted academic colors:
+  - deep blue #1E3A8A — target DNA
+  - warm orange #C2410C — gRNA
+  - medium gray #475569 — Cas9 and annotation lines
+  - pale yellow #FEF9C3 — PAM and donor DNA outline
+- White background; print-safe grayscale.
+
+LAYOUT
+- single panel ~60% width to central cleavage; right 40% split between two repair fates, aligned to grid.
+- Aspect ratio: 4:3.
+- 25% whitespace, invisible alignment grid, no decorative texture.
+
+STYLE ENFORCEMENT
+- Crisp vector lines; no drop shadow, no gradient, no 3D extrusion, no stock photo.
+- All text typeset, never hand-lettered.
+- NO cartoon characters, NO emoji, NO “science fair” clip art.
+- Read like TikZ + Illustrator, peer-review quality.
+
+CAPTION (optional, drawn below figure)
+Figure. CRISPR-Cas9 (spCas9) RNP cleaves a genomic target 3′ of the PAM, enabling indel formation via NHEJ or precise editing via HDR when a homologous donor is supplied.（中文注：PAM 依赖性的靶向切割是 Cas9 编辑的核心约束。）

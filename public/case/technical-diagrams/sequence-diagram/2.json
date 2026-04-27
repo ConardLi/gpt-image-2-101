@@ -1,0 +1,190 @@
+{
+  "type": "工程感时序图（UML sequence diagram）",
+  "goal": "生成一张微信支付 JSAPI/Native 混合视角的时序位图，突出商户系统、微信支付平台与手机微信客户端三方的同步调用与 notify_url 回调",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "WeChat Pay · unified order to notify",
+    "subtitle": "mchid 1900006XXX · H5/公众号场景",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "actors": {
+    "count": 4,
+    "items": [
+      {
+        "id": "A1",
+        "name": "Payer (WeChat 内用户)",
+        "type": "user",
+        "icon_glyph": "stick figure outline"
+      },
+      {
+        "id": "A2",
+        "name": "商户后端 order-svc (Python)",
+        "type": "client",
+        "icon_glyph": "server rack outline"
+      },
+      {
+        "id": "A3",
+        "name": "WeChat pay API v3",
+        "type": "external",
+        "icon_glyph": "cloud outline with TLS"
+      },
+      {
+        "id": "A4",
+        "name": "手机微信 (客户端)",
+        "type": "client",
+        "icon_glyph": "phone outline"
+      }
+    ],
+    "header_box_style": {
+      "shape": "rounded rectangle, corner radius 6px",
+      "fill": "type-coded color × 12% opacity",
+      "border": "1.5px solid type-coded color",
+      "size": "160px wide × 64px tall, all headers identical size, evenly spaced",
+      "label": "actor name in mono 11pt + small icon glyph above name"
+    },
+    "type_color_map": {
+      "user": "cyan #22D3EE",
+      "client": "blue #60A5FA",
+      "service": "emerald #34D399",
+      "database": "violet #A78BFA",
+      "external": "slate #94A3B8"
+    }
+  },
+  "lifelines": {
+    "rule": "每个 actor header 下方画垂直虚线 lifeline",
+    "spacing": "lifelines 之间等距，间距 ≥ 200px"
+  },
+  "messages": {
+    "count": 12,
+    "items": [
+      {
+        "id": "M1",
+        "from": "A1",
+        "to": "A2",
+        "label": "1. POST /checkout session { sku_id, openid, amount: 19900, currency: CNY }",
+        "type": "sync"
+      },
+      {
+        "id": "M2",
+        "from": "A2",
+        "to": "A2",
+        "label": "2. 生成 out_trade_no、attach、notify_url 幂等 key",
+        "type": "self"
+      },
+      {
+        "id": "M3",
+        "from": "A2",
+        "to": "A3",
+        "label": "3. POST /v3/pay/transactions/jsapi Authorization: WECHATPAY2-SHA256... body { mchid, appid, out_trade_no, description, amount{total}, payer{openid} }",
+        "type": "sync"
+      },
+      {
+        "id": "M4",
+        "from": "A3",
+        "to": "A2",
+        "label": "4. 200 { prepay_id }",
+        "type": "return"
+      },
+      {
+        "id": "M5",
+        "from": "A2",
+        "to": "A1",
+        "label": "5. 200 { timeStamp, nonceStr, package: prepay_id=..., signType, paySign } 给 H5/JS",
+        "type": "return"
+      },
+      {
+        "id": "M6",
+        "from": "A1",
+        "to": "A4",
+        "label": "6. wx.chooseWXPay / 调起收银台",
+        "type": "sync"
+      },
+      {
+        "id": "M7",
+        "from": "A4",
+        "to": "A3",
+        "label": "7. 用户确认指纹/密码，扣款",
+        "type": "sync"
+      },
+      {
+        "id": "M8",
+        "from": "A3",
+        "to": "A2",
+        "label": "8. POST notify_url? 签名 X-Wechatpay-Signature, body { out_trade_no, transaction_id, trade_state: SUCCESS }",
+        "type": "async"
+      },
+      {
+        "id": "M9",
+        "from": "A2",
+        "to": "A3",
+        "label": "9. 200 应答 { code: SUCCESS }（必须在 5s 内）",
+        "type": "return"
+      },
+      {
+        "id": "M10",
+        "from": "A1",
+        "to": "A2",
+        "label": "10. 前端轮询或 WebSocket 收到 order_status=PAID",
+        "type": "sync"
+      },
+      {
+        "id": "M11",
+        "from": "A2",
+        "to": "A3",
+        "label": "11. 补偿：GET /v3/pay/transactions/out-trade-no/{out_trade_no} 若 notify 未达",
+        "type": "sync"
+      },
+      {
+        "id": "M12",
+        "from": "A3",
+        "to": "A2",
+        "label": "12. 200 { trade_state: SUCCESS, amount.payer_total }",
+        "type": "return"
+      }
+    ],
+    "message_style": {
+      "sync": "solid line 1.5px slate #94A3B8, filled triangle arrowhead at target",
+      "async": "solid line 1.5px slate #94A3B8, hollow triangle arrowhead",
+      "return": "dashed line 1.5px slate #64748B, hollow triangle arrowhead",
+      "self": "bracket on lifeline"
+    },
+    "label_format": "编号 + 消息摘要，含关键 HTTP / 字段名"
+  },
+  "activation_bars": {
+    "enabled": true,
+    "rule": "商户后端与 pay API 在请求处理段画激活条",
+    "vertical_extent": "自收到至返回"
+  },
+  "annotations": {
+    "notes": {
+      "enabled": true,
+      "rule": "在 M3 侧注释：mTLS/平台证书 与 APIv3 密钥用于验签与加密敏感字段"
+    },
+    "loops_alts": {
+      "enabled": true,
+      "rule": "alt 框：notify 重试 与 查询单补偿"
+    }
+  },
+  "legend": {
+    "enabled": true,
+    "position": "bottom-right",
+    "content": "sync vs return vs notify(callback)；external actor 为 slate",
+    "style": "small panel, mono 10pt"
+  },
+  "constraints": {
+    "must_keep": [
+      "messages 时间序自上而下",
+      "编号连续",
+      "return 为虚线",
+      "legend 必画"
+    ],
+    "avoid": [
+      "用 emoji 当图标",
+      "声称可编辑 PlantUML 源"
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "type": "4x4 同一人物表情与微动作集合",
+  "goal": "一张图内 4×4 格，每格为 Sam Altman 在办公环境中的一种开发者日常瞬间，作专栏插图或播客封面元素拼盘",
+  "subject": {
+    "description": "Sam Altman，短发、清瘦、略放松坐姿或站姿、常穿灰色或深蓝圆领针织衫或轻薄夹克",
+    "consistency": "十六格中五官比例、发际线、胡茬感一致，仅眼眉嘴角度与手势变化"
+  },
+  "style": "高分辨率写实棚拍+自然顶侧柔光，背景统一为浅灰墙与橡木色桌面、一台合盖笔记本与一杯黑咖啡的轻微位移",
+  "layout": {
+    "format": "4x4 grid",
+    "panel_count": 16,
+    "gap": "2px 白线分隔",
+    "panels": [
+      {
+        "expression": "微笑解释",
+        "action": "双手掌心向上摊开",
+        "outfit": "灰针织套头衫"
+      },
+      {
+        "expression": "专注皱眉",
+        "action": "俯看笔记本屏幕",
+        "outfit": "同左"
+      },
+      {
+        "expression": "恍然大悟",
+        "action": "食指轻敲太阳穴",
+        "outfit": "同左"
+      },
+      {
+        "expression": "轻笑",
+        "action": "举杯咖啡未饮",
+        "outfit": "同左"
+      },
+      {
+        "expression": "略疲惫",
+        "action": "双掌揉眼",
+        "outfit": "深蓝开领衬衫"
+      },
+      {
+        "expression": "思考",
+        "action": "下巴抵交叠指节",
+        "outfit": "同左"
+      },
+      {
+        "expression": "听对方说话",
+        "action": "头微偏、耳朝画外",
+        "outfit": "同左"
+      },
+      {
+        "expression": "小惊讶",
+        "action": "身体后仰",
+        "outfit": "同左"
+      },
+      {
+        "expression": "肯定点头",
+        "action": "竖拇指低角度",
+        "outfit": "灰套头+薄夹克肩搭椅背"
+      },
+      {
+        "expression": "浅愁",
+        "action": "视线朝窗外",
+        "outfit": "同左"
+      },
+      {
+        "expression": "被逗笑",
+        "action": "低头捂嘴",
+        "outfit": "同左"
+      },
+      {
+        "expression": "认真否定",
+        "action": "单掌向前轻推",
+        "outfit": "同左"
+      },
+      {
+        "expression": "松一口气",
+        "action": "靠椅背仰颈",
+        "outfit": "同灰套头衫"
+      },
+      {
+        "expression": "疑问",
+        "action": "侧头+单侧挑眉",
+        "outfit": "同左"
+      },
+      {
+        "expression": "鼓励",
+        "action": "双掌合十轻击",
+        "outfit": "同左"
+      },
+      {
+        "expression": "收工",
+        "action": "合盖笔电、视线看镜头",
+        "outfit": "同左"
+      }
+    ]
+  },
+  "constraints": {
+    "must_keep": "十六格是同一可识别个人，无换脸、无增龄夸张",
+    "avoid": "单格与相邻格构图像复制粘贴、桌面杂物超过三件"
+  }
+}

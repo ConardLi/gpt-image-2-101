@@ -1,0 +1,147 @@
+{
+  "type": "微信群聊样机",
+  "goal": "生成一张高仿真度的微信工作群聊天界面截图，群名 'Tech CEO 互助会 (8)'，群成员是真实硅谷 CEO，对话内容是深夜互相吐槽与工作梗",
+  "platform": {
+    "name": "微信",
+    "color_mode": "light",
+    "language": "中文（自然带入英文术语和品牌名）"
+  },
+  "header": {
+    "status_bar": "顶部状态栏，时间 '23:58'，5G、Wi-Fi、电量 19%（深夜低电量氛围）",
+    "navigation": "左上返回箭头 + 蓝色 '消息(27)'，中间标题 'Tech CEO 互助会 (8)'，右上三点菜单"
+  },
+  "group": {
+    "name": "Tech CEO 互助会",
+    "member_count": 8,
+    "self_identity": "Elon Musk（本机视角，自己消息显示在右侧绿色气泡）",
+    "members": [
+      "Elon Musk（本人 / 自己）",
+      "Tim Cook",
+      "Sundar Pichai",
+      "Mark Zuckerberg",
+      "Jensen Huang",
+      "Sam Altman",
+      "Satya Nadella",
+      "Jeff Bezos"
+    ]
+  },
+  "conversation": {
+    "messages": [
+      {
+        "role": "system",
+        "type": "system-message",
+        "text": "—————— 以上是新消息 ——————",
+        "timestamp": "下午 23:50"
+      },
+      {
+        "role": "member",
+        "name": "Sam Altman",
+        "avatar": "Sam Altman 真实肖像头像，浅蓝灰色衬衫，OpenAI 风格背景",
+        "type": "text",
+        "text": "@Jensen Huang 哥，下一批 H100 真的求加单，我这边 GPT-5.5 又跑不动了 🥲",
+        "timestamp": "23:50",
+        "highlight": "@Jensen Huang 蓝色高亮"
+      },
+      {
+        "role": "member",
+        "name": "Jensen Huang",
+        "avatar": "Jensen Huang 真实肖像头像，标志性黑色皮夹克",
+        "type": "text",
+        "text": "排队，前面还有微软、Meta、xAI、特斯拉，你猜你第几",
+        "timestamp": "23:51"
+      },
+      {
+        "role": "member",
+        "name": "Tim Cook",
+        "avatar": "Tim Cook 真实肖像头像，灰白短发 + 苹果灰背景",
+        "type": "text",
+        "text": "兄弟们安慰一下，Vision Pro 这周退货率冲到 21%，我快撑不住了",
+        "timestamp": "23:52"
+      },
+      {
+        "role": "member",
+        "name": "Mark Zuckerberg",
+        "avatar": "Mark Zuckerberg 真实肖像头像，灰色 T 恤",
+        "type": "text",
+        "text": "Quest 3 这边欢迎过来抄一抄。😎",
+        "timestamp": "23:53"
+      },
+      {
+        "role": "system",
+        "type": "system-message",
+        "text": "Mark Zuckerberg 撤回了一条消息",
+        "timestamp": "23:53"
+      },
+      {
+        "role": "member",
+        "name": "Sundar Pichai",
+        "avatar": "Sundar Pichai 真实肖像头像，沉稳微笑",
+        "type": "text",
+        "text": "顺便同步一下，Gemini 3 发布会再往后推一周，市场部不要再发倒计时图了",
+        "timestamp": "23:54"
+      },
+      {
+        "role": "member",
+        "name": "Satya Nadella",
+        "avatar": "Satya Nadella 真实肖像头像，深色西装",
+        "type": "text",
+        "text": "理解，Copilot 这边今天又被 X 上喷了一轮，团队心态需要安抚",
+        "timestamp": "23:55"
+      },
+      {
+        "role": "self",
+        "type": "text",
+        "text": "@所有人 周五晚 9 点（PT）我在 X 直播 debug Grok，欢迎各家 CEO 来连麦互怼，Tim 可以带苹果 logo 抠图素材 😏",
+        "timestamp": "23:56",
+        "highlight": "@所有人 蓝色高亮"
+      },
+      {
+        "role": "self",
+        "type": "image",
+        "description": "Cybertruck 仪表盘的夜间自拍，副驾上是一只柴犬抱着 SpaceX 玩偶（DOGE 梗），照片右下角微信图片角标",
+        "timestamp": "23:56"
+      },
+      {
+        "role": "member",
+        "name": "Jeff Bezos",
+        "avatar": "Jeff Bezos 真实肖像头像，光头 + 笑容",
+        "type": "red-packet",
+        "description": "微信红包卡片：金色封面，标题 '熬夜辛苦费' + Bezos 头像水印，下方 '已被领取 3/8'",
+        "timestamp": "23:57"
+      },
+      {
+        "role": "member",
+        "name": "Tim Cook",
+        "avatar": "Tim Cook 头像",
+        "type": "sticker",
+        "description": "微信收藏表情包：动画 GIF，库克风格人物双手合十 '感恩'，文字 '兄弟们我先睡了 🍎'",
+        "timestamp": "23:58"
+      }
+    ]
+  },
+  "footer": {
+    "input_bar": "底部输入栏 + 语音、+号；输入框灰色提示文字 '@所有人'"
+  },
+  "style": {
+    "rendering": "iOS 微信浅色群聊界面，9:19.5 纵向比例，所有头像清晰、可辨识为真实 CEO，气泡颜色与微信官方一致",
+    "celebrity_likeness": "群成员头像应用每位 CEO 公开的高识别度肖像，避免变形与不雅 artifact"
+  },
+  "constraints": {
+    "must_feel": "像真实 CEO 群截图，节奏自然有起承转合，含有 @ 全员 + 撤回 + 红包 + 表情包 + 图片这些典型微信交互",
+    "must_keep": [
+      "群名 'Tech CEO 互助会 (8)' 在顶部",
+      "群成员名字与头像严格对应，每个名字都拼写正确（特别是 Pichai / Nadella / Zuckerberg）",
+      "@所有人 与 @Jensen Huang 蓝色高亮",
+      "撤回消息以系统消息样式呈现：'Mark Zuckerberg 撤回了一条消息'",
+      "红包卡片严格遵循微信红包样式，金色封面 + 默认文案样式",
+      "Elon Musk（自己）的气泡为绿色右对齐，其他成员白色左对齐"
+    ],
+    "avoid": [
+      "出现 iMessage / Telegram / Slack 风格元素",
+      "群成员名字拼错（如 Zuckerburg / Nadela 等）",
+      "头像与名字对应错乱",
+      "时间戳倒退",
+      "对话内容涉及不当影射或非公开私人信息"
+    ]
+  }
+}

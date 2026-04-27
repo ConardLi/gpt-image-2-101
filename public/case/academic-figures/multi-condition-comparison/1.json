@@ -1,0 +1,92 @@
+{
+  "type": "学术多工况结果对比图（multi-condition comparison figure）",
+  "goal": "生成一张燃烧工程论文 results 章节使用的 2x2 多工况温度场对比图，所有 panel 严格统一、白底、定性渲染、不含任何虚构数值",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "50px around the grid",
+    "inter_panel_gap": "18px, identical horizontal and vertical",
+    "render_quality": "vector-clean look, anti-aliased, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 6.",
+    "caption": "Predicted in-furnace temperature field under varying excess-air ratios.",
+    "position": "bottom-center, italic compact sans-serif, smaller font size"
+  },
+  "grid_layout": {
+    "rows": "2",
+    "cols": "2",
+    "panel_count": "4",
+    "rule": "2 × 2 == 4; all panels identical size; consistent vertical and horizontal alignment"
+  },
+  "panels": {
+    "panel_type": "contour-field",
+    "panel_type_options": "contour-field",
+    "rule": "ALL panels share contour-field rendering; never mix with bar / line",
+    "items": [
+      {
+        "id": "(a)",
+        "condition_label": "λ = 1.0",
+        "condition_detail": "stoichiometric combustion"
+      },
+      {
+        "id": "(b)",
+        "condition_label": "λ = 1.2",
+        "condition_detail": "moderate excess air"
+      },
+      {
+        "id": "(c)",
+        "condition_label": "λ = 1.4",
+        "condition_detail": "high excess air"
+      },
+      {
+        "id": "(d)",
+        "condition_label": "λ = 1.6",
+        "condition_detail": "very high excess air"
+      }
+    ]
+  },
+  "panel_style": {
+    "frame": "thin border 1px #1F2937 around each panel, identical for all four",
+    "label_position": "(a) (b) (c) (d) at top-left of each panel, bold sans-serif, 11pt",
+    "condition_label_position": "centered above each panel, identical position across all four",
+    "axis_labels": "shared axis labels 'x [m]' and 'z [m]' shown on the leftmost column and bottom row only; identical font size and identical tick density across panels; tick numbers omitted (qualitative rendering)",
+    "internal_titles": "no decorative per-panel titles; rely on (a)(b)(c)(d) + condition label only"
+  },
+  "shared_legend": {
+    "enabled": "true",
+    "position": "right-of-grid",
+    "rule": "single shared colorbar to the right of the 2x2 grid, applied identically to all four panels",
+    "colorbar_range": "qualitative-low-to-high",
+    "colorbar_range_rule": "no numerical ticks; the colorbar is labeled 'low' at bottom and 'high' at top with the variable name 'Temperature' on its side; gradient strictly low-saturation"
+  },
+  "color_logic": {
+    "rule": "perceptually uniform low-saturation engineering colormap from deep blue #1E3A8A through teal #0F766E to muted orange #C2410C; same colormap and same range applied to every panel; ≤ 3 main colors visible at any one time",
+    "must_print_grayscale_readable": true
+  },
+  "data_authenticity": {
+    "user_provided_real_data": "false",
+    "rule_when_false": "render the panels as QUALITATIVE smooth gradient fields shaped like plausible furnace temperature distributions (a tall hot plume zone in the middle, gradually cooling toward walls); each panel differs subtly so that (a) shows the highest core temperature, (d) the lowest core temperature, but no specific numerical values appear anywhere; no isoline values; no vector arrows",
+    "rule_when_true": "n/a"
+  },
+  "constraints": {
+    "must_keep": [
+      "all four panels identical size, identical aspect, identical position scheme",
+      "shared colormap, shared range, shared colorbar across all panels",
+      "white background, no gradient backdrop, no decorative pattern",
+      "(a)(b)(c)(d) labels in identical position and identical style across panels",
+      "only sans-serif typography, identical font family across all panels",
+      "the figure should look like a results-section figure of an Applied Energy / Combustion and Flame article"
+    ],
+    "avoid": [
+      "different colormap or different color range per panel",
+      "different chart type per panel",
+      "decorative panel titles, hero panel that visually dominates the rest",
+      "saturated brand colors, neon, vivid gradients",
+      "3D effects, drop shadows, glossy fills, lens flare",
+      "fabricated numerical tick values, fabricated colorbar ranges, fabricated isoline labels",
+      "marketing-poster aesthetics, infographic-collage aesthetics",
+      "watermarks, copyright stamps"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "type": "化妆品系列套装",
+  "goal": "生成 4:5 竖版，四件包装系统统一，可单独上详情页分切",
+  "brand": {
+    "name": "锋序 EDGE ORDER",
+    "positioning": "专业男士理容、无性别营销花词"
+  },
+  "product": {
+    "name": "四步晨理套装",
+    "subtitle": "CLEANSE · LATHER · SHAVE · CALM",
+    "volume": "洁面膏 100g 软管 + 须泡 150ml 压力罐 + 须后水 100ml 细雾瓶 + 直柄三片刀 + 皮套",
+    "form": "全系列同直径圆柱家族感，高矮错落；刀柄拉丝不锈钢与深蓝树脂拼接",
+    "key_ingredient": "低刺激甜菜碱表活 + 薄荷乳酸须后复配"
+  },
+  "design": {
+    "bottle_material": "雾面 PETG 与金属铝罐混搭，外盒为海军蓝细条纹纸",
+    "label_material": "白底大标题 + 细横线分栏，烫银小字",
+    "primary_color": "#0A1628 海军靛",
+    "accent_color": "拉丝银 + 白字",
+    "typography": "类似 DIN 的窄无衬线数字 + 中文黑体",
+    "consistency_rule": "四件同一 logo 高宽、同一行距与端盖色系"
+  },
+  "outer_box": {
+    "enabled": "true",
+    "shape": "长扁抽拉套盒，拉出一半可见内托 EVA 灰",
+    "finish": "击凸条纹 + 局部 UV 刀形剪影"
+  },
+  "scene": {
+    "background": "深灰微水泥台面，左侧一道冷色窗光硬边",
+    "props": "白毛巾一折、一枚水滴停在刀背上（CG 可）",
+    "lighting": "主光 45° 高侧、弱背轮廓光分离物体边缘"
+  },
+  "format": {
+    "aspect_ratio": "4:5",
+    "composition": "四件成轻微弧形排列、刀架略近镜头形成尺度对比"
+  },
+  "constraints": {
+    "must_keep": [
+      "金属拉丝方向一致、避免乱高光花斑",
+      "同套字号阶梯一致、非随意缩放",
+      "压力罐与细雾瓶有法规感排版留白"
+    ],
+    "avoid": [
+      "女性化花卉图形",
+      "色板出现嫩粉大色块"
+    ]
+  }
+}

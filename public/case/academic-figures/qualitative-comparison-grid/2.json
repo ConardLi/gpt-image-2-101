@@ -1,0 +1,89 @@
+{
+  "type": "Qualitative Comparison Grid（论文级多方法多样本对比网格）",
+  "goal": "生成语义分割定性对比图：5 列 × 4 行，类调色板一致、Ours 列高亮，英文图题",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "white #FFFFFF",
+    "outer_padding": "40px"
+  },
+  "grid": {
+    "rows": "4",
+    "cols": "5",
+    "cell_size_rule": "identical cells, 4–6px gap",
+    "cell_aspect": "4:3 relative to val image aspect"
+  },
+  "headers": {
+    "column_headers": {
+      "enabled": true,
+      "items": [
+        {
+          "id": "C1",
+          "label": "Input"
+        },
+        {
+          "id": "C2",
+          "label": "FCN [4]"
+        },
+        {
+          "id": "C3",
+          "label": "DeepLabV3+ [5]"
+        },
+        {
+          "id": "C4",
+          "label": "Mask2Former [6]"
+        },
+        {
+          "id": "C5",
+          "label": "Ours",
+          "highlight": true
+        }
+      ],
+      "style": "11pt bold sans, citations"
+    },
+    "row_labels": {
+      "enabled": true,
+      "items": [
+        "val/frankfurt_000001_040083_leftImg8bit",
+        "val/lindau_000000_000019_leftImg8bit",
+        "val/munster_000003_000019_leftImg8bit",
+        "val/bochum_000000_000000_leftImg8bit"
+      ],
+      "style": "small monospace row ids on the left, optional italic 'Easy / Hard' tag if space"
+    }
+  },
+  "cell_content": {
+    "type": "segmentation_mask",
+    "options_explained": {
+      "segmentation_mask": "semi-transparent class-colored overlay on shared RGB; consistent Cityscapes palette: road, sidewalk, building, sky, vegetation, vehicle, person, etc."
+    },
+    "consistency_rule": "all cells in a row the same city scene; boundaries comparable across columns"
+  },
+  "highlights": {
+    "ours_column": {
+      "enabled": true,
+      "style": "border 1.5px #B91C1C on Ours"
+    },
+    "zoom_in_boxes": {
+      "enabled": "true",
+      "rule": "identical 120×80 px crop box on a thin pole / bike region in each cell of a chosen row, tiny inset under that row with connector lines if layout allows",
+      "callout_style": "red rectangle same pixel coords in FCN, DeepLab, Mask2Former, Ours for fair edge comparison"
+    }
+  },
+  "caption": {
+    "enabled": true,
+    "label": "Figure 6.",
+    "text": "Qualitative results on Cityscapes val. Ours recovers object boundaries in occluded regions (see zoomed crops).",
+    "style": "below grid, 9pt italic"
+  },
+  "constraints": {
+    "must_keep": [
+      "class colors fixed across all columns",
+      "Ours last column with emphasis border",
+      "row-wise scene identity"
+    ],
+    "avoid": [
+      "random per-cell hue shifts",
+      "missing [n] for baselines if journal requires — here filled as FCN/DeepLab/Mask2Former citations"
+    ]
+  }
+}

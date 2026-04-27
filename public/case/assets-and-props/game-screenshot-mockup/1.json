@@ -1,0 +1,54 @@
+{
+  "type": "开放世界游戏截图",
+  "goal": "生成 16:9 横图，观感为 Unreal 级 PBR 实时画面截屏而非预渲染海报，含完整可辨中文 UI",
+  "game_meta": {
+    "game_name": "霜火编年史·极北卷",
+    "engine_feel": "现代 3A（接近 Unreal 5 Nanite+Lumen 观感）",
+    "perspective": "第三人称越肩约 2.5m 距离"
+  },
+  "scene": {
+    "environment": "覆雪针叶林缘、中景冰河与断桥、远景覆雪山脉与孤塔",
+    "time_of_day": "蓝调时刻将尽、西天余暖金边",
+    "weather": "小雪与风卷雪雾",
+    "lighting": "冷青主光 + 暖金轮廓光 + 雪地次表面散射"
+  },
+  "character": {
+    "description": "女性游侠主角，银灰长辫、毛领皮甲与弓袋，背向镜头左肩微转、右手握未张弓",
+    "position": "画面下三分之一居中略左，留出右前侧空间"
+  },
+  "ui_elements": {
+    "hud": {
+      "enabled": true,
+      "items": [
+        "左下：红条生命+蓝条耐力+圆形简笔头像轮廓",
+        "右下：四格扇形技能图标+药水与食物快捷栏",
+        "左上：圆形小地图带指北针与当前坐标（中文区名「融雪溪谷」）",
+        "右上：任务追踪框体三行「主线：寻找春之露」「距目标 420m」「按 M 打开大地图」"
+      ]
+    },
+    "subtitle": {
+      "enabled": true,
+      "speaker": "灵狐伙伴",
+      "text": "前面结冰的吊桥缺了一截，当心别滑下去。"
+    },
+    "interaction_prompt": {
+      "enabled": true,
+      "text": "按 [E] 稳固绳索"
+    }
+  },
+  "style": {
+    "rendering": "PBR + ACES 感 tonemapping + 轻胶片颗粒",
+    "color_palette": "冰蓝+月白+暖金路标"
+  },
+  "aspect_ratio": "16:9",
+  "constraints": {
+    "must_keep": [
+      "HUD 与场景透视一致、无悬浮错位",
+      "中文无乱码、无英文机翻腔"
+    ],
+    "avoid": [
+      "无任何 HUD 的纯插画感",
+      "同屏 UI 组件超过 8 个主元素"
+    ]
+  }
+}

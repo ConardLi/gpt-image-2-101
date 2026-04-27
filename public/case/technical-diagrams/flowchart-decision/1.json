@@ -1,0 +1,206 @@
+{
+  "type": "工程感流程图 / 决策图",
+  "goal": "生成 3:4 竖版暗色位图，展示注册全链路及风控分支",
+  "canvas": {
+    "aspect_ratio": "3:4",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "用户注册与激活流程",
+    "subtitle": "短信 OTP + 邮箱 + 设备风控",
+    "position": "top-left, JetBrains Mono"
+  },
+  "flow_direction": "top-to-bottom",
+  "shape_legend": "与模板一致（起止圆/药丸、过程矩形、决策菱形、IO 平行四边形、子流程双框）",
+  "nodes": {
+    "count": "15",
+    "items": [
+      {
+        "id": "S",
+        "type": "start_end",
+        "label": "开始"
+      },
+      {
+        "id": "I1",
+        "type": "io",
+        "label": "用户提交 手机号+密码+设备指纹 device_id"
+      },
+      {
+        "id": "P1",
+        "type": "process",
+        "label": "校验 E.164 与密码强度 (zxcvbn≥3)"
+      },
+      {
+        "id": "D1",
+        "type": "decision",
+        "label": "手机号已注册？"
+      },
+      {
+        "id": "P2",
+        "type": "process",
+        "label": "返回 409 并提示 微信 一键登录"
+      },
+      {
+        "id": "P3",
+        "type": "process",
+        "label": "创建 users 行 status= PENDING"
+      },
+      {
+        "id": "D2",
+        "type": "decision",
+        "label": "风控分数 risk_score < 0.4？"
+      },
+      {
+        "id": "SP1",
+        "type": "subprocess",
+        "label": "子流程: 进人工 queue_id 风控复核"
+      },
+      {
+        "id": "P4",
+        "type": "process",
+        "label": "短信网关发送 6 位 OTP (5min TTL)"
+      },
+      {
+        "id": "D3",
+        "type": "decision",
+        "label": "OTP 与 Redis 中 digest 一致？"
+      },
+      {
+        "id": "P5",
+        "type": "process",
+        "label": "发验证邮件 含 token (HKDF-SHA256)"
+      },
+      {
+        "id": "D4",
+        "type": "decision",
+        "label": "24h 内点击验证链接？"
+      },
+      {
+        "id": "P6",
+        "type": "process",
+        "label": "status= VERIFIED, email_verified_at 写入"
+      },
+      {
+        "id": "P7",
+        "type": "process",
+        "label": "删除过期 token+软删未激活"
+      },
+      {
+        "id": "E",
+        "type": "start_end",
+        "label": "结束"
+      }
+    ]
+  },
+  "edges": {
+    "items": [
+      {
+        "from": "S",
+        "to": "I1"
+      },
+      {
+        "from": "I1",
+        "to": "P1"
+      },
+      {
+        "from": "P1",
+        "to": "D1"
+      },
+      {
+        "from": "D1",
+        "to": "P2",
+        "label": "Yes"
+      },
+      {
+        "from": "D1",
+        "to": "P3",
+        "label": "No"
+      },
+      {
+        "from": "P2",
+        "to": "E"
+      },
+      {
+        "from": "P3",
+        "to": "D2"
+      },
+      {
+        "from": "D2",
+        "to": "SP1",
+        "label": "No"
+      },
+      {
+        "from": "D2",
+        "to": "P4",
+        "label": "Yes"
+      },
+      {
+        "from": "SP1",
+        "to": "E"
+      },
+      {
+        "from": "P4",
+        "to": "D3"
+      },
+      {
+        "from": "D3",
+        "to": "P5",
+        "label": "Yes"
+      },
+      {
+        "from": "D3",
+        "to": "E",
+        "label": "No"
+      },
+      {
+        "from": "P5",
+        "to": "D4"
+      },
+      {
+        "from": "D4",
+        "to": "P6",
+        "label": "Yes"
+      },
+      {
+        "from": "D4",
+        "to": "P7",
+        "label": "No"
+      },
+      {
+        "from": "P6",
+        "to": "E"
+      },
+      {
+        "from": "P7",
+        "to": "E"
+      }
+    ],
+    "edge_style": {
+      "default": "slate 1.5px + 三角箭头",
+      "yes_branch": "emerald #34D399",
+      "no_branch": "slate",
+      "exception_branch": {
+        "enabled": "true",
+        "style": "dashed rose",
+        "use_on": "D3=No 快速退出"
+      }
+    }
+  },
+  "swim_lanes": {
+    "enabled": "false"
+  },
+  "legend": {
+    "enabled": true,
+    "position": "bottom-right"
+  },
+  "constraints": {
+    "must_keep": [
+      "决策必有 Yes/No 或等义标签",
+      "子流程为双框"
+    ],
+    "avoid": [
+      ">15 节点"
+    ]
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "type": "工程感 ER 图 / 数据模型图",
+  "goal": "生成一张多作者技术博客的 ER 位图，突出分类树、标签与互动表",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "Tech Blog Platform · ER",
+    "subtitle": "MySQL 8.0 · utf8mb4",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "entities": {
+    "count": "7",
+    "items": [
+      {
+        "id": "E1",
+        "name": "users",
+        "category": "user",
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "marker": "PK"
+          },
+          {
+            "name": "username",
+            "type": "varchar(64)",
+            "marker": "UQ"
+          },
+          {
+            "name": "email",
+            "type": "varchar(255)",
+            "marker": "UQ"
+          },
+          {
+            "name": "display_name",
+            "type": "varchar(128)",
+            "marker": "NN"
+          },
+          {
+            "name": "created_at",
+            "type": "datetime(6)",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E2",
+        "name": "categories",
+        "category": "catalog",
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "marker": "PK"
+          },
+          {
+            "name": "name",
+            "type": "varchar(128)",
+            "marker": "NN"
+          },
+          {
+            "name": "slug",
+            "type": "varchar(128)",
+            "marker": "UQ"
+          },
+          {
+            "name": "parent_id",
+            "type": "bigint",
+            "marker": "FK→categories.id NULL"
+          }
+        ]
+      },
+      {
+        "id": "E3",
+        "name": "posts",
+        "category": "system",
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "marker": "PK"
+          },
+          {
+            "name": "author_id",
+            "type": "bigint",
+            "marker": "FK→users.id"
+          },
+          {
+            "name": "category_id",
+            "type": "bigint",
+            "marker": "FK→categories.id"
+          },
+          {
+            "name": "title",
+            "type": "varchar(255)",
+            "marker": "NN"
+          },
+          {
+            "name": "slug",
+            "type": "varchar(255)",
+            "marker": "UQ"
+          },
+          {
+            "name": "body_markdown",
+            "type": "mediumtext",
+            "marker": "NN"
+          },
+          {
+            "name": "published_at",
+            "type": "datetime(6)",
+            "marker": ""
+          }
+        ]
+      },
+      {
+        "id": "E4",
+        "name": "tags",
+        "category": "catalog",
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "marker": "PK"
+          },
+          {
+            "name": "name",
+            "type": "varchar(64)",
+            "marker": "UQ"
+          }
+        ]
+      },
+      {
+        "id": "E5",
+        "name": "post_tags",
+        "category": "join",
+        "fields": [
+          {
+            "name": "post_id",
+            "type": "bigint",
+            "marker": "PK,FK→posts.id"
+          },
+          {
+            "name": "tag_id",
+            "type": "bigint",
+            "marker": "PK,FK→tags.id"
+          }
+        ]
+      },
+      {
+        "id": "E6",
+        "name": "comments",
+        "category": "transaction",
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "marker": "PK"
+          },
+          {
+            "name": "post_id",
+            "type": "bigint",
+            "marker": "FK→posts.id"
+          },
+          {
+            "name": "user_id",
+            "type": "bigint",
+            "marker": "FK→users.id"
+          },
+          {
+            "name": "parent_id",
+            "type": "bigint",
+            "marker": "FK→comments.id NULL"
+          },
+          {
+            "name": "body",
+            "type": "text",
+            "marker": "NN"
+          },
+          {
+            "name": "created_at",
+            "type": "datetime(6)",
+            "marker": "NN"
+          }
+        ]
+      },
+      {
+        "id": "E7",
+        "name": "likes",
+        "category": "join",
+        "fields": [
+          {
+            "name": "user_id",
+            "type": "bigint",
+            "marker": "PK,FK→users.id"
+          },
+          {
+            "name": "post_id",
+            "type": "bigint",
+            "marker": "PK,FK→posts.id"
+          },
+          {
+            "name": "created_at",
+            "type": "datetime(6)",
+            "marker": "NN"
+          }
+        ]
+      }
+    ]
+  },
+  "entity_style": {
+    "shape": "rounded rectangle r=6px",
+    "header_strip": "bold mono 12pt 表名",
+    "field_row_style": "mono 10pt"
+  },
+  "category_color_map": {
+    "user": "cyan #22D3EE",
+    "catalog": "violet #A78BFA",
+    "system": "amber #FBBF24",
+    "join": "slate #94A3B8",
+    "transaction": "emerald #34D399"
+  },
+  "relationships": {
+    "items": [
+      {
+        "from": "E1",
+        "to": "E3",
+        "cardinality": "1:N",
+        "label": "authors"
+      },
+      {
+        "from": "E2",
+        "to": "E2",
+        "cardinality": "0..1:N",
+        "label": "parent_of"
+      },
+      {
+        "from": "E2",
+        "to": "E3",
+        "cardinality": "1:N",
+        "label": "classifies"
+      },
+      {
+        "from": "E3",
+        "to": "E5",
+        "cardinality": "1:N",
+        "label": "tagged"
+      },
+      {
+        "from": "E4",
+        "to": "E5",
+        "cardinality": "1:N",
+        "label": "in_posts"
+      },
+      {
+        "from": "E3",
+        "to": "E6",
+        "cardinality": "1:N",
+        "label": "has"
+      },
+      {
+        "from": "E1",
+        "to": "E6",
+        "cardinality": "1:N",
+        "label": "writes"
+      },
+      {
+        "from": "E6",
+        "to": "E6",
+        "cardinality": "0..1:N",
+        "label": "replies"
+      },
+      {
+        "from": "E1",
+        "to": "E7",
+        "cardinality": "1:N",
+        "label": "likes"
+      },
+      {
+        "from": "E3",
+        "to": "E7",
+        "cardinality": "1:N",
+        "label": "liked_by"
+      }
+    ],
+    "line_style": {
+      "default": "1.5px slate #94A3B8",
+      "endpoint_notation": "crow's foot"
+    }
+  },
+  "extras": {
+    "indices_section": {
+      "enabled": "false"
+    },
+    "color_legend": {
+      "enabled": true,
+      "position": "bottom-right",
+      "content": "category + PK/FK + cardinality"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "自关联 categories.parent_id 用曲线或正交线绕开实体",
+      "post_tags / likes 为 join 灰色",
+      "legend 必画"
+    ],
+    "avoid": [
+      "超过 12 个实体本图未要求则勿增加",
+      "字段不用 mono 对齐"
+    ]
+  }
+}

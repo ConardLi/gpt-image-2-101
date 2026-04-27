@@ -1,0 +1,41 @@
+{
+  "type": "开箱评测视频封面",
+  "goal": "生成一张面向 YouTube 数码评测频道的高点击率开箱评测视频封面",
+  "platform": "YouTube",
+  "aspect_ratio": "16:9",
+  "background": {
+    "color_palette": "深空黑 #0A0A0A + 局部暖橙渐变 + 红色品牌色",
+    "texture": "极轻微的电路板纹理 + 主体附近发光线条"
+  },
+  "main_visual": {
+    "subject": "一台尚未拆封的银白色科技产品包装盒，外盒印 'Apple Vision Pro 2' 字样，盒角已被局部撕开露出内里发光",
+    "host": "30 岁出头的亚洲男性数码博主在画面左侧 1/3 处半身出镜，戴黑色棒球帽与黑色 T 恤，双眼瞪大，张嘴做出 'OMG' 表情，右手指向包装盒方向",
+    "extras": [
+      "盒子周围环绕 5 条向外辐射的发光金色线条",
+      "盒子局部撕开处透出内部蓝白光"
+    ]
+  },
+  "title_block": {
+    "main_title": "全网首发！\n我把 Vision Pro 2 拆了",
+    "title_style": "白色超粗黑体大字，关键词 '拆了' 使用红色描边 + 黑色衬影",
+    "sub_title": "真的值这个价吗？",
+    "label_badge": "右上角红色圆形 '独家' 徽章 + 黑色 'EXCLUSIVE' 小字"
+  },
+  "platform_marks": {
+    "channel_handle": "@数码老司机",
+    "duration_label": "12:48",
+    "extras": "右下小字 '1.2M views · 2 hours ago'"
+  },
+  "style": {
+    "rendering": "像真实 YouTube 数码评测频道封面，强诱因 + 强好奇感",
+    "lighting": "包装盒处主光最强，主播脸部次强，背景渐暗"
+  },
+  "constraints": {
+    "must_feel": "强诱因 + 强好奇感，让人忍不住点击",
+    "avoid": [
+      "主播表情过夸到掉档次",
+      "出现抖音水印",
+      "标题过长换行混乱"
+    ]
+  }
+}

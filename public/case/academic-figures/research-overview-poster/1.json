@@ -1,0 +1,99 @@
+{
+  "type": "学术研究总览图（research overview / framework figure for thesis defense）",
+  "goal": "生成一张可直接放进硕士开题答辩 PPT 首页的研究总览图，主题为锂电池热失控早期预警，要求正式克制、白底、工程化配色、明显论文图感，绝无商业路演感",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_block": {
+    "main_title": "锂离子电池热失控早期预警方法研究",
+    "subtitle": "Early Warning of Thermal Runaway in Lithium-ion Batteries",
+    "occasion_label": "硕士学位论文开题答辩",
+    "position": "top-center, main_title in bold sans-serif 22pt, subtitle in regular 13pt below in gray, occasion_label in italic gray 10pt at top-right"
+  },
+  "background_section": {
+    "label": "研究背景与问题",
+    "summary": "动力电池热失控具有突发性与高破坏性，现有预警手段以单一温度阈值为主，对早期征兆识别不足",
+    "key_question": "如何从多源传感数据中提取热失控早期可分辨特征，实现分钟级提前预警？",
+    "position": "upper-middle band, full width, visually anchored as 'context'"
+  },
+  "objective_section": {
+    "label": "研究目标",
+    "summary": "构建可在分钟级提前期内稳定预警热失控的多模态早期识别方法",
+    "position": "directly below background, narrower than background, centered"
+  },
+  "research_modules": {
+    "count": "3",
+    "items": [
+      {
+        "id": "RM1",
+        "name": "机理分析",
+        "summary": "梳理热-电-气三场耦合下的早期征兆链路",
+        "method_hint": "ARC 量热实验 + 多场耦合分析"
+      },
+      {
+        "id": "RM2",
+        "name": "预警模型",
+        "summary": "构建多源传感融合的早期识别模型",
+        "method_hint": "LSTM + 多模态特征对齐"
+      },
+      {
+        "id": "RM3",
+        "name": "工况验证",
+        "summary": "在多工况电芯与小模组上完成方法验证",
+        "method_hint": "针刺 / 过充 / 高温箱实验台架"
+      }
+    ],
+    "layout": "horizontal row of three equal-width modules in the central band, all modules identical size and identical style"
+  },
+  "expected_outcome_section": {
+    "label": "预期成果",
+    "items": "热失控早期征兆特征库、可在线运行的早期预警模型、面向工况台架验证的方法学报告",
+    "position": "bottom band, full width, visually distinct from research_modules but stylistically consistent"
+  },
+  "module_block_style": {
+    "shape": "rounded rectangle (corner radius ~8px)",
+    "size_per_module": "all modules identical size, vertically aligned",
+    "fill": "very light slate tint #F1F5F9 for the three research modules; very light cyan tint #ECFEFF for the outcome band",
+    "border": "1.2px solid #334155",
+    "title_text": "module name in bold sans-serif (PingFang SC / Source Han Sans), 14pt",
+    "summary_text": "single phrase, 11pt regular, max 2 lines, no period",
+    "method_hint_text": "italic gray 10pt, below summary"
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155",
+    "rule": "vertical flow background → objective → research_modules → outcomes; the three research modules are horizontally parallel with no inter-module arrows",
+    "decoration": "none; no curved arcs, no dashed lines"
+  },
+  "color_palette": {
+    "rule": "deep blue #1E3A8A as primary, slate blue #3B82F6 as secondary, charcoal #1F2937 for text and lines; no accent color in this version",
+    "must_print_grayscale_readable": true
+  },
+  "typography": {
+    "language": "chinese",
+    "rule": "PingFang SC / Source Han Sans for chinese; Inter / Helvetica for english subtitle and method hints",
+    "consistency": "all module titles identical size; all summaries identical size; never mix serif and sans-serif"
+  },
+  "constraints": {
+    "must_keep": [
+      "three research modules identical size, vertically aligned, equal weight",
+      "white background, no gradient, no decorative pattern",
+      "language and font consistent across the figure (Chinese as primary, English as secondary)",
+      "summaries are short phrases, never full paragraphs",
+      "the figure must look like the cover slide of a graduate thesis defense, not a corporate roadmap or pitch deck",
+      "color palette ≤ 3 main colors, must remain readable in grayscale print"
+    ],
+    "avoid": [
+      "consulting / pitch-deck aesthetics, brand campaign aesthetics",
+      "decorative icons, emoji, mascots, hand-drawn wobble",
+      "3D rendering, glossy fills, lens flare, drop shadow blocks",
+      "stock-photo backgrounds, photographic battery hero images",
+      "fabricated quantitative claims (no '+30% efficiency', no '150 samples')",
+      "saturated brand colors, neon, vivid gradients",
+      "dense text walls; no module summary should exceed 2 lines",
+      "watermarks, copyright stamps, university or lab logos"
+    ]
+  }
+}

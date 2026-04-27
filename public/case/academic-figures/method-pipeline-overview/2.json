@@ -1,0 +1,96 @@
+{
+  "type": "学术论文方法 Pipeline 总览图（method overview figure）",
+  "goal": "生成一张可直接放进顶会论文或 SIGGRAPH 附件的 diffusion training pipeline 总览图，白底、几何精确、可单色印刷",
+  "canvas": {
+    "aspect_ratio": "2:1",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_caption": {
+    "figure_label": "Figure 2.",
+    "caption": "Training-time pipeline of our text-conditioned latent diffusion model (LDM).",
+    "position": "bottom-center, smaller sans-serif"
+  },
+  "input": {
+    "label": "Image–Text Pairs (x, c)",
+    "thumbnail": "a photo patch icon plus a one-line text caption block",
+    "position": "leftmost, vertically centered"
+  },
+  "stages": {
+    "count": "4",
+    "items": [
+      {
+        "id": "S1",
+        "name": "VAE Encode",
+        "icon_or_glyph": "a small encoder arrow mapping RGB tile to 4× downsampled latent grid",
+        "sub_label": "f8 downsampling, z ∈ ℝ^{4×(H/8)×(W/8)}"
+      },
+      {
+        "id": "S2",
+        "name": "Noise & Timestep",
+        "icon_or_glyph": "a latent tensor with random noise overlay and a clock glyph for t",
+        "sub_label": "DDPM, t ~ U(0, T)"
+      },
+      {
+        "id": "S3",
+        "name": "U-Net ϵ_θ (Text-Cond.)",
+        "icon_or_glyph": "U-shaped stack with a side branch for CLIP / T5 text tokens",
+        "sub_label": "cross-attn, predict noise ε"
+      },
+      {
+        "id": "S4",
+        "name": "Decoder & VAE",
+        "icon_or_glyph": "MSE or v-prediction loss symbol pointing from prediction to target noise, next to a tiny decoder icon",
+        "sub_label": "L_simple + optional L_lpips (aux.)"
+      }
+    ]
+  },
+  "output": {
+    "label": "Trained Weights θ",
+    "thumbnail": "a small disk or checkpoint symbol with a '.ckpt' style label",
+    "position": "rightmost, vertically centered"
+  },
+  "stage_block_style": {
+    "shape": "rounded rectangle (corner radius ~6px)",
+    "size_per_stage": "around 120px wide × 80px tall, all stages identical size",
+    "fill": "very light #F1F5F9 for S1–S2, #ECFDF5 for S3, #FEF3C7 for S4 (grouping encode / denoise / loss)",
+    "border": "1.2px solid #334155",
+    "title_text": "stage name in bold sans-serif, 11-12pt",
+    "icon_position": "centered inside block",
+    "sub_label_text": "italic gray sub-labels"
+  },
+  "connectors": {
+    "style": "thin black arrows (1.2px)",
+    "rule": "left to right; optional tiny label on arrow: 'z_t' between S2 and S3",
+    "skip_connections": {
+      "enabled": "true",
+      "rule": "dashed skip from S1 latent representation arching to S3 input side, labeled 'skip connection' / 'residual on latent' if space allows"
+    }
+  },
+  "extras": {
+    "loss_branch": {
+      "enabled": "true",
+      "label": "L = ||ε − ε_θ(z_t, t, c)||_2^2",
+      "rule": "small dashed line from S3 output to a 'Loss' box above the main arrow, formula in italic"
+    },
+    "color_legend": {
+      "enabled": "true",
+      "rule": "bottom-right: three swatches for encode / denoise / objective groups"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "all stage blocks identical size and vertically aligned",
+      "white background, no photo textures",
+      "English terminology for all stage titles and sub_labels",
+      "grayscale-friendly contrast",
+      "arrows and loss branch do not occlude main labels"
+    ],
+    "avoid": [
+      "3D glass cards, stock illustration style",
+      "emoji or brand logos",
+      "cluttered hyperparameter tables inside the figure"
+    ]
+  }
+}

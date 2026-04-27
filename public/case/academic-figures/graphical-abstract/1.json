@@ -1,0 +1,83 @@
+{
+  "type": "学术期刊图形摘要（Graphical Abstract）",
+  "goal": "生成一张可直接用于期刊投稿的 Graphical Abstract，要求极简、白底、工程化克制配色、几秒内可读、绝无营销海报感",
+  "canvas": {
+    "aspect_ratio": "2:1",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text, suitable for grayscale print"
+  },
+  "title_block": {
+    "enabled": "false",
+    "title": "",
+    "rule": "most journals do not allow titles inside the graphical abstract; enable only when user explicitly requested a title"
+  },
+  "sections": [
+    {
+      "id": "P1",
+      "role": "Problem",
+      "label": "Problem",
+      "summary": "long-context QA degrades when key evidence is buried in 100K+ token corpora",
+      "depiction": "a minimal line-art sketch of a tall stack of document pages with one tiny highlighted line, and a question mark glyph hovering above"
+    },
+    {
+      "id": "P2",
+      "role": "Method",
+      "label": "Method",
+      "summary": "two-stage retrieve-then-rerank with evidence-aware decoding",
+      "depiction": "a minimal schematic of a dense retriever feeding top-K chunks into a small reranker block, then into an LLM block, all line-art rectangles connected by thin arrows"
+    },
+    {
+      "id": "P3",
+      "role": "Process",
+      "label": "Key Mechanism",
+      "summary": "evidence-aware attention concentrates on top-ranked chunks during decoding",
+      "depiction": "a small attention strip showing K candidate chunk bars; only top-ranked bars receive denser attention lines pointing to the answer span; line-art style"
+    },
+    {
+      "id": "P4",
+      "role": "Result",
+      "label": "Outcome",
+      "summary": "consistent gains on multi-hop and needle-in-haystack benchmarks",
+      "depiction": "a minimal qualitative bar-chart sketch (no numerical tick labels) with two grouped bars per benchmark; the proposed method bars are slightly taller, drawn in line-art with a single warm tint fill"
+    }
+  ],
+  "section_block_style": {
+    "shape": "implicit columns separated by generous whitespace, NOT four heavy rectangles in a row",
+    "header_text": "section label in bold sans-serif, 12-13pt, top-aligned",
+    "summary_text": "single phrase, 10pt regular, max 2 lines, no period",
+    "depiction_size": "around 35-50% of column height, vertically centered"
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155, between adjacent sections only",
+    "rule": "no crossing, no curved decorative arcs; arrows convey 'leads to' / 'analyzed by' relationships",
+    "label_arrows": "false"
+  },
+  "color_palette": {
+    "rule": "deep blue #1E3A8A as primary, slate blue #3B82F6 as secondary, charcoal #1F2937 for line-art and text; one low-saturation amber #F59E0B accent reserved exclusively for the Outcome bars in P4",
+    "must_print_grayscale_readable": true
+  },
+  "typography": {
+    "language": "english",
+    "rule": "english → Inter / Helvetica / Arial",
+    "consistency": "all section headers identical size; all summaries identical size; never mix serif and sans-serif"
+  },
+  "constraints": {
+    "must_keep": [
+      "all four sections visually equal-weight, no section dominates",
+      "white background, no gradient, no decorative pattern, no photographic background",
+      "summaries are short phrases, never full sentences with periods",
+      "the figure must look like it could appear on an Elsevier / ACS / IEEE table of contents page",
+      "no fabricated numbers anywhere; the Outcome bars are qualitative shape only"
+    ],
+    "avoid": [
+      "marketing-poster aesthetics, brand campaign aesthetics, magazine cover aesthetics",
+      "3D effects, drop shadows, gradients, glossy fills, lens flare",
+      "cartoon mascots, emoji, decorative icons",
+      "stock-photo-style realistic backgrounds",
+      "fabricated numerical tick labels, fabricated percentages",
+      "saturated colors, more than 3 main colors plus 1 accent",
+      "watermarks, copyright stamps, vendor logos"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "type": "Publication-Ready Line Chart（学术出版级折线图，log–log）",
+  "goal": "生成 scaling law 风格训练曲线图：x 为 log10(compute in FLOP), y 为 log10(test cross-entropy), 2–3 model families with different markers, shaded ±std band (illustrative)",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "white #FFFFFF",
+    "outer_padding": "60px"
+  },
+  "title": {
+    "text": "Scaling Laws for Language Model Pretraining (illustrative)",
+    "position": "top center, bold 13pt sans"
+  },
+  "axes": {
+    "x_axis": {
+      "label": "log₁₀(Training compute C) [FLOP]",
+      "scale": "linear tick positions representing log units 18, 19, 20, 21, 22, 23",
+      "gridlines": "faint both directions"
+    },
+    "y_axis": {
+      "label": "log₁₀(Test cross-entropy, bits per character proxy)",
+      "scale": "linear from 0.35 to 0.7 on plot (representing log-scale loss)",
+      "gridlines": "faint horizontal"
+    }
+  },
+  "series": [
+    {
+      "name": "Dense Transformer (chinchilla-style)",
+      "color": "#2563EB",
+      "line_width_pt": 1.5,
+      "marker": "small circle",
+      "points_illustrative": "monotone decrease along x",
+      "shaded_region": "±0.02 log units semi-transparent"
+    },
+    {
+      "name": "MoE 8x routing (gated FFN)",
+      "color": "#7C3AED",
+      "line_width_pt": 1.5,
+      "marker": "triangle up",
+      "points_illustrative": "sits below dense line at same compute in mid-range"
+    }
+  ],
+  "annotations": {
+    "power_law": "Dashed line segment along straight region labeled L ∝ C^{−a} (qualitative, exponent not numerically exact)",
+    "inset": "optional tiny box: 'IsoFLOP snapshot at C=1e22' with two Pareto points (illustrative)"
+  },
+  "legend": {
+    "enabled": "true",
+    "position": "lower left inside plot, frame off"
+  },
+  "caption": {
+    "enabled": "true",
+    "label": "Figure 2.",
+    "text": "Empirical test loss as a function of training compute. Curves are stylized; actual measurements require fixed datasets and multiple seeds. Shaded band: ±1 std over seeds (illustrative).",
+    "style": "9pt justified italic"
+  },
+  "constraints": {
+    "must_keep": [
+      "log-scale axes clearly labeled, not a false linear claim",
+      "line styles differ by model family",
+      "caption states illustrative nature"
+    ],
+    "avoid": [
+      "pretending y-values are from a specific paper’s raw logs",
+      "jet or rainbow for lines"
+    ]
+  }
+}

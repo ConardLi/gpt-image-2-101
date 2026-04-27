@@ -1,0 +1,87 @@
+{
+  "type": "方形 Graphical Abstract（ACS / Wiley 风格）",
+  "goal": "生成一张严格 1:1 方形的期刊 Graphical Abstract，四象限严格等大，工程化克制配色，内容关于硅碳复合负极循环稳定性",
+  "canvas": {
+    "aspect_ratio": "1:1",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "50px around the 2x2 grid",
+    "inter_panel_gap": "24px horizontal and vertical, identical",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text, suitable for grayscale print"
+  },
+  "title_block": {
+    "enabled": "false",
+    "title": "",
+    "rule": "ACS allows titles on the article page rather than inside the graphical abstract"
+  },
+  "sections": [
+    {
+      "id": "Q1",
+      "role": "Problem",
+      "label": "Problem",
+      "summary": "Si anodes suffer >300% volumetric expansion, leading to SEI rupture and capacity fading",
+      "depiction": "top-left quadrant: a minimal cross-sectional sketch of a silicon particle before and after lithiation, the lithiated particle visibly larger with cracking lines on its SEI shell, line-art only",
+      "position": "top-left"
+    },
+    {
+      "id": "Q2",
+      "role": "Method",
+      "label": "Method",
+      "summary": "gradient-porous Si@C composite synthesized via spray-drying + carbonization",
+      "depiction": "top-right quadrant: a small schematic of a porous Si@C particle, with inner Si nanodomains, gradient mesoporous carbon shell, and a tiny inset showing spray-drying nozzle plus furnace icons connected by thin arrows",
+      "position": "top-right"
+    },
+    {
+      "id": "Q3",
+      "role": "Process",
+      "label": "Mechanism",
+      "summary": "gradient pores accommodate expansion and stabilize a flexible SEI",
+      "depiction": "bottom-left quadrant: same Si@C particle during lithiation, with arrows indicating expansion vectors absorbed into the porous shell; SEI drawn as a thin continuous outer line, no cracks; line-art style",
+      "position": "bottom-left"
+    },
+    {
+      "id": "Q4",
+      "role": "Result",
+      "label": "Outcome",
+      "summary": "improved capacity retention and Coulombic efficiency over 200 cycles",
+      "depiction": "bottom-right quadrant: a minimal qualitative line-chart sketch with two curves over 'cycle number'; baseline curve drops faster, proposed Si@C curve stays high; no numerical tick labels, qualitative only",
+      "position": "bottom-right"
+    }
+  ],
+  "section_block_style": {
+    "shape": "no heavy borders; quadrants separated by whitespace and a faint cross-axis guide line",
+    "header_text": "label at top-left of each quadrant, bold sans-serif 12pt",
+    "summary_text": "single phrase below header, 10pt regular, max 2 lines, no period",
+    "depiction_size": "around 60% of quadrant area, centered"
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155",
+    "rule": "Z-shaped reading flow Q1 → Q2 → Q3 → Q4, arrows kept short and only at quadrant boundaries; no crossing arrows, no decorative arcs",
+    "label_arrows": "false"
+  },
+  "color_palette": {
+    "rule": "deep blue #1E3A8A for Si domains, slate gray #475569 for carbon shell, charcoal #1F2937 for line-art and text; one low-saturation amber #F59E0B reserved for the proposed-method curve in Q4",
+    "must_print_grayscale_readable": true
+  },
+  "typography": {
+    "language": "english",
+    "rule": "Inter / Helvetica / Arial",
+    "consistency": "all four quadrant labels identical size; all four summaries identical size"
+  },
+  "constraints": {
+    "must_keep": [
+      "all four quadrants strictly equal size and equal visual weight",
+      "white background, no gradient, no decorative pattern, no photo-realistic textures",
+      "all numbers are qualitative; no fabricated capacity values, no fabricated cycle numbers",
+      "the figure must look like an ACS Energy Letters TOC graphic"
+    ],
+    "avoid": [
+      "marketing-poster aesthetics, magazine cover aesthetics",
+      "3D rendering of battery cells, glossy metallic fills, lens flare, motion blur",
+      "exaggerated cracks, sparks, smoke, or dramatic lithiation visuals",
+      "cartoon mascots, emoji, decorative icons",
+      "fabricated numerical tick values, fabricated capacity percentages",
+      "saturated colors, more than 3 main colors plus 1 accent",
+      "watermarks, journal logos, lab logos"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "type": "双列对比信息图",
+  "goal": "让读者根据习惯在两款旗舰间做理性选择, 不制造对立辱骂",
+  "canvas": {
+    "aspect_ratio": "3:4 portrait",
+    "background": "warm off-white #F8F6F2",
+    "split_line": "细竖线 1px #D6D0C8, 中缝上方有小型几何 VS(非涂鸦)"
+  },
+  "header": {
+    "main_title": "iPhone 16 Pro 还是 Galaxy S25 Ultra？7 个维度直观看懂",
+    "subtitle": "没有绝对胜负, 只有你是否在意 iOS/安卓生态与长焦风格"
+  },
+  "columns": [
+    {
+      "id": "left",
+      "name": "iPhone 16 Pro",
+      "color_theme": "钛灰+雾蓝, 主辅 #1C1C1E + #0A84FF",
+      "header_visual": "钛金属直边机身侧视简笔 + 灵动岛小药丸轮廓(抽象)",
+      "tagline": "iOS 生态、杜比视界录像、A 系列算力、配件丰富"
+    },
+    {
+      "id": "right",
+      "name": "Galaxy S25 Ultra",
+      "color_theme": "深墨+钛金点缀, 主辅 #111111 + #C9A962",
+      "header_visual": "方框直角屏简笔+ S Pen 小斜笔轮廓(无商标)",
+      "tagline": "安卓开放、定制主题、S Pen 批注、长焦望远玩法"
+    }
+  ],
+  "comparison_rows": {
+    "count": "7",
+    "structure": "中缝左图标+中文维度名, 每侧表现+星级(1-5)或对勾/横线",
+    "items": [
+      "屏幕与握持(直边 vs 略宽方屏)",
+      "长焦出片(偏真实 vs 高倍细节)",
+      "视频工作流(杜比+生态统一 vs 可拓展存储)",
+      "系统与多设备(与 Mac 接力 vs 与 Windows DeX 等)",
+      "可维修与固件(官方渠道+保值 vs 机海节奏)",
+      "起售价(人民币示意区间, 以电商实时为准)",
+      "适合的人(果粉+全家桶 / 爱折腾+安卓)"
+    ],
+    "marker_style": "1-5 星+浅底横条+少量文字(≤6字)",
+    "highlight_winner_per_row": "true, 以浅琥珀底微亮, 不一边倒"
+  },
+  "footer": {
+    "verdict": "要无缝办公与录视频优先 iPhone; 要大屏手写+安卓自由度优先 S25 Ultra。线下摸真机后决定。",
+    "winner_badge": {
+      "enabled": "false",
+      "label": "Editor's Choice",
+      "position": "left"
+    }
+  },
+  "constraints": {
+    "must_keep": [
+      "左右列宽对称",
+      "每行有微型图标(镜头/屏幕/钱袋等抽象)",
+      "色块对比可辨但不血拼红绿"
+    ],
+    "avoid": [
+      "使用真实机模摄影抠图作商标展示",
+      "用侮辱性词形容任一品牌"
+    ]
+  }
+}

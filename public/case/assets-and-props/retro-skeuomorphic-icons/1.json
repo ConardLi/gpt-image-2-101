@@ -1,0 +1,92 @@
+{
+  "type": "拟物风应用图标集",
+  "goal": "单张 4×3 格展示 12 枚可打包上架主题商店级别的拟物应用图标，英文两至八字母小标签在图标下方",
+  "theme": "个人效率与轻娱乐综合（无真实 Apple 或第三方商标）",
+  "style": {
+    "rendering": "skeuomorphic 3D + 柔光 + 1px 上沿高光 + 深柔影",
+    "material": "玻璃高光层 + 不锈钢拉丝 + 少量皮革与纸上 UV 光",
+    "color_palette": "奶油灰底+天蓝+信号绿+软橙+石墨黑",
+    "shape_base": "圆角方形约 24% 圆度，同视角等距"
+  },
+  "layout": {
+    "grid": "4x3",
+    "icon_count": 12,
+    "spacing": "16px 等效留白",
+    "background": "浅亚麻纸纹或淡灰布纹，无强图案",
+    "label_below": true,
+    "label_style": "10pt 系統灰无衬线，居中"
+  },
+  "icons": [
+    {
+      "id": 1,
+      "concept": "牛皮信封口微张露出白信纸一角+红色蜡封点",
+      "label": "Mail"
+    },
+    {
+      "id": 2,
+      "concept": "金属环日历翻至今日+红色圆钉",
+      "label": "Cal"
+    },
+    {
+      "id": 3,
+      "concept": "黄色便签本+深灰铅笔横放",
+      "label": "Notes"
+    },
+    {
+      "id": 4,
+      "concept": "复古银色旁轴机身+大玻璃镀膜反光",
+      "label": "Camera"
+    },
+    {
+      "id": 5,
+      "concept": "黑胶唱片半出纸套+橙色中心标",
+      "label": "Music"
+    },
+    {
+      "id": 6,
+      "concept": "折纸地图+红头针+轻微隆起地形",
+      "label": "Maps"
+    },
+    {
+      "id": 7,
+      "concept": "半球云图+小太阳+雨滴贴层可切换",
+      "label": "Weather"
+    },
+    {
+      "id": 8,
+      "concept": "白色算器按键可按压感+小液晶反绿",
+      "label": "Calc"
+    },
+    {
+      "id": 9,
+      "concept": "圆形金属表盘+夜光点",
+      "label": "Clock"
+    },
+    {
+      "id": 10,
+      "concept": "镀铬齿轮+中心螺丝高光",
+      "label": "Prefs"
+    },
+    {
+      "id": 11,
+      "concept": "立体爱心+心电细线",
+      "label": "Health"
+    },
+    {
+      "id": 12,
+      "concept": "棕色车缝线皮夹+露出一角卡片",
+      "label": "Wallet"
+    }
+  ],
+  "constraints": {
+    "must_keep": [
+      "12 枚同主光左上 45°、同底边对齐",
+      "全盘色数不超过 6 种主色+黑白灰"
+    ],
+    "avoid": [
+      "与 iOS 官方图标 1:1 撞脸",
+      "标签拼写错误",
+      "单格信息密度过高"
+    ]
+  }
+}

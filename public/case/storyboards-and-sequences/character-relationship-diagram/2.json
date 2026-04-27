@@ -1,0 +1,73 @@
+{
+  "type": "组织 / 团队结构图",
+  "goal": "生成一张金字塔 + 关系网结合的企业卡通版架构海报，3:4，标题幽默但不侮辱人物",
+  "ip": {
+    "name": "「云端理事会」虚构圆桌：AI 与消费硬件峰层对话",
+    "tone": "现代企业海报 + Q 版头像 + 轻漫画勾线"
+  },
+  "characters": {
+    "count": "8",
+    "user_list": "Sam Altman、Jensen Huang、Sundar Pichai、Tim Cook、Elon Musk、Mark Zuckerberg、Bill Gates、Warren Buffett",
+    "card_design": {
+      "components": [
+        "Q 版大头",
+        "仅姓氏英文大写+中文职务玩笑标签"
+      ],
+      "shape": "圆角方形"
+    }
+  },
+  "composition": {
+    "structure": "金字塔：顶层单卡「智囊会」抽象图标，中上层 Sam Altman 与 Sundar Pichai 并列，中下层 Jensen Huang 与 Elon Musk 分两侧，底排 Tim Cook、Mark Zuckerberg、Bill Gates、Warren Buffett 呈基座分布",
+    "hierarchy": "越靠上卡略大，表示议题权重而非真实职级"
+  },
+  "relationships": {
+    "types": [
+      {
+        "name": "算力与模型合作",
+        "color": "电青",
+        "line": "实线"
+      },
+      {
+        "name": "消费硬件生态",
+        "color": "银灰",
+        "line": "虚线"
+      },
+      {
+        "name": "公开市场竞争",
+        "color": "品红",
+        "line": "锯齿线"
+      },
+      {
+        "name": "行业倡议 / 非盈利线",
+        "color": "松绿",
+        "line": "粗实线"
+      }
+    ],
+    "annotation_rule": "线旁用中英混合短词，如「API」「OEM」"
+  },
+  "title_block": {
+    "main_title": "云端理事会：一张图装不下的想象力",
+    "subtitle": "纯属创意拼图，与真实公司汇报关系无关",
+    "position": "顶部"
+  },
+  "legend": {
+    "enabled": "true",
+    "position": "左下角"
+  },
+  "style": {
+    "art_style": "扁平常用 UI 色 + 柔投影 + Q 版头像",
+    "color_palette": "浅灰底、主色不超过 5 个明确 HEX 块面"
+  },
+  "aspect_ratio": "3:4",
+  "constraints": {
+    "must_keep": [
+      "每个头像为可辨 Q 版风格，不写实摄影",
+      "注记合法合规，不暗示未经证实丑闻",
+      "线不穿过头像中央"
+    ],
+    "avoid": [
+      "信息过载，单卡文字过多",
+      "真实公司财报或股价数字"
+    ]
+  }
+}

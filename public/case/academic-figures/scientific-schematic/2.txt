@@ -1,0 +1,38 @@
+A scientific schematic illustration in the style of Physical Review A / JOSA B experimental setup figure, orthographic side view, pure white #FFFFFF background.
+
+CORE CONCEPT
+The figure illustrates: a continuous-wave (or mode-locked) pump laser driving non-collinear type-II spontaneous parametric down-conversion in a birefringent BBO crystal, producing polarization-entangled photon pairs, followed by free-space collection, single-mode fiber coupling, and coincidence counting with tunable time delay in one arm to probe Hong–Ou–Mandel (HOM) or Bell-state tomography (conceptually indicated).
+
+CENTRAL SUBJECT
+The center is: a thin BBO crystal (rectangle, optic axis hatching) on an adjustable stage; pump beam shown as 405 nm (violet) collinear with crystal normal; o-ray (horizontal polarization, red) and e-ray (vertical, orange) idler/signal symbolically drawn as two cones intersecting a ring plane, simplified to two off-axis paths.
+
+SUPPORTING ELEMENTS
+(1) Far left: laser diode or Ti:sapphire block label “Pump λ=405 nm, P≈20 mW” with beam waist w_0 and polarization waveplate before crystal.
+(2) After crystal: long-pass filter icon (dashed line box) to remove pump.
+(3) A 50:50 non-polarizing beamsplitter cube (gray, diagonal interface) on the right, two output ports to APD or fiber collimators, labeled A and B.
+(4) Small delay stage τ in one arm with double-arrow rail symbol for path-length tuning.
+
+ANNOTATIONS
+- Leader lines: crystal angle θ (e.g. ~29.2° for phase matching), f = 150 mm for collimation lenses on both arms.
+- 6 total labels, 11pt sans; angles shown with small circular arc marks.
+- (a) full layout, optional inset (b) ring intensity profile in transverse plane as false-color disk (very subtle, not neon).
+
+EQUATIONS
+- Phase-matching: Δk ≈ 0 along crystal axis, written as a small two-line block near crystal.
+- Optional: N = (η_A η_B) R_coin formula near detectors (italic, small, not dominant).
+
+COLOR PALETTE
+- Deep blue #1E40AF (path A), vermillion #9A3412 (path B), violet #5B21B6 (pump), neutral gray for optics mounts.
+- ≤4 colors, grayscale-safe edges.
+
+LAYOUT
+- 16:9 aspect ratio, generous margins 55–70 px equivalent; main beam path left to right, slight vertical separation of arms after BBO.
+- No lens flare, no lens stock photos, only line-art optics symbols.
+
+STYLE ENFORCEMENT
+- Geometrically precise: parallel rays, 90° cube faces, symmetric BS.
+- NO gradient fills on backgrounds; no decorative stars.
+- English labels; optional 中文 caption line under the figure: “本图为概念示意，非等比例量测。”
+
+CAPTION (optional, drawn below figure)
+Figure. Simplified BBO down-conversion setup: pump photons are converted into orthogonally polarized entangled photon pairs, routed through a 50/50 BS for interference or coincidence; delay τ in one arm enables temporal overlap scans.

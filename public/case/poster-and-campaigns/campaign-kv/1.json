@@ -1,0 +1,45 @@
+{
+  "type": "Campaign Key Visual 主视觉系统",
+  "goal": "生成一张既可作为夏季饮品主 campaign 的 anchor 画面，又能在同一图中展示三种常用比例的构图衍生草图，用于与媒介代理对齐",
+  "campaign": {
+    "name": "Coca-Cola 畅爽一夏 2026",
+    "claim": "一口气泡，把城市的热浪按下暂停",
+    "duration": "2026.5.1 - 2026.8.31"
+  },
+  "visual_system": {
+    "color_palette": "品牌红 + 白 + 浅金气泡高光",
+    "anchor_visual": {
+      "description": "巨型凝结水珠的玻璃汽水瓶斜置于浅景深海滩木板桌上，瓶身有经典曲线无变形，背后虚化为夏日海边人群与阳伞；画面左侧 40% 留白给中文 claim 与字标区",
+      "composition": "瓶体约占竖幅中央偏右，透视微微仰视增强张力"
+    },
+    "graphic_motif": "散落的极简化气泡圆点与短弧线，在标题周围重复节奏，不抢产品"
+  },
+  "claim_typography": {
+    "font_style": "粗黑无衬线中文 + 略窄的欧风衬线英文副行",
+    "color": "深红字 + 金细下划线做节奏"
+  },
+  "derivative_layouts": {
+    "enabled": "true",
+    "items": [
+      "1:1 方图，瓶身更近裁切、claim 在上方中央",
+      "9:16 竖屏，瓶身全高、底部留双手举杯剪影",
+      "16:9 横屏，瓶与海浪分层左右分栏，claim 在左三分栏"
+    ],
+    "rule": "主图块下方以浅灰线框平列三种小草图，每格内标注比例字样"
+  },
+  "logo_placement": {
+    "position": "anchor 与子版右下角统一小字标位置"
+  },
+  "constraints": {
+    "must_keep": [
+      "anchor 与三稿共享同一色板、同一瓶身造型与光照方向",
+      "claim 在小比例草图中仍可读，不被裁切到边缘",
+      "全图不出现与饮品无关的第三方 logo"
+    ],
+    "avoid": [
+      "三格草图风格与主图不是同一次元感",
+      "文字叠在汽水瓶高光最密处",
+      "额外荧光色"
+    ]
+  }
+}

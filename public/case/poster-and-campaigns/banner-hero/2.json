@@ -1,0 +1,44 @@
+{
+  "type": "Web hero banner",
+  "goal": "生成 21:9 超宽首屏，用于高分辨率显示器与官网首屏一屏定调，强暗色、偏研发协作工具",
+  "aspect_ratio": "21:9",
+  "layout": {
+    "left_column": {
+      "headline": "把问题拆清，让迭代可控",
+      "subhead": "从 Backlog 到发版，一条时间线里看见依赖、风险与资源。",
+      "cta": {
+        "text": "开始试用",
+        "color": "电青实色，弱外发光 4px",
+        "secondary": "阅读文档"
+      }
+    },
+    "right_column": {
+      "centerpiece": "暗色面板上悬浮的两块无商标界面：前层为可拖拽 issue 列，后层为折线+柱状结合的迭代燃尽小图，边缘有 1px 高光线",
+      "scale": "占画面右侧 70%，整体略没入深背景"
+    }
+  },
+  "background": {
+    "type": "近黑到蓝灰的径向渐层，心部最亮在右中",
+    "decoration": "极稀疏的 6% 明度点阵，模拟低照度机房氛围"
+  },
+  "brand": {
+    "logo_position": "左上白色几何与字标小占位，风格接近极简工程品牌",
+    "navigation_hint": "不绘制导航，仅上沿留 8% 高安全顶边"
+  },
+  "safe_area": {
+    "rule": "底边 8%、右侧最外 4% 不放关键元素",
+    "mobile_consideration": "true"
+  },
+  "constraints": {
+    "must_keep": [
+      "CTA 与背景明度差足够，一眼可点",
+      "全图紫色与青色点缀总量不超过画面 20%",
+      "不出现真实 Git 提交哈希与可识别仓库名"
+    ],
+    "avoid": [
+      "高饱和霓虹全屏",
+      "仿赛博朋克人物剪影干扰阅读",
+      "全幅纯黑死黑无阶调"
+    ]
+  }
+}

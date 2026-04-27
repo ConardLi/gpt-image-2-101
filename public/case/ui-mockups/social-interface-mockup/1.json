@@ -1,0 +1,72 @@
+{
+  "type": "移动端社交平台动态详情页样机",
+  "goal": "生成一张高仿真度的 X (Twitter) 帖子详情页截图，看起来像粉丝刚从手机上截下来的真实推文",
+  "platform": {
+    "name": "Twitter / X",
+    "color_mode": "dark",
+    "language": "中文"
+  },
+  "header": {
+    "status_bar": "顶部状态栏，时间 '23:47'，信号、5G、Wi-Fi、电量 87% 图标",
+    "navigation": "左侧返回箭头 + 标题 '帖子'，右侧三点菜单"
+  },
+  "post": {
+    "author": {
+      "avatar": "Elon Musk 半身肖像头像，黑色 SpaceX 衬衫，背景纯黑",
+      "display_name": "Elon Musk",
+      "verified_badge": true,
+      "handle": "@elonmusk",
+      "extra_badges": "金色机构认证 + 'Owner' 灰色徽章"
+    },
+    "content": {
+      "text": "今晚 Starship 第十一次试飞成功回收。下一个目标：2028 年送第一批人类去火星。Make Life Multiplanetary 不再是口号。",
+      "hashtags": "#Starship #Mars2028 #SpaceX",
+      "media_grid": {
+        "count": 3,
+        "images": [
+          "Starship 不锈钢箭体在德州博卡奇卡发射台升空，巨大火焰尾焰",
+          "夜空中 Starship 第二级在轨道上的远景，地球边缘弧线可见",
+          "Starship 第一级被发射塔机械臂 'Mechazilla' 精准夹住的瞬间"
+        ]
+      }
+    },
+    "metadata": {
+      "timestamp": "晚上 11:43 · 2026 年 4 月 27 日 · 286.4M 次浏览",
+      "engagement": "84.2K 转发 · 12.6K 引用 · 952K 点赞 · 38.4K 收藏"
+    },
+    "actions": "底部一行操作图标：回复（带数 21.3K）、转发（带数 84.2K）、点赞（红色心形带数 952K）、收藏图标、上传图标"
+  },
+  "comments_preview": {
+    "show": true,
+    "top_comment": {
+      "avatar": "用给你的图片作为头像",
+      "name": "花园老师",
+      "handle": "@ConardLi",
+      "text": "见证历史，送上来自 code秘密花园 的祝福！"
+    }
+  },
+  "footer": {
+    "reply_bar": {
+      "avatar": "当前登录用户的小头像（蓝色字母 J）",
+      "placeholder": "回复给 Elon Musk..."
+    },
+    "navigation_bar": "底部 Tab：首页（高亮）、搜索、Grok、通知（红点 3）、消息"
+  },
+  "style": {
+    "rendering": "高保真移动端 UI 截图，9:19.5 纵向比例，看起来像真实 iPhone 截屏",
+    "consistency": "X 暗色模式经典配色：纯黑底 + 白字 + 蓝色链接 + 灰色分隔线"
+  },
+  "constraints": {
+    "must_keep": [
+      "蓝色官方认证勾正确呈现",
+      "@elonmusk handle 必须正确",
+      "中文正文与英文 hashtags 混排自然",
+      "九宫格三图明显是 SpaceX 相关画面"
+    ],
+    "avoid": [
+      "出现小红书或微博的 UI 元素",
+      "互动数据顺序错乱",
+      "字体不像 X 官方字体"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "type": "暗色科技品牌落地页 hero 样机",
+  "goal": "生成一张面向男士护肤的高级感落地页主视觉，整体硬朗、专业、可信赖",
+  "theme": "男士全效护肤",
+  "brand": {
+    "name": "NEX SKIN",
+    "subtext": "MEN · ALL-IN-ONE"
+  },
+  "color_palette": [
+    "深海军蓝 #0A1A33",
+    "白",
+    "电光蓝渐变"
+  ],
+  "header": {
+    "logo": "左上 'NEX SKIN' 极细无衬线大写字 + 下方银灰色 'MEN · ALL-IN-ONE'",
+    "navigation": [
+      "HOME",
+      "PRODUCT",
+      "TECH",
+      "FEATURE",
+      "FAQ"
+    ],
+    "cta_button": "立即开始 → （蓝色高光按钮）"
+  },
+  "hero": {
+    "left_column": {
+      "headline": "清爽感，从每日 30 秒护理开始",
+      "sub_headline": "男士肌肤，更需要简单",
+      "feature_highlights": [
+        "● 去油控亮：智能调节皮脂",
+        "● 长效保湿：12h 持续润泽",
+        "● 一瓶搞定：化妆水 + 精华 + 乳液"
+      ]
+    },
+    "center_image": {
+      "subject": "30 岁前后的亚洲清爽干练男性，干净短发，胡须修剪整齐，身穿深灰色高领针织衫",
+      "pose": "右手轻托下巴，眼神看向左前方，自信而克制"
+    },
+    "right_column": {
+      "product_shot": "高瘦的深海军蓝色磨砂瓶身（120ml），瓶身印电光蓝色 'NEX SKIN' 字与水分子结构图，瓶口微挂水珠"
+    }
+  },
+  "bottom_stats_bar": {
+    "items": [
+      "累计销量 120 万瓶",
+      "用户满意度 92.1%",
+      "30 天复购率 85.3%",
+      "京东天猫双榜 男士护肤 TOP 1"
+    ]
+  },
+  "style": {
+    "rendering": "深空蓝底 + 高光金属反光 + 电光蓝粒子 + 干净商业摄影",
+    "lighting": "左侧主光打在模特轮廓，右侧产品逆光勾边"
+  },
+  "constraints": {
+    "must_feel": "硬朗、专业、可信赖，像高端男士护肤品牌的真实落地页",
+    "avoid": [
+      "出现粉色、暖色等少女风元素",
+      "模特表情过度温柔或假笑",
+      "瓶身字模糊不可读"
+    ]
+  }
+}

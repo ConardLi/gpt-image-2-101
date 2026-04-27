@@ -1,0 +1,88 @@
+{
+  "type": "Qualitative Comparison Grid（论文级多方法多样本对比网格）",
+  "goal": "生成一张可直接放进论文 qualitative results 章节的文生图对比网格，严格对齐、Ours 列深红细边框、英文列首",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "white #FFFFFF",
+    "outer_padding": "40px"
+  },
+  "grid": {
+    "rows": "4",
+    "cols": "5",
+    "cell_size_rule": "all cells identical size; gap between cells 4-6px",
+    "cell_aspect": "square"
+  },
+  "headers": {
+    "column_headers": {
+      "enabled": true,
+      "items": [
+        {
+          "id": "C1",
+          "label": "Text Prompt"
+        },
+        {
+          "id": "C2",
+          "label": "DALL·E 3 [1]"
+        },
+        {
+          "id": "C3",
+          "label": "Midjourney v6 [2]"
+        },
+        {
+          "id": "C4",
+          "label": "SDXL 1.0 [3]"
+        },
+        {
+          "id": "C5",
+          "label": "Ours (proposed)",
+          "highlight": true
+        }
+      ],
+      "style": "centered above each column, sans-serif bold 11pt, citations in [brackets]"
+    },
+    "row_labels": {
+      "enabled": true,
+      "items": [
+        "Prompt A: “a photorealistic red fox in snow, 85mm, shallow DoF”",
+        "Prompt B: “futuristic Tokyo alley at night, neon, rain, cinematic”",
+        "Prompt C: “ceramic mug on oak table, morning window light, product shot”",
+        "Prompt D: “watercolor botanical illustration, eucalyptus leaves, white background”"
+      ],
+      "style": "left margin, 10pt compact sans, two lines max per label"
+    }
+  },
+  "cell_content": {
+    "type": "rgb_image",
+    "options_explained": {
+      "note": "Col1: monospace text box rendering the prompt; Col2–5: model outputs for that row's prompt"
+    },
+    "consistency_rule": "each row shows the same prompt in column 1 and all generated images reflect that text only"
+  },
+  "highlights": {
+    "ours_column": {
+      "enabled": true,
+      "style": "thicker border 1.5px in deep red #DC2626 around each Ours cell"
+    },
+    "zoom_in_boxes": {
+      "enabled": "false",
+      "rule": "N/A"
+    }
+  },
+  "caption": {
+    "enabled": true,
+    "label": "Figure 5.",
+    "text": "Qualitative text-to-image comparison on fixed prompts. Our method (last column) better preserves specular highlights and text–image alignment; see supp. for more seeds.",
+    "style": "below the grid, italic smaller sans, justified"
+  },
+  "constraints": {
+    "must_keep": [
+      "Ours column clearly outlined",
+      "same semantic scene per row across methods",
+      "no decorative gradients in grid background"
+    ],
+    "avoid": [
+      "mismatched row content",
+      "unreadable prompt text in column 1"
+    ]
+  }
+}

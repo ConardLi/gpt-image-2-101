@@ -1,0 +1,97 @@
+{
+  "type": "KPI 仪表盘信息图 (personal wrapped)",
+  "goal": "把个人 2025 年读书数据做成一张有情绪的数据海报, 数字可虚构但自洽, 不冒充豆瓣官方",
+  "canvas": {
+    "aspect_ratio": "3:4 portrait",
+    "background": "sunrise gradient #FFECD2 to #FCB69F at 20% opacity, upper half lighter",
+    "alt_background_light": "主用此亮色方案"
+  },
+  "header": {
+    "main_title": "我的 2025 读书小年报",
+    "subtitle": "纸书+电子书混合 · 以读完为准",
+    "period": "2025.01 – 2025.12"
+  },
+  "palette": {
+    "primary_text": "#0F172A",
+    "accent_main": "#7C3AED",
+    "accent_secondary": "#EC4899",
+    "accent_alert": "#9CA3AF",
+    "rule": "负面如弃读用 alert, 不刺眼"
+  },
+  "hero_metrics": {
+    "count": "3",
+    "examples_filled": [
+      {
+        "value": "48",
+        "label": "本·读完(含2本重读)",
+        "delta": "↑ 比 2024 多 9 本"
+      },
+      {
+        "value": "16,200",
+        "label": "总页(粗估, 按纸质+Kindle 同步)",
+        "delta": "↑ 页数 +18%"
+      },
+      {
+        "value": "4.1",
+        "label": "自评均分(5 分制, 非平台官方)",
+        "delta": "→ 与上年持平"
+      }
+    ]
+  },
+  "sub_metrics": {
+    "count": "6",
+    "examples_filled": [
+      {
+        "type": "bar_mini",
+        "title": "体裁 TOP5",
+        "items": "科幻 / 历史 / 社科 / 网文(严肃向) / 技术"
+      },
+      {
+        "type": "donut_split",
+        "title": "纸 vs 电子",
+        "values": "58% 纸 / 42% 电子"
+      },
+      {
+        "type": "trend_line",
+        "title": "2025 各月「读完本数」",
+        "delta": "8 月、11 月是小高峰(示意曲线)"
+      },
+      {
+        "type": "ranked_list",
+        "title": "年度 TOP3(虚构书名)",
+        "items": [
+          "《未来引擎》(科幻)",
+          "《盐铁论》新注(史)",
+          "《设计模式》重读(技)"
+        ]
+      },
+      {
+        "type": "progress_ring",
+        "title": "想读清货架完成度",
+        "value": "37/100(示意, 不精确)"
+      },
+      {
+        "type": "big_number_card",
+        "title": "单本最长(页)",
+        "value": "842 页"
+      }
+    ]
+  },
+  "layout": {
+    "structure": "顶部 hero+一句 slogan, 中部 2×3, 底条",
+    "card_styling": "白底圆角 20px+浅影, 大数字混排等宽体"
+  },
+  "footer": {
+    "tagline": "明年: 多啃两本非虚构+减少囤书(自我期许)",
+    "credit": "导出长图可发微信读书动态 / 朋友圈 · @本人昵称占位"
+  },
+  "constraints": {
+    "must_keep": [
+      "卡片内一图一数据, 拒绝纯文",
+      "与豆瓣/微信官方无关的声明可在角落灰字: 本图为自整理"
+    ],
+    "avoid": [
+      "与 Spotify Wrapped 商标逐像素复刻"
+    ]
+  }
+}

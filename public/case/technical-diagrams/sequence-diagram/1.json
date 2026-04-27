@@ -1,0 +1,180 @@
+{
+  "type": "工程感时序图（UML sequence diagram）",
+  "goal": "生成一张 OAuth 2.0 授权码 + PKCE 时序位图，用于安全评审与移动/Web 公钥客户对接说明，消息编号完整、sync/return 风格区分",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "OAuth 2.0 Authorization Code + PKCE",
+    "subtitle": "Keycloak 24 · SPA @ app.nimbus.id",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "actors": {
+    "count": 4,
+    "items": [
+      {
+        "id": "A1",
+        "name": "User",
+        "type": "user",
+        "icon_glyph": "stick figure outline"
+      },
+      {
+        "id": "A2",
+        "name": "Web SPA (React)",
+        "type": "client",
+        "icon_glyph": "browser window outline"
+      },
+      {
+        "id": "A3",
+        "name": "Keycloak (realm=nimbus)",
+        "type": "service",
+        "icon_glyph": "shield outline"
+      },
+      {
+        "id": "A4",
+        "name": "BFF (FastAPI + RS256)",
+        "type": "service",
+        "icon_glyph": "database / server outline"
+      }
+    ],
+    "header_box_style": {
+      "shape": "rounded rectangle, corner radius 6px",
+      "fill": "type-coded color × 12% opacity",
+      "border": "1.5px solid type-coded color",
+      "size": "160px wide × 64px tall, all headers identical size, evenly spaced",
+      "label": "actor name in mono 11pt + small icon glyph above name"
+    },
+    "type_color_map": {
+      "user": "cyan #22D3EE",
+      "client": "blue #60A5FA",
+      "service": "emerald #34D399",
+      "database": "violet #A78BFA",
+      "external": "slate #94A3B8"
+    }
+  },
+  "lifelines": {
+    "rule": "每个 actor header 下方画一条垂直虚线 (1px dashed slate #475569)，从 header 底部一直延伸到画布底部",
+    "spacing": "lifelines 之间等距，间距 ≥ 200px"
+  },
+  "messages": {
+    "count": 10,
+    "items": [
+      {
+        "id": "M1",
+        "from": "A1",
+        "to": "A2",
+        "label": "1. 点击「使用企业账户登录」",
+        "type": "sync"
+      },
+      {
+        "id": "M2",
+        "from": "A2",
+        "to": "A2",
+        "label": "2. 生成 code_verifier，推导 code_challenge=S256(verifier)",
+        "type": "self"
+      },
+      {
+        "id": "M3",
+        "from": "A2",
+        "to": "A3",
+        "label": "3. GET /realms/nimbus/protocol/openid-connect/auth?client_id=portal-spa&response_type=code&code_challenge=...&code_challenge_method=S256&redirect_uri=https://app.nimbus.id/cb",
+        "type": "sync"
+      },
+      {
+        "id": "M4",
+        "from": "A3",
+        "to": "A1",
+        "label": "4. 302 → 展示登录/ MFA 页",
+        "type": "return"
+      },
+      {
+        "id": "M5",
+        "from": "A1",
+        "to": "A3",
+        "label": "5. 提交 username + password + TOTP",
+        "type": "sync"
+      },
+      {
+        "id": "M6",
+        "from": "A3",
+        "to": "A2",
+        "label": "6. 302 redirect_uri?code=...&state=anti_csrf",
+        "type": "return"
+      },
+      {
+        "id": "M7",
+        "from": "A2",
+        "to": "A3",
+        "label": "7. POST /token (grant_type=authorization_code&code&redirect_uri&client_id&code_verifier)",
+        "type": "sync"
+      },
+      {
+        "id": "M8",
+        "from": "A3",
+        "to": "A2",
+        "label": "8. 200 { access_token, id_token, refresh_token, token_type: Bearer, expires_in }",
+        "type": "return"
+      },
+      {
+        "id": "M9",
+        "from": "A2",
+        "to": "A4",
+        "label": "9. GET /v1/tenants (Authorization: Bearer access_token, traceparent)",
+        "type": "sync"
+      },
+      {
+        "id": "M10",
+        "from": "A4",
+        "to": "A2",
+        "label": "10. 200 { tenant_id, entitlements[] }，aud 匹配 portal-spa",
+        "type": "return"
+      }
+    ],
+    "message_style": {
+      "sync": "solid line 1.5px slate #94A3B8, filled triangle arrowhead at target",
+      "async": "solid line 1.5px slate #94A3B8, hollow triangle arrowhead",
+      "return": "dashed line 1.5px slate #64748B, hollow triangle arrowhead",
+      "self": "horizontal arrow that loops out to the right and back to the same lifeline (bracket shape)"
+    },
+    "label_format": "<编号>. <消息内容>，mono 10pt，标在 arrow 上方居中"
+  },
+  "activation_bars": {
+    "enabled": true,
+    "rule": "在 actor lifeline 上画细长矩形（4-6px 宽）覆盖该 actor 处理消息的时间段；颜色用 actor 的 type color，半透明",
+    "vertical_extent": "从该 actor 收到一个 message 开始，到它发出 return 结束"
+  },
+  "annotations": {
+    "notes": {
+      "enabled": true,
+      "rule": "在 M3 旁附便签：PKCE 防止 code 被截获后换 token；state 与 OIDC nonce 需校验"
+    },
+    "loops_alts": {
+      "enabled": false,
+      "rule": "如失败分支可用 alt 框，本次仅主路径"
+    }
+  },
+  "legend": {
+    "enabled": true,
+    "position": "bottom-right",
+    "content": "actor type → color, message style → meaning (sync solid / return dashed / self bracket)",
+    "style": "small panel, semi-transparent bg, mono 10pt"
+  },
+  "constraints": {
+    "must_keep": [
+      "actor headers 等大小、等间距、水平对齐",
+      "lifelines 垂直、等间距",
+      "messages 严格按时间从上到下",
+      "每条 message 有编号 + 简洁标签",
+      "sync / return 用不同箭头风格",
+      "暗色 grid + 等宽字体",
+      "legend 必画"
+    ],
+    "avoid": [
+      "return 用实线箭头",
+      "用 emoji 当 actor 图标",
+      "声称可编辑 SVG"
+    ]
+  }
+}

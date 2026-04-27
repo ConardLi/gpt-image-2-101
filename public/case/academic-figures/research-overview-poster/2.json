@@ -1,0 +1,129 @@
+{
+  "type": "左右双栏研究总览（研究内容 + 时间表）",
+  "goal": "生成一张博士中期答辩首页用的研究总览图，左侧展示 4 个研究内容模块，右侧展示按学期划分的进度路线，主题为多模态大模型辅助医疗影像诊断，要求正式克制、白底、工程化配色",
+  "canvas": {
+    "aspect_ratio": "16:9",
+    "background": "pure white #FFFFFF",
+    "outer_padding": "60px around the diagram",
+    "render_quality": "vector-clean look, anti-aliased edges, sharp text"
+  },
+  "title_block": {
+    "main_title": "Multimodal Foundation Models for Clinical Imaging Diagnosis",
+    "subtitle": "面向临床影像诊断的多模态大模型",
+    "occasion_label": "博士学位论文中期答辩",
+    "position": "top-center, main_title in bold sans-serif 22pt, subtitle in regular 13pt below in gray, occasion_label in italic gray 10pt at top-right"
+  },
+  "background_section": {
+    "label": "Background & Problem",
+    "summary": "现有医疗影像诊断系统多为单模态、专科专用，难以适配多模态场景与长尾病种",
+    "key_question": "如何在多模态影像-文本-报告联合表征下，实现可解释、可信的辅助诊断？",
+    "position": "compact strip across the upper band, full width"
+  },
+  "objective_section": {
+    "label": "Objective",
+    "summary": "构建跨模态、跨任务的医疗影像基础模型，并形成临床可用诊断辅助方案",
+    "position": "compact strip directly below background, centered, narrower than background"
+  },
+  "research_modules": {
+    "count": "4",
+    "items": [
+      {
+        "id": "RM1",
+        "name": "Data & Pretraining",
+        "summary": "构建影像-报告大规模配对语料并完成跨模态预训练",
+        "method_hint": "CT / MRI / X-ray + report alignment"
+      },
+      {
+        "id": "RM2",
+        "name": "Diagnostic Tasks",
+        "summary": "针对病灶检测、报告生成、鉴别诊断等任务进行下游适配",
+        "method_hint": "instruction tuning + LoRA"
+      },
+      {
+        "id": "RM3",
+        "name": "Reliability",
+        "summary": "研究幻觉缓解、不确定性表征与可解释证据链",
+        "method_hint": "evidence alignment + calibration"
+      },
+      {
+        "id": "RM4",
+        "name": "Clinical Validation",
+        "summary": "联合医院在真实门诊与急诊场景完成可控临床试用",
+        "method_hint": "multi-center retrospective + prospective trial"
+      }
+    ],
+    "layout": "left column of four equal-height modules stacked vertically; all modules identical width and identical style"
+  },
+  "expected_outcome_section": {
+    "label": "Expected Outcomes",
+    "items": "多模态医疗影像基础模型权重、面向 5 类临床任务的诊断辅助系统、可解释证据链评估方法学",
+    "position": "below the left column, full-left-column width, visually distinct from research_modules but stylistically consistent"
+  },
+  "module_block_style": {
+    "shape": "rounded rectangle (corner radius ~8px)",
+    "size_per_module": "all four research modules identical size, vertically aligned",
+    "fill": "very light slate tint #F1F5F9 for research modules; very light cyan tint #ECFEFF for the outcome block",
+    "border": "1.2px solid #334155",
+    "title_text": "module name in bold sans-serif (Inter / Helvetica + PingFang SC), 13pt",
+    "summary_text": "single phrase, 10pt regular, max 2 lines, no period",
+    "method_hint_text": "italic gray 9pt, below summary"
+  },
+  "right_panel_timeline": {
+    "enabled": "true",
+    "title": "Research Timeline",
+    "axis": "horizontal time axis along the right column, divided into 4 semesters labeled 'S1 / S2 / S3 / S4'",
+    "rule": "thin time-axis line with small node circles for milestones; each milestone connects horizontally to the corresponding research module on the left via a faint dashed leader line; node labels are short phrases (≤6 chars in English / ≤8 chars in Chinese)",
+    "milestones": [
+      {
+        "semester": "S1",
+        "label": "Pretraining v1"
+      },
+      {
+        "semester": "S2",
+        "label": "Task Adaptation"
+      },
+      {
+        "semester": "S3",
+        "label": "Reliability Study"
+      },
+      {
+        "semester": "S4",
+        "label": "Clinical Trial"
+      }
+    ]
+  },
+  "connectors": {
+    "style": "thin arrows (1.2px) with simple triangle arrowheads, dark gray #334155",
+    "rule": "vertical flow background → objective → research modules within the left column; horizontal dashed leader lines connect each module to its milestone on the right timeline; no other connectors",
+    "decoration": "no curved arcs, no decorative dashed lines beyond the leader lines"
+  },
+  "color_palette": {
+    "rule": "deep blue #1E3A8A as primary, slate blue #3B82F6 as secondary, charcoal #1F2937 for text and lines; one low-saturation amber #F59E0B accent reserved for milestone node circles on the timeline only",
+    "must_print_grayscale_readable": true
+  },
+  "typography": {
+    "language": "bilingual",
+    "rule": "english as primary line, chinese as smaller secondary line in gray; Inter / Helvetica for english, PingFang SC / Source Han Sans for chinese",
+    "consistency": "all module titles identical size; all summaries identical size; timeline node labels share one consistent style"
+  },
+  "constraints": {
+    "must_keep": [
+      "left-to-right ratio approximately 3:2 (left research column wider, right timeline column narrower)",
+      "all four research modules identical size",
+      "white background, no gradient, no decorative pattern",
+      "language and font consistency across the figure",
+      "summaries are short phrases, never full paragraphs",
+      "the figure must look like a doctoral mid-term defense cover slide, not a corporate roadmap"
+    ],
+    "avoid": [
+      "consulting / pitch-deck aesthetics",
+      "decorative icons, emoji, mascots, hand-drawn wobble",
+      "3D rendering, glossy fills, lens flare, drop shadow blocks",
+      "stock-photo backgrounds, photographic medical imagery",
+      "fabricated quantitative claims (no fabricated AUC, sensitivity, accuracy numbers)",
+      "saturated brand colors, neon, vivid gradients",
+      "dense text walls; no module summary should exceed 2 lines",
+      "hospital or university logos unless explicitly requested"
+    ]
+  }
+}

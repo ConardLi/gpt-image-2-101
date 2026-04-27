@@ -1,0 +1,200 @@
+{
+  "type": "工程感状态机 / 生命周期图（UML state diagram）",
+  "goal": "生成一张文章实体 `Article` 在 CMS 与机审/人审服务之间的状态机位图，终态与违规分支清晰，可贴在内容安全 SOP 附录",
+  "canvas": {
+    "aspect_ratio": "4:3",
+    "background": "deep slate #0F172A with subtle 1px grid #1E293B at 32px spacing",
+    "outer_padding": "60px"
+  },
+  "title_strip": {
+    "title": "Aurora CMS · article.status 状态机",
+    "subtitle": "DRAFT → REVIEW → PUBLISHED / REJECTED / TAKEN_DOWN / DELETED",
+    "position": "top-left, JetBrains Mono / SF Mono, light gray"
+  },
+  "states": {
+    "count": 10,
+    "items": [
+      {
+        "id": "S0",
+        "type": "initial",
+        "label": ""
+      },
+      {
+        "id": "S1",
+        "type": "state",
+        "label": "DRAFT",
+        "category": "active"
+      },
+      {
+        "id": "S2",
+        "type": "state",
+        "label": "PENDING_REVIEW",
+        "category": "waiting"
+      },
+      {
+        "id": "S3",
+        "type": "state",
+        "label": "HUMAN_REVIEW",
+        "category": "waiting"
+      },
+      {
+        "id": "S4",
+        "type": "state",
+        "label": "PUBLISHED",
+        "category": "active"
+      },
+      {
+        "id": "S5",
+        "type": "state",
+        "label": "REJECTED",
+        "category": "fail_terminal"
+      },
+      {
+        "id": "S6",
+        "type": "state",
+        "label": "TAKEN_DOWN",
+        "category": "fail_terminal"
+      },
+      {
+        "id": "S7",
+        "type": "state",
+        "label": "UNLISTED",
+        "category": "waiting"
+      },
+      {
+        "id": "S8",
+        "type": "state",
+        "label": "DELETED",
+        "category": "fail_terminal"
+      },
+      {
+        "id": "ST",
+        "type": "final",
+        "label": ""
+      }
+    ]
+  },
+  "state_style": {
+    "initial": {
+      "shape": "filled solid circle, ~16px",
+      "color": "cyan #22D3EE"
+    },
+    "final": {
+      "shape": "concentric double circle",
+      "color": "rose #FB7185"
+    },
+    "state": {
+      "shape": "rounded rectangle, corner radius 12px",
+      "fill": "category color × 12% opacity",
+      "border": "1.5px solid in category color",
+      "label": "mono 12pt"
+    }
+  },
+  "category_color_map": {
+    "active": "emerald #34D399",
+    "waiting": "amber #FBBF24",
+    "success_terminal": "blue #60A5FA",
+    "fail_terminal": "rose #FB7185"
+  },
+  "transitions": {
+    "items": [
+      {
+        "from": "S0",
+        "to": "S1",
+        "label": "init_draft"
+      },
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "submit [author=owner] / enqueue ml_review"
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "ml_flagged [score>0.62] / assign reviewer"
+      },
+      {
+        "from": "S2",
+        "to": "S4",
+        "label": "ml_clear [score<0.35] / publish_direct"
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "approve [role=content_editor] / set published_at"
+      },
+      {
+        "from": "S3",
+        "to": "S5",
+        "label": "reject [reason_code] / notify 微信 公众号模板消息"
+      },
+      {
+        "from": "S4",
+        "to": "S6",
+        "label": "report_spam [count>阈值] / hide_cdn"
+      },
+      {
+        "from": "S4",
+        "to": "S7",
+        "label": "unlist [compliance=voluntary] / 403 public"
+      },
+      {
+        "from": "S6",
+        "to": "S4",
+        "label": "reinstate [appeal=accepted] / rebuild index"
+      },
+      {
+        "from": "S4",
+        "to": "S8",
+        "label": "soft_delete [admin] / tombstone"
+      },
+      {
+        "from": "S7",
+        "to": "S4",
+        "label": "relist [ops] / restore slug"
+      },
+      {
+        "from": "S5",
+        "to": "ST",
+        "label": ""
+      },
+      {
+        "from": "S6",
+        "to": "ST",
+        "label": ""
+      },
+      {
+        "from": "S8",
+        "to": "ST",
+        "label": ""
+      }
+    ],
+    "transition_style": {
+      "default": "solid arrow with label",
+      "self_loop": "loop only if used",
+      "label_format": "event [guard] / action"
+    },
+    "rule_routing": "正交 / 小角度斜线，避免压字"
+  },
+  "composite_states": {
+    "enabled": true,
+    "rule": "可选：将 PENDING_REVIEW 与 HUMAN_REVIEW 包在 composite 'Moderation' 大框，标注 entry=assign_job_id"
+  },
+  "legend": {
+    "enabled": true,
+    "position": "bottom-right",
+    "content": "终态 / 人审 / 机审 颜色与形状约定；DELETED 为软删终态",
+    "style": "small panel, mono 10pt"
+  },
+  "constraints": {
+    "must_keep": [
+      "initial / final 形状正确",
+      "transition 全带 label",
+      "legend 必画"
+    ],
+    "avoid": [
+      "用流程图形状代替 state",
+      "微信 字样与业务字段在图中拼写错误"
+    ]
+  }
+}

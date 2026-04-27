@@ -1,0 +1,33 @@
+A hand-drawn educational infographic in the style of a cozy macaron-tinted study note.
+
+Topic: 番茄红素（lycopene）是什么、常见于哪些食物、为何常与油脂同食更易吸收、日常可执行的摄入建议，语气科普不做疗效承诺.
+
+Aspect ratio: 3:4 portrait.
+
+Background:
+- off-white with a very light kraft-paper second layer margin on left (fake tape hold).
+- No pure #000 or #FFF flat fills.
+
+Color palette: morandi + macaron hybrid — dusty sage, terracotta, mustard yellow, taupe, soft brick for headings; use coral #E88D67 only to circle key phrases  twice maximum.
+
+Title:
+- Hand-lettered title at top: 「番茄红素小抄」 inside a skewed label shape like a price tag
+- Smaller line under: lycopene — a carotenoid, fat-soluble
+
+Body:
+- 5 items, arranged in a soft two-column lower half + one wide card on top row:
+  1) 主要来源：熟番茄、西瓜、粉红柚等，附迷你番茄涂鸦
+  2) 化学角色：在膳食语境中讨论抗氧化（科普口吻，不写成药品）
+  3) 吸收提示：与含少量油脂的食物同餐
+  4) 烹饪：番茄酱 / 少油快炒 有时比生啃更易释放（示意即可）
+  5) 适量原则：把均衡膳食画成天平小图标
+- 每个条目圆角不同（云朵 / 胶囊 / 邮票）制造手绘有机感，避免五个完全一样的矩形
+
+Doodle decorations: tiny lycopene chemical-ish doodle (hexagon loops, very loose, non-IUPAC), heart-dots, arrow underlines; NO realistic photo cutouts
+
+Style:
+- wobble lines, chalk-like soft edge optional on titles only, still legible
+- 中文为主; 英文专名 lycopene, carotenoid 保留
+- 底部一行小字：信息仅供膳食参考，不适替代诊疗（手写更小）
+
+Mascot: 可选一颗带笑脸的切半番茄在右下角，线条极简，不喧宾夺主
