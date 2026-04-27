@@ -190,6 +190,15 @@
   z-index: 2;
 }
 
+/* Loading skeleton sits underneath the two image layers so the slot doesn't
+   look empty during the initial cascade. The shared .cs-skel handles the
+   shimmer + icon. We just override radius / accent for the mosaic look. */
+.hero-mosaic-skel {
+  --cs-accent: rgba(232, 71, 44, 0.4); /* faint vermilion to match site palette */
+  border-radius: 0; /* Mosaic tiles are square-edged on purpose */
+  z-index: 1;
+}
+
 /* === Per-slot positioning and target opacity === */
 .hero-mosaic-slot-0 {
   top: 8%; left: 4%;

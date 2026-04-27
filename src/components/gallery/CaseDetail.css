@@ -102,6 +102,16 @@
 .cd-media-stack.cd-media-loaded .cd-media-thumb {
   opacity: 0;
 }
+/* Skeleton fallback when there's no thumb cached and the full PNG is still
+   decoding — keep it tightly clipped to the image's eventual bounds. */
+.cd-media-skel {
+  border-radius: var(--r-md);
+  width: 100%;
+  height: 60vh;
+  max-height: 80vh;
+  position: relative;
+}
+.cd-media-stack.cd-media-loaded .cd-media-skel { display: none; }
 .cd-media-empty {
   padding: var(--s-8);
   text-align: center;
@@ -148,6 +158,8 @@
 .cd-related-tile:hover { border-color: var(--vermilion); }
 .cd-related-tile img {
   width: 100%; height: 100%; object-fit: cover;
+  position: relative;
+  z-index: 1;
 }
 .cd-related-empty {
   position: absolute;

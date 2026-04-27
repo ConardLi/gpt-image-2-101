@@ -1,4 +1,5 @@
 import type { PromptCase, Route } from '../../types';
+import { SkeletonImg } from '../shared/SkeletonImg';
 
 interface Props {
   c: PromptCase;
@@ -25,12 +26,13 @@ export function CaseCard({ c, navigate, ratio }: Props) {
     >
       <div className="cc-frame">
         {c.has_image ? (
-          <img
+          <SkeletonImg
             src={c.thumb_url ?? c.image_url ?? ''}
             alt={c.title}
             loading="lazy"
             decoding="async"
             className="cc-img"
+            accent={c.category_accent}
           />
         ) : (
           <div className="cc-placeholder">

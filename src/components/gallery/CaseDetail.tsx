@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Route } from '../../types';
 import { cases, getCase, getRelatedCases } from '../../lib/data';
+import { SkeletonImg } from '../shared/SkeletonImg';
 import './CaseDetail.css';
 
 interface Props {
@@ -88,6 +89,26 @@ export function CaseDetail({ id, navigate }: Props) {
           <div className="cd-media-frame">
             {c.has_image ? (
               <div className={`cd-media-stack ${fullLoaded ? 'cd-media-loaded' : ''}`}>
+                {!fullLoaded && !c.thumb_url && (
+                  <span
+                    className="cs-skel cd-media-skel"
+                    aria-hidden="true"
+                    style={{ ['--cs-accent' as never]: c.category_accent }}
+                  >
+                    <svg
+                      className="cs-skel-icon"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="6" width="26" height="20" rx="2" />
+                      <circle cx="11" cy="13" r="2" />
+                      <path d="M3 22l7-7 6 5 5-4 8 6" />
+                    </svg>
+                  </span>
+                )}
                 {c.thumb_url && (
                   <img
                     className="cd-media-thumb"
@@ -132,11 +153,12 @@ export function CaseDetail({ id, navigate }: Props) {
                     title={r.title}
                   >
                     {r.has_image ? (
-                      <img
+                      <SkeletonImg
                         src={r.thumb_url ?? r.image_url ?? ''}
                         alt=""
                         loading="lazy"
                         decoding="async"
+                        accent={r.category_accent}
                       />
                     ) : (
                       <div className="cd-related-empty mono">PROMPT</div>

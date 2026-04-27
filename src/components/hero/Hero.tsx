@@ -121,6 +121,20 @@ export function Hero({ navigate }: Props) {
       b: (i + TILES) % Math.max(pool.length, 1),
     })),
   );
+
+  // Per-tile "first image is decoded" flag — flips true the first time any
+  // image in the tile fires onLoad. Until then we render a friendly skeleton.
+  const [tilesReady, setTilesReady] = useState<boolean[]>(() =>
+    Array.from({ length: TILES }, () => false),
+  );
+  const markTileReady = (i: number) => {
+    setTilesReady((prev) => {
+      if (prev[i]) return prev;
+      const next = prev.slice();
+      next[i] = true;
+      return next;
+    });
+  };
   const lastRotatedRef = useRef<number>(-1);
 
   // === The organic rotator ===
@@ -241,12 +255,29 @@ export function Hero({ navigate }: Props) {
                   } as React.CSSProperties
                 }
               >
+                {!tilesReady[i] && (
+                  <span className="cs-skel hero-mosaic-skel" aria-hidden="true">
+                    <svg
+                      className="cs-skel-icon"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="6" width="26" height="20" rx="2" />
+                      <circle cx="11" cy="13" r="2" />
+                      <path d="M3 22l7-7 6 5 5-4 8 6" />
+                    </svg>
+                  </span>
+                )}
                 <img
                   className={`hero-mosaic-img ${t.topIsA ? 'hero-mosaic-img-on' : ''}`}
                   src={t.a}
                   alt=""
                   loading={i < 4 ? 'eager' : 'lazy'}
                   decoding="async"
+                  onLoad={() => markTileReady(i)}
                 />
                 <img
                   className={`hero-mosaic-img ${!t.topIsA ? 'hero-mosaic-img-on' : ''}`}
@@ -254,6 +285,7 @@ export function Hero({ navigate }: Props) {
                   alt=""
                   loading={i < 4 ? 'eager' : 'lazy'}
                   decoding="async"
+                  onLoad={() => markTileReady(i)}
                 />
                 <span className="hero-mosaic-frame" aria-hidden="true" />
               </figure>
