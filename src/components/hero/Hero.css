@@ -1,0 +1,471 @@
+/* === Ticker bar === */
+.hero-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 28px;
+  background: var(--vermilion);
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 60s linear infinite;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  width: max-content;
+}
+.hero-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 22px;
+}
+.hero-ticker-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--paper);
+  border-radius: 999px;
+  display: inline-block;
+}
+.hdr { top: 28px; }
+
+/* === Hero === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--s-12) var(--s-5) var(--s-10);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Grid background */
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(244, 239, 230, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 239, 230, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: -1px -1px;
+  mask-image: radial-gradient(
+    ellipse at 50% 60%,
+    black 30%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: -2;
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 90% 10%,
+      rgba(232, 71, 44, 0.18) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 5% 95%,
+      rgba(10, 110, 150, 0.18) 0%,
+      transparent 45%
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* === Floating mosaic of curated images ===
+   Three nested layers per tile so independent animations don't fight each
+   other on a single transform/opacity:
+     .hero-mosaic-slot — absolutely positioned, runs the entrance cascade
+                         (translateY + scale + blur lift, staggered by --i),
+                         and holds the target opacity for that tile.
+     .hero-mosaic-tile — relative inside the slot, owns the per-tile rotation
+                         and mouse-parallax translate.
+     .hero-mosaic-img  — two stacked layers per tile; one is "on" (opacity 1,
+                         scale 1, no blur), the other is "off" (opacity 0,
+                         slightly zoomed and blurred). Toggling .is-on
+                         crossfades organically. */
+
+.hero-mosaic {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  --mx: 0;
+  --my: 0;
+}
+
+.hero-mosaic-slot {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(48px) scale(0.84);
+  filter: blur(14px) saturate(0.7);
+  animation: tileEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 110ms + 120ms);
+  will-change: transform, opacity, filter;
+}
+
+@keyframes tileEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(48px) scale(0.84);
+    filter: blur(14px) saturate(0.7);
+  }
+  55% {
+    opacity: var(--target-op, 0.78);
+    filter: blur(0) saturate(1.05);
+  }
+  100% {
+    opacity: var(--target-op, 0.78);
+    transform: translateY(0) scale(1);
+    filter: blur(0) saturate(1.05);
+  }
+}
+
+.hero-mosaic-tile {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--ink-1000);
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 4px 14px rgba(0, 0, 0, 0.35);
+  transform: translate(
+      calc(var(--mx) * var(--px, 0px)),
+      calc(var(--my) * var(--py, 0px))
+    )
+    rotate(var(--rot, 0deg));
+  transition: transform var(--t-slow) var(--ease-out),
+    box-shadow var(--t-slow) var(--ease-out);
+}
+
+/* Subtle inner frame so even a fading-in tile reads as a deliberate plate. */
+.hero-mosaic-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(244, 239, 230, 0.06);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  z-index: 3;
+}
+
+/* Two stacked image layers per tile; we crossfade between them whenever the
+   tile rotates to a new image from the curated pool. */
+.hero-mosaic-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(2px) saturate(1.05);
+  transition:
+    opacity 1.6s cubic-bezier(0.65, 0, 0.35, 1),
+    transform 2.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+.hero-mosaic-img-on {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0) saturate(1.05);
+  z-index: 2;
+}
+
+/* === Per-slot positioning and target opacity === */
+.hero-mosaic-slot-0 {
+  top: 8%; left: 4%;
+  width: 220px; height: 290px;
+  --target-op: 0.82;
+}
+.hero-mosaic-slot-1 {
+  top: 6%; right: 6%;
+  width: 280px; height: 200px;
+  --target-op: 0.82;
+}
+.hero-mosaic-slot-2 {
+  top: 38%; left: 2%;
+  width: 170px; height: 220px;
+  --target-op: 0.55;
+}
+.hero-mosaic-slot-3 {
+  top: 32%; right: 3%;
+  width: 200px; height: 250px;
+  --target-op: 0.6;
+}
+.hero-mosaic-slot-4 {
+  bottom: 8%; left: 8%;
+  width: 240px; height: 180px;
+  --target-op: 0.78;
+}
+.hero-mosaic-slot-5 {
+  bottom: 4%; right: 12%;
+  width: 200px; height: 270px;
+  --target-op: 0.78;
+}
+.hero-mosaic-slot-6 {
+  top: 18%; left: 28%;
+  width: 130px; height: 160px;
+  --target-op: 0.4;
+}
+.hero-mosaic-slot-7 {
+  bottom: 28%; right: 30%;
+  width: 140px; height: 180px;
+  --target-op: 0.45;
+}
+
+/* === Content === */
+.hero-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  animation: fadeUp 1.2s var(--ease-out) both;
+}
+
+.hero-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-mute);
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: rgba(244, 239, 230, 0.04);
+  backdrop-filter: blur(8px);
+  margin-bottom: var(--s-5);
+}
+.hero-meta-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--vermilion);
+}
+
+.hero-title {
+  margin: 0;
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  font-size: clamp(64px, 12vw, 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.hero-title-row { display: flex; align-items: baseline; gap: 0.18em; }
+.hero-title-the {
+  font-size: 0.55em;
+  color: var(--vermilion);
+  font-style: italic;
+  font-family: var(--font-display);
+  transform: translateY(-0.1em);
+}
+.hero-title-visual {
+  font-family: var(--font-display);
+  color: var(--paper);
+}
+.hero-title-prod {
+  font-family: var(--font-display);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.16em;
+}
+.hero-title-prod-amp {
+  font-size: 0.85em;
+  color: var(--vermilion);
+}
+.hero-title-prod-prod {}
+.hero-title-model {
+  color: var(--paper);
+  font-style: italic;
+  font-size: 0.85em;
+}
+
+.hero-lede {
+  max-width: 720px;
+  margin: var(--s-6) auto 0;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: var(--text-mute);
+  text-wrap: pretty;
+}
+.hero-lede-em {
+  color: var(--paper);
+  font-weight: 600;
+  border-bottom: 1px dashed var(--vermilion);
+  padding-bottom: 1px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-2);
+  margin-top: var(--s-8);
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  background: rgba(244, 239, 230, 0.025);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 720px;
+  border-radius: var(--r-md);
+}
+.hero-stat {
+  text-align: center;
+  padding: 0 var(--s-3);
+  border-right: 1px solid var(--line);
+}
+.hero-stat:last-child { border-right: 0; }
+.hero-stat-num {
+  font-size: clamp(34px, 4.5vw, 52px);
+  line-height: 1;
+  color: var(--paper);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hero-stat-sup {
+  color: var(--vermilion);
+  font-size: 0.4em;
+  vertical-align: super;
+  margin-left: 2px;
+}
+.hero-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-faint);
+  margin-top: 8px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn-arrow {
+  font-size: 14px;
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.btn:hover .btn-arrow { transform: translateX(2px); }
+.btn-primary:hover .btn-arrow { transform: translateY(2px); }
+
+.btn-primary {
+  background: var(--vermilion);
+  color: var(--paper);
+}
+.btn-primary:hover {
+  background: var(--vermilion-deep);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: rgba(244, 239, 230, 0.04);
+  color: var(--paper);
+  border-color: var(--line-strong);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(244, 239, 230, 0.08);
+  border-color: var(--paper);
+}
+.btn-ghost-2 {
+  color: var(--text-mute);
+  border-color: transparent;
+}
+.btn-ghost-2:hover { color: var(--paper); }
+
+/* === scroll hint === */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--s-6);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--text-faint);
+}
+.hero-scroll-line {
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--text-faint), transparent);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .hero-mosaic-slot-6, .hero-mosaic-slot-7 { display: none; }
+  /* Disable parallax on smaller screens — keep only rotation. */
+  .hero-mosaic-tile { transform: rotate(var(--rot)) !important; }
+}
+@media (max-width: 720px) {
+  .hero { padding: 110px var(--s-4) 90px; }
+  .hero-mosaic { opacity: 0.35; }
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-stat { padding: var(--s-3); border-right: 0; border-bottom: 1px solid var(--line); }
+  .hero-stat:nth-last-child(-n+2) { border-bottom: 0; }
+  .hero-mosaic-slot-2, .hero-mosaic-slot-3 { display: none; }
+}
+
+/* Honor users who prefer reduced motion — instant entrance, no rotation
+   crossfades worth animating. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-mosaic-slot {
+    animation: none;
+    opacity: var(--target-op, 0.78);
+    transform: none;
+    filter: none;
+  }
+  .hero-mosaic-img {
+    transition: opacity 0.2s linear;
+    transform: none;
+    filter: none;
+  }
+}
