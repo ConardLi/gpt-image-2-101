@@ -1,7 +1,7 @@
 {
   "summary": {
     "templates": 79,
-    "cases": 161
+    "cases": 162
   },
   "items": [
     {
@@ -1013,6 +1013,13 @@
           "brief": "深色底＋高对比紫青点缀，主视觉为「问题列表＋Sprint 燃尽」抽象界面，强研发气质，适合作业流 / DevOps 品类落地页。",
           "format": "json",
           "file": "poster-and-campaigns/banner-hero/2.json"
+        },
+        {
+          "idx": 3,
+          "title": "Easy Dataset 开源 AI 数据集工作台 Hero（明色横版）",
+          "brief": "为 ConardLi/easy-dataset 生成的 16:9 明色调 README / 官网首屏宣传图。左侧突出 Easy Dataset、Fine-tuning / RAG / Eval 三个场景，右侧用 SaaS 工作台表达从多格式文档到高质量数据集的流程。",
+          "format": "json",
+          "file": "poster-and-campaigns/banner-hero/3.json"
         }
       ]
     },

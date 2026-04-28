@@ -1,0 +1,82 @@
+{
+  "type": "Web hero banner",
+  "goal": "为开源项目 Easy Dataset 生成 16:9 横版明色调宣传图，适合 GitHub README hero banner、官网首屏、公众号封面和技术分享首图",
+  "aspect_ratio": "16:9",
+  "layout": {
+    "left_column": {
+      "headline": "Easy Dataset",
+      "subhead": "一站式构建 LLM 微调、RAG 与评测数据集",
+      "slogan": "从文档到高质量数据集",
+      "badges": ["Fine-tuning", "RAG", "Eval"]
+    },
+    "right_column": {
+      "centerpiece": "明亮的 SaaS 工作台界面悬浮在浅色背景中，表现从多格式文档输入到高质量数据集输出的流程",
+      "input_cards": ["PDF", "Markdown", "DOCX", "TXT", "EPUB"],
+      "workspace_elements": ["数据表格", "QA 卡片", "切分面板", "评测分数卡", "导出面板"],
+      "output_cards": ["Fine-tuning Dataset", "RAG Knowledge Base", "Eval Benchmark"],
+      "scale": "占右侧 60%，使用柔和青绿色数据线串联输入、工作台与输出"
+    },
+    "bottom_feature_strip": [
+      {
+        "title": "文档解析",
+        "caption": "多格式输入"
+      },
+      {
+        "title": "智能切分",
+        "caption": "结构化处理"
+      },
+      {
+        "title": "问答生成",
+        "caption": "QA / 多轮 / COT"
+      },
+      {
+        "title": "图像 QA",
+        "caption": "视觉问答数据"
+      },
+      {
+        "title": "自动评测",
+        "caption": "Judge Model"
+      },
+      {
+        "title": "导出集成",
+        "caption": "JSONL / ShareGPT / LLaMA Factory"
+      }
+    ]
+  },
+  "background": {
+    "type": "暖白 #F8FAFC 与极淡青蓝 #EAF7F6 的明亮背景",
+    "decoration": "浅灰网格、柔和数据流线和轻微纸感颗粒，保持清爽留白"
+  },
+  "style": {
+    "aesthetic": "明亮、高级、开源 AI SaaS、干净的产品官网视觉",
+    "palette": ["#F8FAFC", "#EAF7F6", "#172033", "#14B8A6", "#F6B84B", "#6366F1"],
+    "typography": "现代无衬线，中文类似思源黑体，英文类似 Inter",
+    "lighting": "soft daylight, clean shadows, subtle cyan glow"
+  },
+  "footer": {
+    "items": ["github.com/ConardLi/easy-dataset", "Open Source", "AGPL-3.0", "14k+ Stars"],
+    "placement": "右下角或底部信息区，使用简洁开源徽章样式"
+  },
+  "constraints": {
+    "must_keep": [
+      "16:9 横版构图稳定",
+      "整体为明亮浅色调",
+      "Easy Dataset 标题大且清晰可读",
+      "Fine-tuning / RAG / Eval 三个使用场景醒目",
+      "从文档输入到数据集输出的视觉动线必须一眼可懂",
+      "文字必须正确、简洁、可读"
+    ],
+    "avoid": [
+      "深色赛博朋克背景",
+      "大面积紫色渐变",
+      "人物或机器人吉祥物",
+      "夸张 3D 卡通",
+      "代码雨",
+      "伪造真实产品截图",
+      "复杂长段落",
+      "二维码",
+      "第三方品牌 logo，除 GitHub 字样外不出现真实商标",
+      "拥挤表格或过密小字"
+    ]
+  }
+}

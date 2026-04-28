@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-27T12:00:16.389Z",
+  "generated_at": "2026-04-28T05:55:03.335Z",
   "summary": {
     "templates": 79,
-    "cases": 161
+    "cases": 162
   },
   "categories": {
     "academic-figures": {
@@ -149,8 +149,8 @@
         "poster-and-campaigns/campaign-kv",
         "poster-and-campaigns/editorial-cover"
       ],
-      "total": 8,
-      "ready": 8
+      "total": 9,
+      "ready": 9
     },
     "product-visuals": {
       "key": "product-visuals",
@@ -1838,6 +1838,24 @@
       "prompt_content": "{\n  \"type\": \"Web hero banner\",\n  \"goal\": \"生成 21:9 超宽首屏，用于高分辨率显示器与官网首屏一屏定调，强暗色、偏研发协作工具\",\n  \"aspect_ratio\": \"21:9\",\n  \"layout\": {\n    \"left_column\": {\n      \"headline\": \"把问题拆清，让迭代可控\",\n      \"subhead\": \"从 Backlog 到发版，一条时间线里看见依赖、风险与资源。\",\n      \"cta\": {\n        \"text\": \"开始试用\",\n        \"color\": \"电青实色，弱外发光 4px\",\n        \"secondary\": \"阅读文档\"\n      }\n    },\n    \"right_column\": {\n      \"centerpiece\": \"暗色面板上悬浮的两块无商标界面：前层为可拖拽 issue 列，后层为折线+柱状结合的迭代燃尽小图，边缘有 1px 高光线\",\n      \"scale\": \"占画面右侧 70%，整体略没入深背景\"\n    }\n  },\n  \"background\": {\n    \"type\": \"近黑到蓝灰的径向渐层，心部最亮在右中\",\n    \"decoration\": \"极稀疏的 6% 明度点阵，模拟低照度机房氛围\"\n  },\n  \"brand\": {\n    \"logo_position\": \"左上白色几何与字标小占位，风格接近极简工程品牌\",\n    \"navigation_hint\": \"不绘制导航，仅上沿留 8% 高安全顶边\"\n  },\n  \"safe_area\": {\n    \"rule\": \"底边 8%、右侧最外 4% 不放关键元素\",\n    \"mobile_consideration\": \"true\"\n  },\n  \"constraints\": {\n    \"must_keep\": [\n      \"CTA 与背景明度差足够，一眼可点\",\n      \"全图紫色与青色点缀总量不超过画面 20%\",\n      \"不出现真实 Git 提交哈希与可识别仓库名\"\n    ],\n    \"avoid\": [\n      \"高饱和霓虹全屏\",\n      \"仿赛博朋克人物剪影干扰阅读\",\n      \"全幅纯黑死黑无阶调\"\n    ]\n  }\n}\n",
       "image_url": "/case/poster-and-campaigns/banner-hero/2.png",
       "thumb_url": "/case/poster-and-campaigns/banner-hero/2-thumb.webp",
+      "has_image": true
+    },
+    {
+      "id": "poster-and-campaigns/banner-hero/3",
+      "category": "poster-and-campaigns",
+      "category_label": "海报营销",
+      "category_accent": "#E8472C",
+      "template_key": "poster-and-campaigns/banner-hero",
+      "template_label": "Banner Hero",
+      "idx": 3,
+      "title": "Easy Dataset 开源 AI 数据集工作台 Hero（明色横版）",
+      "brief": "为 ConardLi/easy-dataset 生成的 16:9 明色调 README / 官网首屏宣传图。左侧突出 Easy Dataset、Fine-tuning / RAG / Eval 三个场景，右侧用 SaaS 工作台表达从多格式文档到高质量数据集的流程。",
+      "format": "json",
+      "prompt_path": "poster-and-campaigns/banner-hero/3.json",
+      "prompt_url": "/case/poster-and-campaigns/banner-hero/3.json",
+      "prompt_content": "{\n  \"type\": \"Web hero banner\",\n  \"goal\": \"为开源项目 Easy Dataset 生成 16:9 横版明色调宣传图，适合 GitHub README hero banner、官网首屏、公众号封面和技术分享首图\",\n  \"aspect_ratio\": \"16:9\",\n  \"layout\": {\n    \"left_column\": {\n      \"headline\": \"Easy Dataset\",\n      \"subhead\": \"一站式构建 LLM 微调、RAG 与评测数据集\",\n      \"slogan\": \"从文档到高质量数据集\",\n      \"badges\": [\"Fine-tuning\", \"RAG\", \"Eval\"]\n    },\n    \"right_column\": {\n      \"centerpiece\": \"明亮的 SaaS 工作台界面悬浮在浅色背景中，表现从多格式文档输入到高质量数据集输出的流程\",\n      \"input_cards\": [\"PDF\", \"Markdown\", \"DOCX\", \"TXT\", \"EPUB\"],\n      \"workspace_elements\": [\"数据表格\", \"QA 卡片\", \"切分面板\", \"评测分数卡\", \"导出面板\"],\n      \"output_cards\": [\"Fine-tuning Dataset\", \"RAG Knowledge Base\", \"Eval Benchmark\"],\n      \"scale\": \"占右侧 60%，使用柔和青绿色数据线串联输入、工作台与输出\"\n    },\n    \"bottom_feature_strip\": [\n      {\n        \"title\": \"文档解析\",\n        \"caption\": \"多格式输入\"\n      },\n      {\n        \"title\": \"智能切分\",\n        \"caption\": \"结构化处理\"\n      },\n      {\n        \"title\": \"问答生成\",\n        \"caption\": \"QA / 多轮 / COT\"\n      },\n      {\n        \"title\": \"图像 QA\",\n        \"caption\": \"视觉问答数据\"\n      },\n      {\n        \"title\": \"自动评测\",\n        \"caption\": \"Judge Model\"\n      },\n      {\n        \"title\": \"导出集成\",\n        \"caption\": \"JSONL / ShareGPT / LLaMA Factory\"\n      }\n    ]\n  },\n  \"background\": {\n    \"type\": \"暖白 #F8FAFC 与极淡青蓝 #EAF7F6 的明亮背景\",\n    \"decoration\": \"浅灰网格、柔和数据流线和轻微纸感颗粒，保持清爽留白\"\n  },\n  \"style\": {\n    \"aesthetic\": \"明亮、高级、开源 AI SaaS、干净的产品官网视觉\",\n    \"palette\": [\"#F8FAFC\", \"#EAF7F6\", \"#172033\", \"#14B8A6\", \"#F6B84B\", \"#6366F1\"],\n    \"typography\": \"现代无衬线，中文类似思源黑体，英文类似 Inter\",\n    \"lighting\": \"soft daylight, clean shadows, subtle cyan glow\"\n  },\n  \"footer\": {\n    \"items\": [\"github.com/ConardLi/easy-dataset\", \"Open Source\", \"AGPL-3.0\", \"14k+ Stars\"],\n    \"placement\": \"右下角或底部信息区，使用简洁开源徽章样式\"\n  },\n  \"constraints\": {\n    \"must_keep\": [\n      \"16:9 横版构图稳定\",\n      \"整体为明亮浅色调\",\n      \"Easy Dataset 标题大且清晰可读\",\n      \"Fine-tuning / RAG / Eval 三个使用场景醒目\",\n      \"从文档输入到数据集输出的视觉动线必须一眼可懂\",\n      \"文字必须正确、简洁、可读\"\n    ],\n    \"avoid\": [\n      \"深色赛博朋克背景\",\n      \"大面积紫色渐变\",\n      \"人物或机器人吉祥物\",\n      \"夸张 3D 卡通\",\n      \"代码雨\",\n      \"伪造真实产品截图\",\n      \"复杂长段落\",\n      \"二维码\",\n      \"第三方品牌 logo，除 GitHub 字样外不出现真实商标\",\n      \"拥挤表格或过密小字\"\n    ]\n  }\n}\n",
+      "image_url": "/case/poster-and-campaigns/banner-hero/3.png",
+      "thumb_url": "/case/poster-and-campaigns/banner-hero/3-thumb.webp",
       "has_image": true
     },
     {
@@ -3594,7 +3612,7 @@
       "md_path": "references/poster-and-campaigns/banner-hero.md",
       "description": "本文件用于生成“网页顶部 hero 区 / app banner / 投放素材”视觉：\n- 网站首页 hero\n- 落地页 banner\n- App 顶部活动 banner",
       "content": "# Web Banner / Hero 模板\n\n本文件用于生成“网页顶部 hero 区 / app banner / 投放素材”视觉：\n\n- 网站首页 hero\n- 落地页 banner\n- App 顶部活动 banner\n- 邮件 marketing banner\n- 信息流广告素材\n\n特征：\n\n- 横向比例（16:9 / 21:9 / 3:1）\n- 一句强 claim\n- 留出 CTA 区域\n- 安全留白（避免裁切关键元素）\n\n## 适用范围\n\n- Web hero\n- 落地页 hero\n- App banner\n- 邮件 banner\n- 投放素材\n\n## 何时使用\n\n- 用户提到“banner / hero / 落地页主图 / 顶部图”\n- 用户需要横向构图 + CTA 区\n\n不要使用：\n\n- 竖图 / 方图主海报（用 `brand-poster.md`）\n- 系列 KV（用 `campaign-kv.md`）\n- 杂志封面（用 `editorial-cover.md`）\n\n## 缺失信息优先提问顺序\n\n1. 用途（web hero / app banner / 邮件）\n2. 主题 / claim\n3. 主视觉\n4. CTA 文案 + 颜色\n5. 品牌色\n6. 比例\n\n## 主模板：Web hero banner\n\n📖 描述\n\n整体横向构图，左侧为标题 + 副标题 + CTA，右侧为主视觉，底部安全留白。\n\n📝 提示词\n\n```json\n{\n  \"type\": \"Web hero banner\",\n  \"goal\": \"生成一张可直接作为产品官网 / 营销落地页 hero 区主图的横向 banner\",\n  \"aspect_ratio\": \"{argument name=\\\"aspect ratio\\\" default=\\\"16:9\\\"}\",\n  \"layout\": {\n    \"left_column\": {\n      \"headline\": \"{argument name=\\\"headline\\\" default=\\\"重新定义你的工作节奏\\\"}\",\n      \"subhead\": \"{argument name=\\\"subhead\\\" default=\\\"AURORA Pro · 让 AI 替你处理 80% 的琐事\\\"}\",\n      \"cta\": {\n        \"text\": \"{argument name=\\\"cta text\\\" default=\\\"免费试用\\\"}\",\n        \"color\": \"{argument name=\\\"cta color\\\" default=\\\"品牌主色\\\"}\",\n        \"secondary\": \"{argument name=\\\"secondary cta\\\" default=\\\"了解更多\\\"}\"\n      }\n    },\n    \"right_column\": {\n      \"centerpiece\": \"{argument name=\\\"hero visual\\\" default=\\\"产品截图 + 微微 3D 透视 + 高光\\\"}\",\n      \"scale\": \"{argument name=\\\"hero scale\\\" default=\\\"占右侧 80%\\\"}\"\n    }\n  },\n  \"background\": {\n    \"type\": \"{argument name=\\\"background type\\\" default=\\\"浅色渐变\\\"}\",\n    \"decoration\": \"{argument name=\\\"decoration\\\" default=\\\"微噪点 + 极淡几何形\\\"}\"\n  },\n  \"brand\": {\n    \"logo_position\": \"左上角\",\n    \"navigation_hint\": \"{argument name=\\\"nav hint\\\" default=\\\"顶部导航条已存在，banner 不要画\\\"}\"\n  },\n  \"safe_area\": {\n    \"rule\": \"底部 10% + 右侧 5% 留白，避免裁切\",\n    \"mobile_consideration\": \"{argument name=\\\"mobile aware\\\" default=\\\"true\\\"}\"\n  },\n  \"constraints\": {\n    \"must_keep\": [\n      \"headline 字号最大\",\n      \"CTA 必须可点击感（明确按钮形态）\",\n      \"主视觉在右侧不超出安全区\",\n      \"色板严格统一\"\n    ],\n    \"avoid\": [\n      \"headline 与主视觉重叠\",\n      \"CTA 颜色与背景对比过低\",\n      \"信息密度过高\",\n      \"主视觉横跨整个画面无 claim 空间\"\n    ]\n  }\n}\n```\n\n### 参数策略\n\n- 必问：headline、CTA、主视觉、比例\n- 可默认：背景、副标题、安全区\n- 可随机：装饰几何形\n\n### 自动补全策略\n\n- 用户给产品名时：自动生成 1 句 headline + 1 句 sub + 1 个 CTA\n- CTA 默认品牌主色按钮 + 灰色辅助按钮\n- 主视觉按行业自动选（SaaS = 截图，消费 = 产品，服务 = 人物）\n\n## 变体 1：纯图大背景 + 浮层文案\n\n📝 提示词\n\n```json\n{\n  \"type\": \"全屏背景图 hero\",\n  \"background\": {\n    \"type\": \"全图背景\",\n    \"description\": \"{argument name=\\\"background image\\\" default=\\\"清晨工作桌面，柔光\\\"}\"\n  },\n  \"layout\": {\n    \"left_column\": {\n      \"headline\": \"{argument name=\\\"headline\\\" default=\\\"AI 让早晨多出 30 分钟\\\"}\",\n      \"cta\": \"立即体验\"\n    }\n  },\n  \"constraints\": {\n    \"must_feel\": \"氛围、生活、品牌精神\"\n  }\n}\n```\n\n## 变体 2：长横条 banner（21:9 / 3:1）\n\n📝 提示词\n\n```json\n{\n  \"type\": \"超宽横条 banner\",\n  \"aspect_ratio\": \"{argument name=\\\"aspect ratio\\\" default=\\\"21:9\\\"}\",\n  \"layout\": {\n    \"left_column\": { \"headline\": \"限时 8 折 · 仅限 7 天\" },\n    \"right_column\": { \"centerpiece\": \"倒计时数字 + 商品小图\" }\n  },\n  \"constraints\": {\n    \"must_feel\": \"促销、紧迫感、CTA 强烈\"\n  }\n}\n```\n\n## 变体 3：自动补全模式\n\n📝 提示词\n\n```json\n{\n  \"type\": \"Banner / hero 自动补全模板\",\n  \"mode\": \"auto-fill\",\n  \"rule\": \"用户给产品 + 主题 + 比例，自动生成 headline / CTA / 主视觉 / 安全区\",\n  \"constraints\": {\n    \"must_feel\": \"可直接上 web / app\"\n  }\n}\n```\n\n## 避免事项\n\n- 不要让 headline 和主视觉互相遮挡\n- 不要让 CTA 颜色与背景对比 < 4.5:1\n- 不要在 banner 上塞 > 3 行正文\n- 不要忽略安全留白（移动端裁切会出问题）\n- 不要让 banner 横向构图变成纯图（必须有 claim）\n",
-      "cases_count": 2
+      "cases_count": 3
     },
     "poster-and-campaigns/brand-poster": {
       "key": "poster-and-campaigns/brand-poster",
