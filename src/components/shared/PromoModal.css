@@ -1,0 +1,164 @@
+/* === Promo Modal === */
+.pm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10, 9, 8, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-5);
+  animation: pm-backdrop-in 0.25s var(--ease-out) both;
+}
+
+@keyframes pm-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.pm-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  padding: var(--s-8) var(--s-6) var(--s-6);
+  max-width: 440px;
+  width: 100%;
+  box-shadow:
+    0 0 0 1px rgba(232, 71, 44, 0.12),
+    0 24px 80px rgba(0, 0, 0, 0.5);
+  animation: pm-card-in 0.32s var(--ease-out) both;
+}
+
+@keyframes pm-card-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pm-close {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  border-radius: var(--r-sm);
+  transition: color var(--t-fast) var(--ease-out),
+              background var(--t-fast) var(--ease-out);
+}
+.pm-close:hover {
+  color: var(--paper);
+  background: rgba(244, 239, 230, 0.08);
+}
+
+.pm-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: var(--vermilion);
+  border: 1px solid rgba(232, 71, 44, 0.4);
+  border-radius: var(--r-xs);
+  padding: 3px 8px;
+  margin-bottom: var(--s-4);
+}
+
+.pm-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--paper);
+  margin-bottom: var(--s-4);
+}
+.pm-title-em {
+  color: var(--vermilion);
+  font-style: italic;
+}
+
+.pm-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-mute);
+  margin-bottom: var(--s-5);
+}
+.pm-desc strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.pm-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-bottom: var(--s-6);
+  padding: var(--s-4);
+  background: rgba(244, 239, 230, 0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.pm-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: 13px;
+  color: var(--text-mute);
+}
+.pm-feat-icon {
+  color: var(--vermilion);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.pm-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px var(--s-5);
+  background: var(--vermilion);
+  color: var(--paper);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  margin-bottom: var(--s-3);
+  transition: background var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+}
+.pm-cta:hover {
+  background: var(--vermilion-deep);
+  transform: translateY(-1px);
+}
+.pm-cta:active {
+  transform: translateY(0);
+}
+
+.pm-skip {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-faint);
+  padding: var(--s-2);
+  border-radius: var(--r-sm);
+  transition: color var(--t-fast) var(--ease-out);
+}
+.pm-skip:hover {
+  color: var(--text-mute);
+}
+
+@media (max-width: 480px) {
+  .pm-card {
+    padding: var(--s-6) var(--s-5) var(--s-5);
+    border-radius: var(--r-md);
+  }
+  .pm-title { font-size: 22px; }
+}

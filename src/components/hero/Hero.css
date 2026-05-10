@@ -11,15 +11,28 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease-out);
+}
+.hero-ticker:hover {
+  background: var(--vermilion-deep);
+}
+.hero-ticker:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: -2px;
 }
 .hero-ticker-track {
   display: flex;
   white-space: nowrap;
-  animation: ticker 60s linear infinite;
+  animation: ticker 45s linear infinite;
   font-size: 11px;
   letter-spacing: 0.16em;
   font-weight: 600;
   width: max-content;
+}
+.hero-ticker:hover .hero-ticker-track {
+  animation-play-state: paused;
 }
 .hero-ticker-item {
   display: inline-flex;
@@ -33,6 +46,7 @@
   background: var(--paper);
   border-radius: 999px;
   display: inline-block;
+  flex-shrink: 0;
 }
 .hdr { top: 28px; }
 

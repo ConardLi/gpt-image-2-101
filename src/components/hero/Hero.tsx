@@ -8,15 +8,12 @@ interface Props {
   navigate: (r: Route) => void;
 }
 
+const PROMO_URL = 'https://token.mmh1.top/';
 const TICKER = [
-  'TEXT RENDERING',
-  '多语言版式',
-  'IMAGE EDITING',
-  '高保真参考图',
-  'POSTER · UI · INFOGRAPHIC',
-  '4K 输出',
-  'API · CHATGPT · LOVART',
-  '70+ STRUCTURED TEMPLATES',
+  '国内低价调用 GPT‑IMAGE‑2 / GPT‑5.5',
+  '无需翻墙 · 低至 0.6 折',
+  'TOKEN.MMH1.TOP',
+  '点击直达 →',
 ];
 
 const TILES = 8;
@@ -222,15 +219,21 @@ export function Hero({ navigate }: Props) {
 
   return (
     <>
-      <div className="hero-ticker" aria-hidden="true">
+      <a
+        className="hero-ticker"
+        href={PROMO_URL}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        aria-label="国内低价调用 GPT-Image-2 / GPT-5.5 中转站推广，新窗口打开"
+      >
         <div className="hero-ticker-track mono">
           {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
             <span key={i} className="hero-ticker-item">
-              <span className="hero-ticker-dot" /> {t}
+              <span className="hero-ticker-dot" aria-hidden="true" /> {t}
             </span>
           ))}
         </div>
-      </div>
+      </a>
 
       <section className="hero" id="hero" ref={heroRef}>
         <div className="hero-grid-bg" aria-hidden="true" />

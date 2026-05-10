@@ -6,6 +6,7 @@ import { Gallery } from './components/gallery/Gallery';
 import { CaseDetail } from './components/gallery/CaseDetail';
 import { SkillsPage } from './components/skills/SkillsPage';
 import { Footer } from './components/shared/Footer';
+import { PromoModal } from './components/shared/PromoModal';
 
 export function App() {
   const [route, navigate] = useRoute();
@@ -83,6 +84,8 @@ export function App() {
       {route.name === 'case' && (
         <CaseDetail id={route.id} navigate={navigate} />
       )}
+
+      <PromoModal />
     </>
   );
 }

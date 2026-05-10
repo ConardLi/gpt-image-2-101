@@ -72,6 +72,18 @@ export function Header({ route, navigate }: Props) {
             Skill
           </button>
           <a
+            className="hdr-link hdr-ext hdr-promo"
+            href="https://token.mmh1.top/"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            aria-label="国内低价调用 GPT-Image-2 / GPT-5.5 中转站，新窗口打开"
+          >
+            <span className="hdr-promo-dot" aria-hidden="true" />
+            <span>国内调用渠道</span>
+            <span className="hdr-promo-tag mono" aria-hidden="true">0.6 折</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a
             className="hdr-link hdr-ext"
             href="https://github.com/ConardLi/garden-skills/"
             target="_blank"
