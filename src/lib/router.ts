@@ -5,6 +5,7 @@ function parseHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, '');
   if (!h) return { name: 'home' };
   if (h === 'skills') return { name: 'skills' };
+  if (h === 'playground') return { name: 'playground' };
   if (h.startsWith('case/')) {
     const id = decodeURIComponent(h.slice('case/'.length));
     return { name: 'case', id };
@@ -18,6 +19,8 @@ function routeToHash(route: Route): string {
       return '';
     case 'skills':
       return '#/skills';
+    case 'playground':
+      return '#/playground';
     case 'case':
       return `#/case/${encodeURIComponent(route.id)}`;
   }

@@ -11,16 +11,9 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background var(--t-fast) var(--ease-out);
 }
-.hero-ticker:hover {
-  background: var(--vermilion-deep);
-}
-.hero-ticker:focus-visible {
-  outline: 2px solid var(--paper);
-  outline-offset: -2px;
+.hero-ticker:hover .hero-ticker-track {
+  animation-play-state: paused;
 }
 .hero-ticker-track {
   display: flex;
@@ -31,14 +24,38 @@
   font-weight: 600;
   width: max-content;
 }
-.hero-ticker:hover .hero-ticker-track {
-  animation-play-state: paused;
-}
 .hero-ticker-item {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   padding: 0 22px;
+  height: 28px;
+  color: var(--paper);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  transition: background var(--t-fast) var(--ease-out);
+}
+.hero-ticker-item:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+.hero-ticker-item:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: -4px;
+}
+.hero-ticker-item-accent {
+  background: rgba(255, 255, 255, 0.10);
+  font-weight: 700;
+}
+.hero-ticker-item-accent:hover {
+  background: rgba(255, 255, 255, 0.20);
+}
+.hero-ticker-item-accent .hero-ticker-dot {
+  background: #ffd83a;
+  box-shadow: 0 0 6px rgba(255, 216, 58, 0.6);
 }
 .hero-ticker-dot {
   width: 6px;

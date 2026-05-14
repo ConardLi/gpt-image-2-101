@@ -9,11 +9,19 @@ interface Props {
 }
 
 const PROMO_URL = 'https://token.mmh1.top/';
-const TICKER = [
-  '国内低价调用 GPT‑IMAGE‑2 / GPT‑5.5',
-  '无需翻墙 · 低至 0.6 折',
-  'TOKEN.MMH1.TOP',
-  '点击直达 →',
+
+interface TickerItem {
+  kind: 'playground' | 'promo';
+  label: string;
+  /** Highlight this segment (used on the lead "NEW" CTA). */
+  accent?: boolean;
+}
+
+const TICKER: TickerItem[] = [
+  { kind: 'playground', label: 'NEW · 在线体验 GPT‑IMAGE‑2', accent: true },
+  { kind: 'promo', label: '国内低价 API · 低至 0.6 折' },
+  { kind: 'playground', label: '浏览器内直接生图与编辑 →' },
+  { kind: 'promo', label: 'TOKEN.MMH1.TOP · 无需翻墙' },
 ];
 
 const TILES = 8;
@@ -219,21 +227,36 @@ export function Hero({ navigate }: Props) {
 
   return (
     <>
-      <a
-        className="hero-ticker"
-        href={PROMO_URL}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-        aria-label="国内低价调用 GPT-Image-2 / GPT-5.5 中转站推广，新窗口打开"
-      >
+      <div className="hero-ticker" role="region" aria-label="站点公告">
         <div className="hero-ticker-track mono">
-          {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="hero-ticker-item">
-              <span className="hero-ticker-dot" aria-hidden="true" /> {t}
-            </span>
-          ))}
+          {[...TICKER, ...TICKER, ...TICKER].map((t, i) => {
+            const className = `hero-ticker-item ${t.accent ? 'hero-ticker-item-accent' : ''}`;
+            const dot = <span className="hero-ticker-dot" aria-hidden="true" />;
+            if (t.kind === 'promo') {
+              return (
+                <a
+                  key={i}
+                  className={className}
+                  href={PROMO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                >
+                  {dot} {t.label}
+                </a>
+              );
+            }
+            return (
+              <button
+                key={i}
+                className={className}
+                onClick={() => navigate({ name: 'playground' })}
+              >
+                {dot} {t.label}
+              </button>
+            );
+          })}
         </div>
-      </a>
+      </div>
 
       <section className="hero" id="hero" ref={heroRef}>
         <div className="hero-grid-bg" aria-hidden="true" />

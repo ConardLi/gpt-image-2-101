@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
+import type { Route } from '../../types';
 import './PromoModal.css';
 
-const STORAGE_KEY = 'promo_modal_closed_v1';
+const STORAGE_KEY = 'promo_modal_closed_v2';
 
-export function PromoModal() {
+interface Props {
+  navigate: (r: Route) => void;
+}
+
+export function PromoModal({ navigate }: Props) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,6 +24,11 @@ export function PromoModal() {
     localStorage.setItem(STORAGE_KEY, '1');
   };
 
+  const onPlayground = () => {
+    close();
+    navigate({ name: 'playground' });
+  };
+
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') close();
   };
@@ -30,7 +40,7 @@ export function PromoModal() {
       className="pm-backdrop"
       role="dialog"
       aria-modal="true"
-      aria-label="国内调用渠道推广"
+      aria-label="在线体验 GPT Image 2"
       onKeyDown={onKeyDown}
       onClick={(e) => { if (e.target === e.currentTarget) close(); }}
     >
@@ -41,38 +51,46 @@ export function PromoModal() {
           </svg>
         </button>
 
-        <div className="pm-badge mono">推荐渠道</div>
+        <div className="pm-badge mono">NEW · 在线体验上线</div>
 
         <h2 className="pm-title">
-          国内低价调用<br />
-          <span className="pm-title-em">GPT‑Image‑2 / GPT‑5.5</span>
+          浏览器里直接玩<br />
+          <span className="pm-title-em">GPT‑Image‑2</span>
         </h2>
 
         <p className="pm-desc">
-          无需翻墙，直接在国内使用 OpenAI 最新模型。
-          计费透明，低至 <strong>0.6 折</strong>，按量付费无月费。
+          填一次自己的 API Key，即可在站内调用 <strong>创建</strong> 与 <strong>编辑</strong> 接口。
+          所有 Key 与生成历史只存在你浏览器的 LocalStorage，
+          <strong>不经过任何中间服务器</strong>。
         </p>
 
         <ul className="pm-features">
-          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>GPT‑Image‑2 图像生成 / 编辑</li>
-          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>GPT‑5.5 最新对话模型</li>
-          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>兼容 OpenAI API 格式，零改造接入</li>
-          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>国内直连，无需代理</li>
+          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>支持创建 / 编辑 / 蒙版编辑</li>
+          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>尺寸、质量、数量、背景、格式可调</li>
+          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>本地保存最近 12 条历史，可回看下载</li>
+          <li><span className="pm-feat-icon" aria-hidden="true">✦</span>没有 Key？可在
+            <a className="pm-inline-link" href="https://token.mmh1.top/" target="_blank" rel="noopener noreferrer sponsored"> token.mmh1.top </a>
+            申请，国内直连、低至 0.6 折</li>
         </ul>
 
+        <button className="pm-cta" onClick={onPlayground}>
+          立即在线体验
+          <span aria-hidden="true"> →</span>
+        </button>
+
         <a
-          className="pm-cta"
+          className="pm-secondary"
           href="https://token.mmh1.top/"
           target="_blank"
           rel="noopener noreferrer sponsored"
           onClick={close}
         >
-          立即前往 token.mmh1.top
+          先去申请 API Key
           <span aria-hidden="true"> ↗</span>
         </a>
 
         <button className="pm-skip" onClick={close}>
-          暂不需要，继续浏览
+          暂不需要，继续浏览案例
         </button>
       </div>
     </div>

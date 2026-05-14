@@ -5,6 +5,7 @@ import { Hero } from './components/hero/Hero';
 import { Gallery } from './components/gallery/Gallery';
 import { CaseDetail } from './components/gallery/CaseDetail';
 import { SkillsPage } from './components/skills/SkillsPage';
+import { PlaygroundPage } from './components/playground/PlaygroundPage';
 import { Footer } from './components/shared/Footer';
 import { PromoModal } from './components/shared/PromoModal';
 
@@ -73,6 +74,8 @@ export function App() {
 
       {route.name === 'skills' ? (
         <SkillsPage navigate={navigate} />
+      ) : route.name === 'playground' ? (
+        <PlaygroundPage navigate={navigate} />
       ) : (
         <main>
           <Hero navigate={navigate} />
@@ -85,7 +88,7 @@ export function App() {
         <CaseDetail id={route.id} navigate={navigate} />
       )}
 
-      <PromoModal />
+      <PromoModal navigate={navigate} />
     </>
   );
 }

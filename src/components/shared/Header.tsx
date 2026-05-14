@@ -71,6 +71,15 @@ export function Header({ route, navigate }: Props) {
           >
             Skill
           </button>
+          <button
+            className={`hdr-link hdr-try ${route.name === 'playground' ? 'hdr-try-active' : ''}`}
+            onClick={() => navigate({ name: 'playground' })}
+            aria-label="在线体验 GPT Image 2"
+          >
+            <span className="hdr-try-spark" aria-hidden="true">✦</span>
+            <span>在线体验</span>
+            <span className="hdr-try-tag mono" aria-hidden="true">NEW</span>
+          </button>
           <a
             className="hdr-link hdr-ext hdr-promo"
             href="https://token.mmh1.top/"

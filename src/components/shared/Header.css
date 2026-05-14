@@ -102,6 +102,61 @@
 .hdr-ext span:last-child { font-size: 11px; color: var(--text-faint); }
 .hdr-ext .hdr-gh { color: var(--paper); flex-shrink: 0; }
 
+.hdr-try {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--vermilion);
+  color: var(--paper);
+  border: 1px solid var(--vermilion);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  position: relative;
+  overflow: hidden;
+}
+.hdr-try::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 65%
+  );
+  background-size: 220% 100%;
+  background-position: 200% 0;
+  pointer-events: none;
+  animation: hdr-try-shine 4.5s ease-in-out infinite;
+}
+.hdr-try:hover {
+  background: var(--vermilion-deep);
+  border-color: var(--vermilion-deep);
+  color: var(--paper);
+}
+.hdr-try-active {
+  box-shadow: 0 0 0 2px rgba(232, 71, 44, 0.25);
+}
+.hdr-try-spark {
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.85;
+}
+.hdr-try-tag {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  padding: 2px 5px;
+  border-radius: var(--r-xs);
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--paper);
+  font-weight: 700;
+}
+@keyframes hdr-try-shine {
+  0%, 60% { background-position: 200% 0; }
+  85%, 100% { background-position: -100% 0; }
+}
+
 .hdr-promo {
   color: var(--paper);
   border-color: rgba(232, 71, 44, 0.55);
@@ -152,4 +207,9 @@
   }
   .hdr-promo-tag { display: none; }
   .hdr-promo span:last-child { display: none; }
+  .hdr-try {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+  .hdr-try-tag { display: none; }
 }
