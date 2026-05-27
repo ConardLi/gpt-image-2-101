@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 # Auto-generated WebP thumbnails (rebuilt by `npm run build:data`)
-public/case/**/*-thumb.webp
 
 # Editor directories and files
 .vscode/*
