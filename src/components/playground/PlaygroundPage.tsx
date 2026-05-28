@@ -373,7 +373,7 @@ export function PlaygroundPage({ navigate }: Props) {
                 onChange={(e) =>
                   setSettingsDraft({ ...settingsDraft, baseURL: e.target.value })
                 }
-                placeholder="https://token.mmh1.top/v1"
+                placeholder="https://api.mmh1.top/"
                 spellCheck={false}
               />
             </label>

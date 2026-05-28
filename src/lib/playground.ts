@@ -1,7 +1,7 @@
 // Client-side helpers for the Playground module.
 //
 // All requests are sent directly from the browser to the user-configured
-// OpenAI-compatible relay (defaults to https://token.mmh1.top/v1). Nothing
+// OpenAI-compatible relay (defaults to https://api.mmh1.top/). Nothing
 // is proxied through a backend — the API key never leaves localStorage.
 
 export interface PlaygroundSettings {
@@ -12,7 +12,7 @@ export interface PlaygroundSettings {
 
 export const DEFAULT_SETTINGS: PlaygroundSettings = {
   apiKey: '',
-  baseURL: 'https://token.mmh1.top/v1',
+  baseURL: 'https://api.mmh1.top/',
   model: 'gpt-image-2-c',
 };
 
@@ -117,7 +117,7 @@ export function clearHistory(): void {
 
 function normalizeBase(baseURL: string): string {
   const trimmed = baseURL.trim().replace(/\/+$/, '');
-  if (!trimmed) return 'https://token.mmh1.top/v1';
+  if (!trimmed) return 'https://api.mmh1.top/';
   if (/\/v\d+$/.test(trimmed)) return trimmed;
   return `${trimmed}/v1`;
 }
