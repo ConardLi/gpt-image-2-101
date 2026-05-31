@@ -247,6 +247,14 @@ export function CaseDetail({ id, navigate }: Props) {
                     {c.format === 'json' ? 'JSON · 渲染后的提示词' : 'TEXT · 自然语言提示词'}
                   </span>
                   <div className="cd-prompt-actions">
+                    <button
+                      className="cd-act cd-act-primary"
+                      onClick={() => navigate({ name: 'playground', caseId: c.id })}
+                      disabled={!c.prompt_content}
+                    >
+                      <span aria-hidden="true">✦</span>
+                      一键体验
+                    </button>
                     <button className="cd-act" onClick={onCopy}>
                       <span aria-hidden="true">
                         {copied ? '✓' : '⧉'}

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Route } from '../../types';
+import { getCase } from '../../lib/data';
 import {
   DEFAULT_PARAMS,
   DEFAULT_SETTINGS,
@@ -24,6 +25,7 @@ import {
 import './PlaygroundPage.css';
 
 interface Props {
+  route: Extract<Route, { name: 'playground' }>;
   navigate: (r: Route) => void;
 }
 
@@ -63,7 +65,7 @@ const SAMPLE_PROMPTS = [
   '手绘水彩信息图：蘑菇生长周期，中文标注，4 个步骤纵向排列，浅米黄背景，强调古法植物图鉴质感',
 ];
 
-export function PlaygroundPage({ navigate }: Props) {
+export function PlaygroundPage({ route, navigate }: Props) {
   const [settings, setSettings] = useState<PlaygroundSettings>(() => loadSettings());
   const [settingsDraft, setSettingsDraft] = useState<PlaygroundSettings>(settings);
   const [showSettings, setShowSettings] = useState(() => !loadSettings().apiKey);
@@ -86,11 +88,25 @@ export function PlaygroundPage({ navigate }: Props) {
   const abortRef = useRef<AbortController | null>(null);
 
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const sourceCase = useMemo(
+    () => (route.caseId ? getCase(route.caseId) : null),
+    [route.caseId],
+  );
 
   // sync drafts back when settings change externally (rare)
   useEffect(() => {
     setSettingsDraft(settings);
   }, [settings]);
+
+  useEffect(() => {
+    if (!sourceCase?.prompt_content) return;
+    setPrompt(sourceCase.prompt_content);
+    setMode('generate');
+    setError(null);
+    window.requestAnimationFrame(() => {
+      document.getElementById('pg-prompt')?.focus();
+    });
+  }, [sourceCase?.id, sourceCase?.prompt_content]);
 
   useEffect(() => {
     if (!editFile) {
@@ -402,6 +418,23 @@ export function PlaygroundPage({ navigate }: Props) {
               </button>
             </div>
           </div>
+        </section>
+      )}
+
+      {sourceCase && (
+        <section className="pg-source">
+          <div>
+            <div className="mono pg-source-label">已载入案例 Prompt</div>
+            <div className="pg-source-title">{sourceCase.title}</div>
+            <p className="pg-source-brief">{sourceCase.brief}</p>
+          </div>
+          <button
+            className="pg-btn pg-btn-ghost"
+            onClick={() => navigate({ name: 'case', id: sourceCase.id })}
+          >
+            返回案例
+            <span aria-hidden="true">→</span>
+          </button>
         </section>
       )}
 
@@ -927,4 +960,3 @@ function timeAgo(ts: number): string {
   if (days < 30) return `${days} 天前`;
   return new Date(ts).toLocaleDateString('zh-CN');
 }
-

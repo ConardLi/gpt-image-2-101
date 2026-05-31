@@ -58,4 +58,4 @@ export type Route =
   | { name: 'home' }
   | { name: 'case'; id: string }
   | { name: 'skills' }
-  | { name: 'playground' };
+  | { name: 'playground'; caseId?: string };

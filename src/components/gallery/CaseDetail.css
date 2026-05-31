@@ -372,6 +372,22 @@
   cursor: pointer;
 }
 .cd-act:hover { background: var(--vermilion); border-color: var(--vermilion); }
+.cd-act:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.cd-act:disabled:hover {
+  background: rgba(244, 239, 230, 0.04);
+  border-color: var(--line-strong);
+}
+.cd-act-primary {
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+}
+.cd-act-primary:hover {
+  background: var(--vermilion-deep);
+  border-color: var(--vermilion-deep);
+}
 .cd-act-ghost {
   color: var(--text-mute);
   background: transparent;

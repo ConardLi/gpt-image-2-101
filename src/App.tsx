@@ -75,7 +75,7 @@ export function App() {
       {route.name === 'skills' ? (
         <SkillsPage navigate={navigate} />
       ) : route.name === 'playground' ? (
-        <PlaygroundPage navigate={navigate} />
+        <PlaygroundPage route={route} navigate={navigate} />
       ) : (
         <main>
           <Hero navigate={navigate} />

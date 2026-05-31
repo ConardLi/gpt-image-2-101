@@ -3,11 +3,16 @@ import type { Route } from '../types';
 
 function parseHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, '');
-  if (!h) return { name: 'home' };
-  if (h === 'skills') return { name: 'skills' };
-  if (h === 'playground') return { name: 'playground' };
-  if (h.startsWith('case/')) {
-    const id = decodeURIComponent(h.slice('case/'.length));
+  const [path, query = ''] = h.split('?');
+  if (!path) return { name: 'home' };
+  if (path === 'skills') return { name: 'skills' };
+  if (path === 'playground') {
+    const params = new URLSearchParams(query);
+    const caseId = params.get('case')?.trim();
+    return caseId ? { name: 'playground', caseId } : { name: 'playground' };
+  }
+  if (path.startsWith('case/')) {
+    const id = decodeURIComponent(path.slice('case/'.length));
     return { name: 'case', id };
   }
   return { name: 'home' };
@@ -20,6 +25,9 @@ function routeToHash(route: Route): string {
     case 'skills':
       return '#/skills';
     case 'playground':
+      if (route.caseId) {
+        return `#/playground?case=${encodeURIComponent(route.caseId)}`;
+      }
       return '#/playground';
     case 'case':
       return `#/case/${encodeURIComponent(route.id)}`;
